@@ -15,9 +15,14 @@ export const Header: React.FC = () => {
   ];
 
   // Get current tool from domain
-  const currentTool = tools.find(tool => 
-    window.location.hostname.includes(tool.href.split('//')[1].split('.')[0])
-  );
+  const currentTool = tools.find(tool => {
+    try {
+      const toolDomain = tool.href.split('//')[1]?.split('.')[0];
+      return toolDomain && window.location.hostname.includes(toolDomain);
+    } catch (error) {
+      return false;
+    }
+  });
 
   // Close dropdown when clicking outside
   useEffect(() => {

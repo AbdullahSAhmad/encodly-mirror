@@ -30,7 +30,7 @@ export const SEO: React.FC<SEOProps> = ({
     }
     
     const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords && keywords.length > 0) {
+    if (metaKeywords && Array.isArray(keywords) && keywords.length > 0) {
       metaKeywords.setAttribute('content', keywords.join(', '));
     }
   }, [title, description, keywords]);

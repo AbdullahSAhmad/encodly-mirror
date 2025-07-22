@@ -1,9 +1,9 @@
 import React, { useCallback, useRef } from 'react';
 import Editor from '@monaco-editor/react';
-import { Card, CardContent, CardHeader, CardTitle, Button, Toggle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@encodly/shared-ui';
+import { Card, CardContent, CardHeader, CardTitle, Button, Toggle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, useToast } from '@encodly/shared-ui';
 import { useTheme } from '@encodly/shared-ui';
 import { useDropzone } from 'react-dropzone';
-import { Copy, Download, FileJson, TreePine, Share2, Printer, RotateCcw, Wand2, Minimize2, CheckCircle, AlertCircle, Expand } from 'lucide-react';
+import { Copy, Download, FileJson, TreePine, Share2, Printer, RotateCcw, Wand2, Minimize2, CheckCircle, AlertCircle, Expand, Upload } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { JsonTreeView } from './JsonTreeView';
 import { defineCustomThemes } from '../utils/editorTheme';
@@ -32,6 +32,7 @@ interface JSONEditorProps {
   onExpand?: () => void;
   isValidJson?: boolean | null;
   isMinified?: boolean;
+  onToast?: (message: string) => void;
 }
 
 export const JSONEditor: React.FC<JSONEditorProps> = ({
@@ -58,6 +59,7 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
   onExpand,
   isValidJson,
   isMinified,
+  onToast,
 }) => {
   const { theme } = useTheme();
   const editorRef = useRef<any>(null);
@@ -87,16 +89,19 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
 
   const handleCopy = useCallback(async () => {
     if (onCopy) {
-      onCopy();
+      await onCopy();
+      if (onToast) onToast('Copied to clipboard!');
       return;
     }
     
     try {
       await navigator.clipboard.writeText(value);
+      if (onToast) onToast('Copied to clipboard!');
     } catch (err) {
       console.error('Failed to copy text: ', err);
+      if (onToast) onToast('Failed to copy to clipboard');
     }
-  }, [value, onCopy]);
+  }, [value, onCopy, onToast]);
 
   const handleDownload = useCallback(() => {
     if (onDownload) {
@@ -216,6 +221,39 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
               <>
                 {/* Left side controls */}
                 <div className="flex items-center gap-2">
+                  {/* Upload file */}
+                  {onFileUpload && (
+                    <label>
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept=".json,.txt,.xml,.csv"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                              const content = event.target?.result as string;
+                              onFileUpload(content);
+                            };
+                            reader.readAsText(file);
+                          }
+                        }}
+                      />
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        title="Upload file"
+                        className="cursor-pointer"
+                        asChild
+                      >
+                        <span>
+                          <Upload className="h-4 w-4" />
+                        </span>
+                      </Button>
+                    </label>
+                  )}
+
                   {/* Clear content */}
                   {onClear && (
                     <Button

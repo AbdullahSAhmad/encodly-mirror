@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { ToolLayout, Button } from '@encodly/shared-ui';
+import { ToolLayout, Button, useToast } from '@encodly/shared-ui';
 import { JSONEditor } from '../components/JSONEditor';
 import { ShareModal } from '../components/ShareModal';
 import { formatJSON, minifyJSON, isValidJSON } from '@encodly/shared-utils';
 import { useAnalytics } from '@encodly/shared-analytics';
 import { FileText, Minimize2, CheckCircle } from 'lucide-react';
+
+const STORAGE_KEY = 'json-formatter-input';
 
 export const JSONFormatterPage: React.FC = () => {
   const [input, setInput] = useState('');
@@ -16,6 +18,32 @@ export const JSONFormatterPage: React.FC = () => {
   const [isMinified, setIsMinified] = useState(false);
   const [isValidJson, setIsValidJson] = useState<boolean | null>(null);
   const { trackToolUsage } = useAnalytics();
+  const { toast, ToastContainer } = useToast();
+
+  // Load saved input on mount
+  useEffect(() => {
+    try {
+      const savedInput = localStorage.getItem(STORAGE_KEY);
+      if (savedInput) {
+        setInput(savedInput);
+      }
+    } catch (error) {
+      console.warn('Failed to load saved input:', error);
+    }
+  }, []);
+
+  // Save input to localStorage
+  useEffect(() => {
+    try {
+      if (input) {
+        localStorage.setItem(STORAGE_KEY, input);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    } catch (error) {
+      console.warn('Failed to save input:', error);
+    }
+  }, [input]);
 
   // Real-time formatting when auto-format is enabled
   useEffect(() => {
@@ -185,6 +213,75 @@ export const JSONFormatterPage: React.FC = () => {
     trackToolUsage('json-formatter', 'share');
   }, [trackToolUsage]);
 
+  const handlePrint = useCallback(() => {
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    if (!printWindow) {
+      toast('Failed to open print window. Please check your popup blocker settings.');
+      return;
+    }
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>JSON Output</title>
+          <style>
+            body { 
+              font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace; 
+              white-space: pre-wrap; 
+              padding: 20px; 
+              font-size: 12px; 
+              line-height: 1.4;
+              margin: 0;
+            }
+            h3 { 
+              margin: 0 0 20px 0; 
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              color: #333;
+            }
+            .json-content {
+              border: 1px solid #ddd;
+              padding: 15px;
+              border-radius: 4px;
+              background: #f9f9f9;
+            }
+            @media print {
+              body { padding: 10px; }
+              .json-content { border: none; background: white; }
+            }
+          </style>
+        </head>
+        <body>
+          <h3>JSON Output</h3>
+          <div class="json-content">${output || input}</div>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    
+    // Wait a bit longer for content to load before printing
+    setTimeout(() => {
+      try {
+        printWindow.focus();
+        printWindow.print();
+        
+        // Close the window after a delay to allow printing to complete
+        setTimeout(() => {
+          if (!printWindow.closed) {
+            printWindow.close();
+          }
+        }, 1000);
+      } catch (error) {
+        console.error('Print error:', error);
+        toast('Print failed. Please try again.');
+      }
+    }, 500);
+    
+    trackToolUsage('json-formatter', 'print');
+  }, [output, input, trackToolUsage, toast]);
+
   const handleAutoFormatChange = useCallback((enabled: boolean) => {
     setAutoFormat(enabled);
     if (!enabled) {
@@ -210,14 +307,16 @@ export const JSONFormatterPage: React.FC = () => {
   );
 
   return (
-    <ToolLayout
-      title="JSON Formatter & Validator"
-      description="Format, validate, and beautify your JSON data with syntax highlighting and error detection"
-      toolName="json-formatter"
-      keywords={['json formatter', 'json validator', 'json beautifier', 'json minifier']}
-    >
+    <>
+      <ToastContainer />
+      <ToolLayout
+        title="JSON Formatter & Validator"
+        description="Format, validate, and beautify your JSON data with syntax highlighting and error detection"
+        toolName="json-formatter"
+        keywords={['json formatter', 'json validator', 'json beautifier', 'json minifier']}
+      >
       <div className="h-full flex flex-col">
-        <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6">
           <JSONEditor
             value={input}
             onChange={handleInputChange}
@@ -231,6 +330,7 @@ export const JSONFormatterPage: React.FC = () => {
             autoFormat={autoFormat}
             onAutoFormatChange={handleAutoFormatChange}
             isValidJson={isValidJson}
+            onToast={toast}
           />
           
           <JSONEditor
@@ -242,9 +342,11 @@ export const JSONFormatterPage: React.FC = () => {
             viewMode={viewMode}
             onViewModeChange={setViewMode}
             onShare={handleShare}
+            onPrint={handlePrint}
             onMinify={handleMinify}
             onExpand={handleExpand}
             isMinified={isMinified}
+            onToast={toast}
           />
         </div>
       </div>
@@ -255,5 +357,6 @@ export const JSONFormatterPage: React.FC = () => {
         currentUrl={currentUrl}
       />
     </ToolLayout>
+    </>
   );
 };

@@ -51,6 +51,7 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
             <div className="text-center mb-4">
               <h3 className="text-sm font-semibold mb-2">More Developer Tools</h3>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <a href="https://json.encodly.com" className="text-primary hover:underline">JSON Formatter & Validator</a>
                 <a href="https://base64.encodly.com" className="text-primary hover:underline">Base64 Converter</a>
               </div>
             </div>

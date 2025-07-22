@@ -13,6 +13,7 @@ export { Textarea } from './components/ui/textarea';
 export { Switch } from './components/ui/switch';
 export { Toggle } from './components/ui/toggle';
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/ui/tooltip';
+export { useToast } from './components/ui/toast';
 
 // Hooks
 export { ThemeProvider, useTheme } from './hooks/useTheme';

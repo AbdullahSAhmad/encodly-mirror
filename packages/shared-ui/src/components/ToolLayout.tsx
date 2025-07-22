@@ -51,12 +51,7 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
             <div className="text-center mb-4">
               <h3 className="text-sm font-semibold mb-2">More Developer Tools</h3>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <a href="/percentage-calculator" className="text-primary hover:underline">Percentage Calculator</a>
-                <a href="/base64-converter" className="text-primary hover:underline">Base64 Converter</a>
-                <a href="/url-encoder" className="text-primary hover:underline">URL Encoder</a>
-                <a href="/hash-generator" className="text-primary hover:underline">Hash Generator</a>
-                <a href="/color-picker" className="text-primary hover:underline">Color Picker</a>
-                <a href="/regex-tester" className="text-primary hover:underline">Regex Tester</a>
+                <a href="https://base64.encodly.com" className="text-primary hover:underline">Base64 Converter</a>
               </div>
             </div>
             <AdBanner position="content" />

@@ -6,7 +6,6 @@ export const Footer: React.FC = () => {
 
   const tools = [
     { name: 'JSON Formatter', href: 'https://json.encodly.com' },
-    { name: 'Percentage Calculator', href: 'https://calc.encodly.com' },
     { name: 'Base64 Converter', href: 'https://base64.encodly.com' },
   ];
 

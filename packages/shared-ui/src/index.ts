@@ -12,6 +12,7 @@ export { Input } from './components/ui/input';
 export { Textarea } from './components/ui/textarea';
 export { Switch } from './components/ui/switch';
 export { Toggle } from './components/ui/toggle';
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/ui/tooltip';
 
 // Hooks
 export { ThemeProvider, useTheme } from './hooks/useTheme';

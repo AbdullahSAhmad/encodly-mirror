@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import Editor from '@monaco-editor/react';
-import { Card, CardContent, CardHeader, CardTitle, Button, Toggle } from '@encodly/shared-ui';
+import { Card, CardContent, CardHeader, CardTitle, Button, Toggle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@encodly/shared-ui';
 import { useTheme } from '@encodly/shared-ui';
 import { useDropzone } from 'react-dropzone';
 import { Copy, Download, FileJson, TreePine, Share2, Printer, RotateCcw, Wand2, Minimize2, CheckCircle, AlertCircle, Expand } from 'lucide-react';
@@ -184,7 +184,32 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>{label}</CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle>{label}</CardTitle>
+            {/* JSON Validation Status - moved beside label */}
+            {!readOnly && value.trim() && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex items-center cursor-help">
+                      {isValidJson === true ? (
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                      ) : isValidJson === false ? (
+                        <AlertCircle className="h-4 w-4 text-red-500" />
+                      ) : null}
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {isValidJson === true ? (
+                      <p>Valid JSON - Your JSON is properly formatted and ready to use</p>
+                    ) : isValidJson === false ? (
+                      <p>Invalid JSON - Check for missing quotes, commas, or brackets. Use Auto-fix for quick corrections</p>
+                    ) : null}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </div>
           <div className="flex items-center gap-2">
             {/* Input area controls */}
             {!readOnly && (
@@ -215,17 +240,6 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                     >
                       <Wand2 className="h-4 w-4" />
                     </Button>
-                  )}
-                  
-                  {/* JSON Validation Status */}
-                  {value.trim() && (
-                    <div className="flex items-center">
-                      {isValidJson === true ? (
-                        <CheckCircle className="h-4 w-4 text-green-500" title="Valid JSON" />
-                      ) : isValidJson === false ? (
-                        <AlertCircle className="h-4 w-4 text-red-500" title="Invalid JSON" />
-                      ) : null}
-                    </div>
                   )}
                   
                   {/* Search */}

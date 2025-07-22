@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Code2, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from '../hooks/useTheme';
+import { getToolUrls } from '../utils/urls';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,9 +10,11 @@ export const Header: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { theme, toggleTheme } = useTheme();
 
+  const toolUrls = getToolUrls();
+  
   const tools = [
-    { name: 'JSON Formatter', href: 'https://json.encodly.com', description: 'Format, validate & fix JSON' },
-    { name: 'Base64 Converter', href: 'https://base64.encodly.com', description: 'Encode & decode Base64' },
+    { name: 'JSON Formatter', href: toolUrls.json, description: 'Format, validate & fix JSON' },
+    { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
   ];
 
   // Get current tool from domain
@@ -41,7 +44,7 @@ export const Header: React.FC = () => {
       <div className="w-full px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-6">
-            <a href="https://encodly.com" className="flex items-center space-x-2">
+            <a href={toolUrls.main} className="flex items-center space-x-2">
               <Code2 className="h-8 w-8 text-primary" />
               <span className="text-xl font-semibold">Encodly</span>
             </a>

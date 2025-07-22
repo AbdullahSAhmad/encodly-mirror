@@ -1,25 +1,27 @@
 import React from 'react';
-import { Github, Twitter, Mail } from 'lucide-react';
+import { getToolUrls, getPageUrl } from '../utils/urls';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
+  const toolUrls = getToolUrls();
+
   const tools = [
-    { name: 'JSON Formatter', href: 'https://json.encodly.com' },
-    { name: 'Base64 Converter', href: 'https://base64.encodly.com' },
+    { name: 'JSON Formatter', href: toolUrls.json },
+    { name: 'Base64 Converter', href: toolUrls.base64 },
   ];
 
   const links = [
-    { name: 'About', href: 'https://encodly.com/about' },
-    { name: 'Privacy Policy', href: 'https://encodly.com/privacy' },
-    { name: 'Terms of Service', href: 'https://encodly.com/terms' },
-    { name: 'Contact', href: 'https://encodly.com/contact' },
+    { name: 'About', href: getPageUrl('/about') },
+    { name: 'Privacy Policy', href: getPageUrl('/privacy') },
+    { name: 'Terms of Service', href: getPageUrl('/terms') },
+    { name: 'Contact', href: getPageUrl('/contact') },
   ];
 
   return (
     <footer className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-semibold mb-4">Encodly Tools</h3>
             <ul className="space-y-2">
@@ -50,33 +52,6 @@ export const Footer: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/encodly"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://twitter.com/encodly"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:contact@encodly.com"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           <div>

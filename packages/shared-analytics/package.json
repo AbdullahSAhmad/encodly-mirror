@@ -1,0 +1,34 @@
+{
+  "name": "@encodly/shared-analytics",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.48",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-dts": "^3.7.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}

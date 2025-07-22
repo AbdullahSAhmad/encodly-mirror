@@ -1,0 +1,19 @@
+{
+  "extends": "./packages/shared-config/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@encodly/*": ["packages/*/src"]
+    }
+  },
+  "include": [],
+  "references": [
+    { "path": "./packages/shared-ui" },
+    { "path": "./packages/shared-utils" },
+    { "path": "./packages/shared-analytics" },
+    { "path": "./apps/json-formatter" },
+    { "path": "./apps/percentage-calc" },
+    { "path": "./apps/base64-converter" },
+    { "path": "./apps/main-site" }
+  ]
+}

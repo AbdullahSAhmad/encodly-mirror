@@ -11,10 +11,12 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/style.css",
+    "./tailwind.config.js": "./tailwind.config.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "tailwind.config.js"
   ],
   "scripts": {
     "dev": "vite build --watch",

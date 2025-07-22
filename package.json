@@ -13,7 +13,7 @@
     "dev:calc": "npm run dev -w @encodly/percentage-calc",
     "dev:base64": "npm run dev -w @encodly/base64-converter",
     "build": "npm run build:shared && npm run build:apps",
-    "build:shared": "npm run build -w @encodly/shared-ui && npm run build -w @encodly/shared-utils && npm run build -w @encodly/shared-config && npm run build -w @encodly/shared-analytics",
+    "build:shared": "npm run build -w @encodly/shared-ui && npm run build -w @encodly/shared-utils && npm run build -w @encodly/shared-analytics",
     "build:apps": "npm run build:json && npm run build:calc && npm run build:base64",
     "build:json": "npm run build -w @encodly/json-formatter",
     "build:calc": "npm run build -w @encodly/percentage-calc",
@@ -29,6 +29,7 @@
     "clean:packages": "rm -rf packages/*/dist packages/*/node_modules"
   },
   "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.45.1",
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
@@ -44,5 +45,8 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "vite": "^7.0.5"
   }
 }

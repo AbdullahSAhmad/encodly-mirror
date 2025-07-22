@@ -30,38 +30,31 @@ export const FileUploader: React.FC<FileUploaderProps> = ({ onFileUpload }) => {
   });
 
   return (
-    <Card>
-      <CardContent className="p-6">
-        <div
-          {...getRootProps()}
-          className={`
-            border-2 border-dashed rounded-lg p-8 text-center cursor-pointer
-            transition-colors duration-200
-            ${isDragActive 
-              ? 'border-primary bg-primary/5' 
-              : 'border-border hover:border-primary/50'
-            }
-          `}
-        >
-          <input {...getInputProps()} />
-          <div className="flex flex-col items-center gap-2">
-            {isDragActive ? (
-              <>
-                <FileJson className="h-12 w-12 text-primary" />
-                <p className="text-lg font-medium">Drop your JSON file here</p>
-              </>
-            ) : (
-              <>
-                <Upload className="h-12 w-12 text-muted-foreground" />
-                <p className="text-lg font-medium">Drop a JSON file here</p>
-                <p className="text-sm text-muted-foreground">
-                  or click to select a file
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+    <div
+      {...getRootProps()}
+      className={`
+        border-2 border-dashed rounded-lg p-4 text-center cursor-pointer
+        transition-colors duration-200
+        ${isDragActive 
+          ? 'border-primary bg-primary/5' 
+          : 'border-border hover:border-primary/50'
+        }
+      `}
+    >
+      <input {...getInputProps()} />
+      <div className="flex items-center justify-center gap-3">
+        {isDragActive ? (
+          <>
+            <FileJson className="h-5 w-5 text-primary" />
+            <span className="text-sm font-medium">Drop your JSON file here</span>
+          </>
+        ) : (
+          <>
+            <Upload className="h-5 w-5 text-muted-foreground" />
+            <span className="text-sm font-medium">Drop JSON file or click to select</span>
+          </>
+        )}
+      </div>
+    </div>
   );
 };

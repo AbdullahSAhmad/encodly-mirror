@@ -1,11 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
+
 interface AdBannerProps {
   position: 'header' | 'sidebar' | 'footer' | 'content';
 }
 
 export const AdBanner: React.FC<AdBannerProps> = ({ position }) => {
-  const adRef = useRef<HTMLDivElement>(null);
+  const adRef = useRef<HTMLModElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.adsbygoogle && adRef.current) {
@@ -37,7 +43,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({ position }) => {
         ref={adRef}
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', height: '100%' }}
-        data-ad-client={process.env.VITE_ADSENSE_CLIENT_ID || 'ca-pub-XXXXXXX'}
+        data-ad-client={import.meta.env.VITE_ADSENSE_CLIENT_ID || 'ca-pub-XXXXXXX'}
         data-ad-slot={`ad-slot-${position}`}
         data-ad-format={adFormats[position]}
         data-full-width-responsive="true"

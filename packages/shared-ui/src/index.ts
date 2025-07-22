@@ -11,6 +11,7 @@ export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 export { Input } from './components/ui/input';
 export { Textarea } from './components/ui/textarea';
 export { Switch } from './components/ui/switch';
+export { Toggle } from './components/ui/toggle';
 
 // Hooks
 export { ThemeProvider, useTheme } from './hooks/useTheme';

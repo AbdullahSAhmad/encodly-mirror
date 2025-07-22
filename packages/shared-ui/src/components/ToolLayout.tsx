@@ -19,29 +19,49 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
   toolName,
   keywords = [],
 }) => {
+  void toolName; // Suppress unused variable warning
+  
   return (
     <>
       <SEO title={title} description={description} keywords={keywords} />
       <div className="min-h-screen flex flex-col">
         <Header />
-        <AdBanner position="header" />
         
-        <main className="flex-1 container mx-auto px-4 py-8">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">{description}</p>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-              <div className="lg:col-span-3">
-                {children}
-              </div>
-              
-              <aside className="lg:col-span-1">
-                <AdBanner position="sidebar" />
-              </aside>
+        <div className="flex-1 flex flex-col">
+          {/* Header with Ad */}
+          <div className="flex items-center justify-between px-6 py-3 border-b bg-gradient-to-r from-background to-muted/20 shadow-sm">
+            <div className="flex-1 mr-6">
+              <h1 className="text-xl font-semibold text-foreground leading-tight">{title}</h1>
+              <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{description}</p>
+            </div>
+            <div className="flex-shrink-0">
+              <AdBanner position="header" />
             </div>
           </div>
-        </main>
+          
+          {/* Main Content Area */}
+          <main className="flex-1 px-4 py-4 overflow-auto">
+            <div className="w-full h-full">
+              {children}
+            </div>
+          </main>
+          
+          {/* Bottom section for tool links */}
+          <div className="px-4 py-6 border-t bg-muted/30">
+            <div className="text-center mb-4">
+              <h3 className="text-sm font-semibold mb-2">More Developer Tools</h3>
+              <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <a href="/percentage-calculator" className="text-primary hover:underline">Percentage Calculator</a>
+                <a href="/base64-converter" className="text-primary hover:underline">Base64 Converter</a>
+                <a href="/url-encoder" className="text-primary hover:underline">URL Encoder</a>
+                <a href="/hash-generator" className="text-primary hover:underline">Hash Generator</a>
+                <a href="/color-picker" className="text-primary hover:underline">Color Picker</a>
+                <a href="/regex-tester" className="text-primary hover:underline">Regex Tester</a>
+              </div>
+            </div>
+            <AdBanner position="content" />
+          </div>
+        </div>
         
         <AdBanner position="footer" />
         <Footer />

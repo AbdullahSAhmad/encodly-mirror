@@ -17,6 +17,10 @@ export const SEO: React.FC<SEOProps> = ({
   ogImage,
   jsonLd
 }) => {
+  // Use optional parameters to avoid unused variable warnings
+  void canonicalUrl;
+  void ogImage;
+  void jsonLd;
   React.useEffect(() => {
     document.title = `${title} | DevTools`;
     

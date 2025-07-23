@@ -12,9 +12,9 @@ export const getToolUrls = () => {
   
   if (isDev) {
     return {
-      json: 'http://localhost:3001',
-      base64: 'http://localhost:3003',
-      main: 'http://localhost:3000'
+      json: 'http://localhost:5001',
+      base64: 'http://localhost:5002',
+      main: 'http://localhost:5000'
     };
   }
   

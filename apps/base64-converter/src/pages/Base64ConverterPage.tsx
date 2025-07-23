@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
+import { useAnalytics } from '@encodly/shared-analytics';
 import { Base64Editor } from '../components/Base64Editor';
 import { Base64Toolbar } from '../components/Base64Toolbar';
 
@@ -76,9 +77,15 @@ export const Base64ConverterPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const { toast, ToastContainer } = useToast();
+  const { trackToolUsage, trackPageView } = useAnalytics();
 
   // State to track if initial load is complete
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Track page view on mount
+  useEffect(() => {
+    trackPageView('/base64-converter', 'Base64 Converter');
+  }, [trackPageView]);
 
   // Load saved data on mount
   useEffect(() => {
@@ -155,6 +162,7 @@ export const Base64ConverterPage: React.FC = () => {
         const encoded = btoa(value);
         setOutput(encoded);
         setIsValid(true);
+        trackToolUsage('base64-converter', 'encode', { success: true, length: value.length });
       } else {
         // Validate base64 format before decoding
         const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
@@ -164,13 +172,15 @@ export const Base64ConverterPage: React.FC = () => {
         const decoded = atob(value.trim());
         setOutput(decoded);
         setIsValid(true);
+        trackToolUsage('base64-converter', 'decode', { success: true, length: value.length });
       }
     } catch (err) {
       setError(mode === 'encode' ? 'Unable to encode text' : 'Invalid Base64 string');
       setOutput('');
       setIsValid(false);
+      trackToolUsage('base64-converter', mode, { success: false, error: err instanceof Error ? err.message : 'Unknown error' });
     }
-  }, [mode]);
+  }, [mode, trackToolUsage]);
 
   // Handle mode change
   const handleModeChange = useCallback((newMode: 'encode' | 'decode') => {
@@ -179,12 +189,14 @@ export const Base64ConverterPage: React.FC = () => {
     setOutput('');
     setError(null);
     setIsValid(null);
-  }, []);
+    trackToolUsage('base64-converter', 'mode-change', { mode: newMode });
+  }, [trackToolUsage]);
 
   // Handle file upload
   const handleFileUpload = useCallback((content: string) => {
     handleInputChange(content);
-  }, [handleInputChange]);
+    trackToolUsage('base64-converter', 'file-upload', { mode, size: content.length });
+  }, [handleInputChange, mode, trackToolUsage]);
 
   // Handle clear
   const handleClear = useCallback(() => {
@@ -192,14 +204,16 @@ export const Base64ConverterPage: React.FC = () => {
     setOutput('');
     setError(null);
     setIsValid(null);
-  }, []);
+    trackToolUsage('base64-converter', 'clear');
+  }, [trackToolUsage]);
 
   // Handle copy
   const handleCopy = useCallback(async () => {
     if (output) {
       await navigator.clipboard.writeText(output);
+      trackToolUsage('base64-converter', 'copy', { mode, outputSize: output.length });
     }
-  }, [output]);
+  }, [output, mode, trackToolUsage]);
 
   // Handle download
   const handleDownload = useCallback(() => {
@@ -214,7 +228,8 @@ export const Base64ConverterPage: React.FC = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  }, [output, mode]);
+    trackToolUsage('base64-converter', 'download', { mode, outputSize: output.length });
+  }, [output, mode, trackToolUsage]);
 
   return (
     <>

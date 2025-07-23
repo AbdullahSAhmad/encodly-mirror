@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@encodly/shared-ui';
 import { AnalyticsProvider, AdSenseProvider } from '@encodly/shared-analytics';

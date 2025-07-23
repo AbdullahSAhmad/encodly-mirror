@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://base64.encodly.com/sitemap.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Allow main tool functionality
+Allow: /
+
+# SEO-friendly crawling
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

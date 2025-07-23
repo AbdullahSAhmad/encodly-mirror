@@ -136,7 +136,6 @@ export const PrivacyPage: React.FC = () => {
 
       <ul>
         <li>Email: <a href={`mailto:privacy@${new URL(getToolUrls().main).hostname}`}>privacy@{new URL(getToolUrls().main).hostname}</a></li>
-        <li>Contact form: <a href={getPageUrl('/contact')}>Contact page</a></li>
       </ul>
 
       <h2>Commitment to Privacy</h2>

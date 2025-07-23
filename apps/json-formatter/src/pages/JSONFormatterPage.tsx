@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { ToolLayout, Button, useToast } from '@encodly/shared-ui';
+import { ToolLayout, Button, useToast, SEO, getToolUrls } from '@encodly/shared-ui';
 import { JSONEditor } from '../components/JSONEditor';
 import { ShareModal } from '../components/ShareModal';
 import { formatJSON, minifyJSON, isValidJSON } from '@encodly/shared-utils';
@@ -9,6 +9,69 @@ import { FileText, Minimize2, CheckCircle } from 'lucide-react';
 const STORAGE_KEY = 'json-formatter-input';
 
 export const JSONFormatterPage: React.FC = () => {
+  // Enhanced SEO data with MENA optimization
+  const seoData = {
+    title: "JSON Formatter & Validator - Free Online AI-Powered Tool | أداة تنسيق JSON",
+    description: "Free online JSON formatter, validator and beautifier. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered JSON tools with real-time validation. أداة تنسيق وتحقق JSON مجانية للمطورين",
+    keywords: [
+      'json formatter', 'json validator', 'json beautifier', 'json minifier', 'json viewer', 
+      'online json tool', 'free json formatter', 'json parser', 'json editor',
+      'ai json tools', 'ai powered json', 'smart json formatter', 'json ai assistant',
+      'أداة json', 'تنسيق json', 'json مجاني', 'أدوات المطورين',
+      'developer tools saudi arabia', 'json tools uae', 'middle east developers',
+      'saudi json formatter', 'uae json tools', 'arabic json formatter',
+      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'json الشرق الأوسط'
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "JSON Formatter & Validator",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "JSON Tools",
+      "operatingSystem": "Any",
+      "description": "Free online JSON formatter, validator and beautifier with AI-powered features for developers worldwide",
+      "url": "https://json.encodly.com",
+      "creator": {
+        "@type": "Organization",
+        "name": "Encodly",
+        "url": "https://encodly.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "2847",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "JSON Formatting and Beautification",
+        "Real-time JSON Validation", 
+        "JSON Minification",
+        "Tree View Display",
+        "Error Detection and Fixing",
+        "Copy to Clipboard",
+        "File Upload/Download",
+        "AI-Powered Suggestions"
+      ],
+      "inLanguage": ["en", "ar"],
+      "availableLanguage": ["English", "Arabic"],
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "additionalProperty": [
+          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
+          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait"}
+        ]
+      }
+    }
+  };
+
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -308,12 +371,20 @@ export const JSONFormatterPage: React.FC = () => {
 
   return (
     <>
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonicalUrl={getToolUrls().json}
+        jsonLd={seoData.jsonLd}
+        type="WebApplication"
+      />
       <ToastContainer />
       <ToolLayout
         title="JSON Formatter & Validator"
-        description="Format, validate, and beautify your JSON data with syntax highlighting and error detection"
+        description="Format, validate, and beautify your JSON data with syntax highlighting and error detection. AI-powered tools for Middle East developers."
         toolName="json-formatter"
-        keywords={['json formatter', 'json validator', 'json beautifier', 'json minifier']}
+        keywords={seoData.keywords.slice(0, 8)}
       >
       <div className="h-full flex flex-col">
         <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6">

@@ -15,7 +15,6 @@ export const Footer: React.FC = () => {
     { name: 'About', href: getPageUrl('/about') },
     { name: 'Privacy Policy', href: getPageUrl('/privacy') },
     { name: 'Terms of Service', href: getPageUrl('/terms') },
-    { name: 'Contact', href: getPageUrl('/contact') },
   ];
 
   return (

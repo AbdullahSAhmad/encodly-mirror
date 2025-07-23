@@ -96,8 +96,7 @@ export const AboutPage: React.FC = () => {
 
       <p>
         Have a suggestion for a new tool or found a bug? We'd love to hear from you! 
-        Reach out to us at <a href={`mailto:hello@${new URL(getToolUrls().main).hostname}`}>hello@{new URL(getToolUrls().main).hostname}</a> or 
-        visit our <a href={getPageUrl('/contact')}>contact page</a>.
+        Reach out to us at <a href={`mailto:hello@${new URL(getToolUrls().main).hostname}`}>hello@{new URL(getToolUrls().main).hostname}</a>.
       </p>
     </PageLayout>
   );

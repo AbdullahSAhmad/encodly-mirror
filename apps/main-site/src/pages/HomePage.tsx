@@ -26,9 +26,17 @@ export const HomePage: React.FC = () => {
 
   return (
     <PageLayout
-      title="Encodly - Free Developer Tools"
-      description="Free online developer tools for JSON formatting, Base64 encoding, and more. No signup required, fast and secure."
-      keywords={['developer tools', 'json formatter', 'base64 converter', 'online tools', 'free tools']}
+      title="Encodly - Free AI-Powered Developer Tools | أدوات المطورين المجانية"
+      description="Free online AI-powered developer tools for JSON formatting, Base64 encoding, and more. Perfect for developers in Saudi Arabia, UAE, and Middle East. No signup required, fast and secure. أدوات المطورين المجانية مع الذكاء الاصطناعي"
+      keywords={[
+        'developer tools', 'json formatter', 'base64 converter', 'online tools', 'free tools',
+        'ai developer tools', 'ai powered tools', 'smart coding tools', 'ai programming tools',
+        'أدوات المطورين', 'أدوات الذكاء الاصطناعي', 'أدوات البرمجة المجانية',
+        'developer tools saudi arabia', 'coding tools uae', 'middle east developers',
+        'saudi programming tools', 'uae developer tools', 'arabic developer tools',
+        'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'برمجة الشرق الأوسط',
+        'kuwait developer tools', 'qatar programming tools', 'bahrain coding tools', 'oman developer tools'
+      ]}
       canonicalUrl={getBaseUrl()}
     >
       <div className="text-center mb-12">

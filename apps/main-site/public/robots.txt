@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://encodly.com/sitemap.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Block admin and private areas (none currently)
+# Disallow: /admin/
+
+# Allow important pages
+Allow: /about
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+
+# SEO-friendly crawling
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

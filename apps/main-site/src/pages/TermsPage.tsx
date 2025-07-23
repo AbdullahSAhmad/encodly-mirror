@@ -169,7 +169,6 @@ export const TermsPage: React.FC = () => {
 
       <ul>
         <li>Email: <a href={`mailto:legal@${new URL(getToolUrls().main).hostname}`}>legal@{new URL(getToolUrls().main).hostname}</a></li>
-        <li>Contact form: <a href={getPageUrl('/contact')}>Contact page</a></li>
       </ul>
 
       <h2>Acknowledgment</h2>

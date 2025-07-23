@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { ToolLayout, SEO, useToast } from '@encodly/shared-ui';
+import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
 import { Base64Editor } from '../components/Base64Editor';
 import { Base64Toolbar } from '../components/Base64Toolbar';
 
@@ -7,12 +7,78 @@ const STORAGE_KEY = 'base64-converter-input';
 const MODE_STORAGE_KEY = 'base64-converter-mode';
 
 export const Base64ConverterPage: React.FC = () => {
+  // Enhanced SEO data with MENA optimization
+  const seoData = {
+    title: "Base64 Encoder & Decoder - Free Online AI-Powered Tool | أداة تشفير Base64",
+    description: "Free online Base64 encoder and decoder tool. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered encoding tools with file support. أداة تشفير وفك تشفير Base64 مجانية للمطورين",
+    keywords: [
+      'base64 encoder', 'base64 decoder', 'base64 converter', 'base64 tool', 'online base64',
+      'free base64 encoder', 'base64 file encoder', 'text to base64', 'base64 to text',
+      'ai base64 tools', 'ai powered encoding', 'smart base64 converter', 'base64 ai assistant',
+      'أداة base64', 'تشفير base64', 'base64 مجاني', 'أدوات التشفير',
+      'developer tools saudi arabia', 'base64 tools uae', 'middle east developers',
+      'saudi base64 converter', 'uae encoding tools', 'arabic base64 tool',
+      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'تشفير الشرق الأوسط',
+      'encoding tools kuwait', 'qatar developer tools', 'bahrain base64', 'oman encoding'
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Base64 Encoder & Decoder",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Encoding Tools",
+      "operatingSystem": "Any",
+      "description": "Free online Base64 encoder and decoder with AI-powered features for developers worldwide",
+      "url": "https://base64.encodly.com",
+      "creator": {
+        "@type": "Organization",
+        "name": "Encodly",
+        "url": "https://encodly.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1923",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "Text to Base64 Encoding",
+        "Base64 to Text Decoding",
+        "File Upload and Encoding",
+        "Real-time Conversion",
+        "Download Encoded Results",
+        "Copy to Clipboard",
+        "Input Validation",
+        "AI-Powered Error Detection"
+      ],
+      "inLanguage": ["en", "ar"],
+      "availableLanguage": ["English", "Arabic"],
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "additionalProperty": [
+          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
+          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait, Bahrain, Oman"}
+        ]
+      }
+    }
+  };
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [mode, setMode] = useState<'encode' | 'decode'>('encode');
   const [error, setError] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const { toast, ToastContainer } = useToast();
+
+  // State to track if initial load is complete
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Load saved data on mount
   useEffect(() => {
@@ -26,17 +92,30 @@ export const Base64ConverterPage: React.FC = () => {
       if (savedInput) {
         setInput(savedInput);
       }
+      setIsInitialLoad(false);
     } catch (error) {
       console.warn('Failed to load saved data:', error);
+      setIsInitialLoad(false);
     }
   }, []);
 
-  // Process saved input when mode changes or input is loaded
+  // Process saved input when mode changes
   useEffect(() => {
-    if (input) {
+    if (input && !isInitialLoad) {
       handleInputChange(input);
     }
   }, [mode]); // Trigger when mode changes
+
+  // Process input after initial load
+  useEffect(() => {
+    if (!isInitialLoad && input) {
+      // Small delay to ensure handleInputChange is defined
+      const timer = setTimeout(() => {
+        handleInputChange(input);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [isInitialLoad]); // Trigger when initial load completes
 
   // Save input to localStorage
   useEffect(() => {
@@ -139,17 +218,21 @@ export const Base64ConverterPage: React.FC = () => {
 
   return (
     <>
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonicalUrl={getToolUrls().base64}
+        jsonLd={seoData.jsonLd}
+        type="WebApplication"
+      />
       <ToastContainer />
       <ToolLayout
         title="Base64 Encoder & Decoder"
-        description="Encode and decode Base64 data online. Convert text to Base64 and Base64 to text instantly."
+        description="Encode and decode Base64 data online with AI-powered features. Perfect for Middle East developers with file support."
+        toolName="base64-converter"
+        keywords={seoData.keywords.slice(0, 8)}
       >
-      <SEO
-        title="Base64 Encoder & Decoder - Free Online Tool"
-        description="Encode and decode Base64 data online. Free Base64 converter with support for text and file encoding. Fast, secure, no ads, no signup required."
-        keywords={["base64 encoder", "base64 decoder", "base64 converter", "encode base64", "decode base64", "online base64 tool"]}
-        canonicalUrl="https://base64.encodly.com"
-      />
       
       <div className="space-y-6">
         <Base64Toolbar

@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Code2, ChevronDown } from 'lucide-react';
+import { Menu, X, Sun, Moon, Code2, ChevronDown, Search } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from '../hooks/useTheme';
+import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { getToolUrls } from '../utils/urls';
+import { CommandPalette } from './CommandPalette';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { theme, toggleTheme } = useTheme();
 
@@ -38,6 +41,18 @@ export const Header: React.FC = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Keyboard shortcut for command palette
+  useKeyboardShortcut([
+    {
+      key: 'k',
+      ctrlKey: true,
+      callback: (event) => {
+        event.preventDefault();
+        setIsCommandPaletteOpen(true);
+      }
+    }
+  ]);
 
   return (
     <header className="border-b">
@@ -85,6 +100,44 @@ export const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
+            {/* Desktop Command Palette Trigger */}
+            <Button
+              variant="ghost"
+              onClick={() => setIsCommandPaletteOpen(true)}
+              aria-label="Open command palette"
+              className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 border border-border/40 rounded-md transition-all duration-200 min-w-[240px] justify-start"
+            >
+              <Search className="h-4 w-4" />
+              <span className="flex-1 text-left">Search commands...</span>
+              <div className="flex items-center gap-1">
+                <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                  <span className="text-xs">⌘</span>K
+                </kbd>
+              </div>
+            </Button>
+
+            {/* Tablet Command Palette Trigger */}
+            <Button
+              variant="ghost"
+              onClick={() => setIsCommandPaletteOpen(true)}
+              aria-label="Open command palette"
+              className="hidden sm:flex lg:hidden items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 border border-border/40 rounded-md transition-all duration-200"
+            >
+              <Search className="h-4 w-4" />
+              <span className="text-left">Search</span>
+            </Button>
+
+            {/* Mobile Command Palette Trigger */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsCommandPaletteOpen(true)}
+              aria-label="Open command palette"
+              className="sm:hidden"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+            
             <Button
               variant="ghost"
               size="icon"
@@ -128,6 +181,11 @@ export const Header: React.FC = () => {
           </nav>
         )}
       </div>
+
+      <CommandPalette 
+        open={isCommandPaletteOpen} 
+        onOpenChange={setIsCommandPaletteOpen} 
+      />
     </header>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ExternalLink } from 'lucide-react';
 import { getToolUrls, getPageUrl } from '../utils/urls';
 
 export const Footer: React.FC = () => {
@@ -54,10 +55,25 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">About</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Free developer tools to make your work easier. Built with performance and usability in mind.
-            </p>
+            <h3 className="font-semibold mb-4">Connect</h3>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="https://x.com/encodly"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition flex items-center gap-2"
+                >
+                  <span>Follow us on X</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </li>
+            </ul>
+            <div className="mt-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Free developer tools to make your work easier.
+              </p>
+            </div>
           </div>
         </div>
 

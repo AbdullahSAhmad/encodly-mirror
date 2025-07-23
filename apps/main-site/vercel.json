@@ -1,6 +1,7 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
+  "buildCommand": "cd ../.. && npm install && npm run build:shared && cd apps/main-site && npm run build",
+  "installCommand": "cd ../.. && npm install",
+  "outputDirectory": "apps/main-site/dist",
   "framework": "vite",
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }

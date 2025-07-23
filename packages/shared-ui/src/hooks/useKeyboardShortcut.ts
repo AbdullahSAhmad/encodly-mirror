@@ -9,9 +9,17 @@ export interface KeyboardShortcut {
   callback: (event: KeyboardEvent) => void;
 }
 
-export const useKeyboardShortcut = (shortcuts: KeyboardShortcut[]) => {
+export const useKeyboardShortcut = (shortcuts: KeyboardShortcut[] = []) => {
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (!shortcuts || !Array.isArray(shortcuts) || shortcuts.length === 0) {
+      return;
+    }
+    
     shortcuts.forEach((shortcut) => {
+      if (!shortcut || typeof shortcut.callback !== 'function') {
+        return;
+      }
+
       const isCtrlOrCmd = shortcut.ctrlKey || shortcut.metaKey;
       const isCtrlPressed = event.ctrlKey || event.metaKey;
       const isShiftPressed = event.shiftKey;

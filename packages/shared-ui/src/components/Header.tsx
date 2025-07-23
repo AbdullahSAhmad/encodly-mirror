@@ -18,6 +18,7 @@ export const Header: React.FC = () => {
   const tools = [
     { name: 'JSON Formatter', href: toolUrls.json, description: 'Format, validate & fix JSON' },
     { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
+    { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
   ];
 
   // Get current tool from domain

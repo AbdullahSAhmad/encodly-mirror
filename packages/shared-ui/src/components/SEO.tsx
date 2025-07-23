@@ -49,7 +49,7 @@ export const SEO: React.FC<SEOProps> = ({
 
     // Basic meta tags
     updateMetaTag('description', description);
-    if (keywords.length > 0) {
+    if (keywords && Array.isArray(keywords) && keywords.length > 0) {
       updateMetaTag('keywords', keywords.join(', '));
     }
     updateMetaTag('author', 'Encodly');

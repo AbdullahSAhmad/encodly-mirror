@@ -10,6 +10,7 @@ export const Footer: React.FC = () => {
   const tools = [
     { name: 'JSON Formatter', href: toolUrls.json },
     { name: 'Base64 Converter', href: toolUrls.base64 },
+    { name: 'URL Encoder/Decoder', href: toolUrls.url },
   ];
 
   const links = [

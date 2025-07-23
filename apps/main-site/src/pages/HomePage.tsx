@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@encodly/shared-ui';
-import { Code2, FileJson, Hash, ExternalLink } from 'lucide-react';
+import { Code2, FileJson, Hash, Link2, ExternalLink } from 'lucide-react';
 import { getToolUrls, getBaseUrl } from '../utils/urls';
 
 export const HomePage: React.FC = () => {
@@ -21,6 +21,13 @@ export const HomePage: React.FC = () => {
       href: toolUrls.base64,
       icon: Hash,
       features: ['Text encoding', 'File support', 'Real-time conversion', 'Download results']
+    },
+    {
+      name: 'URL Encoder/Decoder',
+      description: 'Encode URLs for safe transmission or decode encoded URLs back to readable format.',
+      href: toolUrls.url,
+      icon: Link2,
+      features: ['Percent encoding', 'URL decoding', 'Swap content', 'Copy results']
     }
   ];
 

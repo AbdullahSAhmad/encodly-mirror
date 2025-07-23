@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, Home, Info, Shield, FileText, Hash, Binary, Sun, Moon, ExternalLink } from 'lucide-react';
+import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Sun, Moon, ExternalLink } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { VisuallyHidden } from './ui/visually-hidden';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -120,6 +120,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'tools',
         keywords: ['base64', 'encode', 'decode', 'convert']
+      },
+      {
+        id: 'url-converter',
+        title: 'URL Encoder/Decoder',
+        description: 'Encode & decode URLs',
+        icon: <Link2 className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.url;
+          onOpenChange(false);
+        },
+        category: 'tools',
+        keywords: ['url', 'encode', 'decode', 'percent', 'uri', 'convert']
       }
     );
 
@@ -187,7 +199,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   }, [open]);
 
   // Keyboard navigation
-  useKeyboardShortcut([
+  const shortcuts = useMemo(() => [
     {
       key: 'ArrowDown',
       callback: () => {
@@ -224,7 +236,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         }
       }
     }
-  ]);
+  ], [open, filteredCommands, selectedIndex, onOpenChange]);
+
+  useKeyboardShortcut(shortcuts);
 
   // Scroll selected item into view
   useEffect(() => {

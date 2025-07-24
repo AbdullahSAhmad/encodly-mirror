@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'URL Encoder & Decoder',
-        short_name: 'URL Converter',
+        name: 'JWT Token Decoder',
+        short_name: 'JWT Decoder',
         theme_color: '#1e3a8a',
         background_color: '#ffffff',
         display: 'standalone',
@@ -31,6 +31,6 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: 5004,
+    port: 5005,
   },
 });

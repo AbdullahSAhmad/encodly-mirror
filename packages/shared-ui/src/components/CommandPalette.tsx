@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Sun, Moon, ExternalLink } from 'lucide-react';
+import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { VisuallyHidden } from './ui/visually-hidden';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -132,6 +132,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'tools',
         keywords: ['url', 'encode', 'decode', 'percent', 'uri', 'convert']
+      },
+      {
+        id: 'jwt-decoder',
+        title: 'JWT Token Decoder',
+        description: 'Decode & validate JWT tokens',
+        icon: <Key className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.jwt;
+          onOpenChange(false);
+        },
+        category: 'tools',
+        keywords: ['jwt', 'token', 'decode', 'json', 'web', 'claims', 'validate']
       }
     );
 

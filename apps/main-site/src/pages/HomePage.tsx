@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@encodly/shared-ui';
-import { Code2, FileJson, Hash, Link2, ExternalLink } from 'lucide-react';
+import { Code2, FileJson, Hash, Link2, Key, ExternalLink } from 'lucide-react';
 import { getToolUrls, getBaseUrl } from '../utils/urls';
 
 export const HomePage: React.FC = () => {
@@ -28,6 +28,13 @@ export const HomePage: React.FC = () => {
       href: toolUrls.url,
       icon: Link2,
       features: ['Percent encoding', 'URL decoding', 'Swap content', 'Copy results']
+    },
+    {
+      name: 'JWT Token Decoder',
+      description: 'Decode and validate JWT tokens instantly. Check expiration, view claims, and validate structure.',
+      href: toolUrls.jwt,
+      icon: Key,
+      features: ['Instant decoding', 'Token validation', 'Expiration check', 'Claims highlighting']
     }
   ];
 

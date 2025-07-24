@@ -13,8 +13,9 @@ export const getToolUrls = () => {
   if (isDev) {
     return {
       json: 'http://localhost:5001',
-      base64: 'http://localhost:5002',
-      url: 'http://localhost:5003',
+      base64: 'http://localhost:5003',
+      url: 'http://localhost:5004',
+      jwt: 'http://localhost:5005',
       main: 'http://localhost:5000'
     };
   }
@@ -23,6 +24,7 @@ export const getToolUrls = () => {
     json: 'https://json.encodly.com',
     base64: 'https://base64.encodly.com',
     url: 'https://url.encodly.com',
+    jwt: 'https://jwt.encodly.com',
     main: 'https://encodly.com'
   };
 };

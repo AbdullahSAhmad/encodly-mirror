@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd ../.. && npm install && npm run build:shared && cd apps/base64-converter && npm run build",
+  "buildCommand": "cd ../.. && npm install && npm run build:shared && cd apps/jwt-decoder && npm run build",
   "installCommand": "cd ../.. && npm install",
   "outputDirectory": "dist",
   "framework": "vite",

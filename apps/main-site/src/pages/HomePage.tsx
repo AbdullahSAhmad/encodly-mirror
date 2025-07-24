@@ -76,6 +76,16 @@ export const HomePage: React.FC = () => {
       gradient: 'from-amber-500 to-yellow-600',
       bgGradient: 'from-amber-50 to-yellow-50',
       darkBgGradient: 'from-amber-950/20 to-yellow-950/20'
+    },
+    {
+      name: 'Hash Generator',
+      description: 'Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes for text and files.',
+      href: toolUrls.hashGenerator,
+      icon: Hash,
+      features: ['Multiple algorithms', 'File hashing', 'Hash comparison', 'Security recommendations'],
+      gradient: 'from-rose-500 to-pink-600',
+      bgGradient: 'from-rose-50 to-pink-50',
+      darkBgGradient: 'from-rose-950/20 to-pink-950/20'
     }
   ];
 

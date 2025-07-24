@@ -156,6 +156,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'tools',
         keywords: ['jwt', 'token', 'encode', 'create', 'sign', 'json', 'web', 'generate']
+      },
+      {
+        id: 'hash-generator',
+        title: 'Hash Generator',
+        description: 'Generate MD5, SHA-256 & more hashes',
+        icon: <Hash className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.hashGenerator;
+          onOpenChange(false);
+        },
+        category: 'tools',
+        keywords: ['hash', 'md5', 'sha256', 'sha512', 'sha1', 'checksum', 'digest', 'crypto', 'security']
       }
     );
 

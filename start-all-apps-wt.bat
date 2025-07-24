@@ -16,5 +16,6 @@ wt ^
   new-tab -p "Command Prompt" -d "%cd%\apps\base64-converter" --title "Base64 Converter (5003)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\url-converter" --title "URL Converter (5004)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\jwt-decoder" --title "JWT Decoder (5005)" cmd /k "npm run dev" ^; ^
-  new-tab -p "Command Prompt" -d "%cd%\apps\jwt-encoder" --title "JWT Encoder (5006)" cmd /k "npm run dev"
+  new-tab -p "Command Prompt" -d "%cd%\apps\jwt-encoder" --title "JWT Encoder (5006)" cmd /k "npm run dev" ^; ^
+  new-tab -p "Command Prompt" -d "%cd%\apps\hash-generator" --title "Hash Generator (5007)" cmd /k "npm run dev"
 

@@ -21,6 +21,7 @@ export const Header: React.FC = () => {
     { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
     { name: 'JWT Token Decoder', href: toolUrls.jwt, description: 'Decode & validate JWT tokens' },
     { name: 'JWT Token Encoder', href: toolUrls.jwtEncoder, description: 'Create & sign JWT tokens' },
+    { name: 'Hash Generator', href: toolUrls.hashGenerator, description: 'Generate MD5, SHA-256 & more hashes' },
   ];
 
   // Get current tool from domain

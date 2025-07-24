@@ -51,6 +51,7 @@ This checklist ensures that new apps are properly integrated into the Encodly ec
 - [ ] Update any other startup scripts in the project
 
 ### 8. **Build and Deploy Configuration**  
+- [ ] Install all dependencies: `npm install` (required for vite-plugin-pwa and other packages)
 - [ ] Verify app builds successfully with `npm run build:app-name`
 - [ ] Test dev server with `npm run dev:app-name`
 - [ ] Ensure app works with shared packages
@@ -76,6 +77,12 @@ This checklist ensures that new apps are properly integrated into the Encodly ec
 - [ ] Document any special setup requirements
 
 ## 🚀 After Integration
+
+### Install Dependencies
+```bash
+npm install
+```
+*This installs all dependencies including the new app's packages*
 
 ### Rebuild Shared Packages
 ```bash
@@ -105,13 +112,43 @@ For reference, see how JWT Encoder was integrated:
 
 ## ⚠️ Common Pitfalls to Avoid
 
-1. **Forgetting to rebuild shared packages** - Changes won't take effect
-2. **Inconsistent naming** - Use the same app name across all integration points
-3. **Missing keywords** - Command palette won't find the app
-4. **Wrong URLs** - App won't be accessible from navigation
-5. **Outdated build scripts** - App won't build in CI/CD
-6. **Missing analytics** - Can't track app usage
-7. **Broken info modal** - Poor user experience
+1. **Forgetting to install dependencies** - vite-plugin-pwa and other packages won't be available
+2. **Forgetting to rebuild shared packages** - Changes won't take effect
+3. **Inconsistent naming** - Use the same app name across all integration points
+4. **Missing keywords** - Command palette won't find the app
+5. **Wrong URLs** - App won't be accessible from navigation
+6. **Outdated build scripts** - App won't build in CI/CD
+7. **Missing analytics** - Can't track app usage
+8. **Broken info modal** - Poor user experience
+9. **PWA config issues** - Missing vite-plugin-pwa causes dev server failures
+10. **Using unavailable UI components** - Select, Dropdown not exported from shared-ui
+
+## 🔧 Troubleshooting Common Issues
+
+### "Cannot find package 'vite-plugin-pwa'" Error
+```bash
+npm install  # Install all workspace dependencies
+npm run build:shared  # Rebuild shared packages
+npm run dev:app-name  # Try again
+```
+
+### App Not Showing in Navigation
+1. Check `packages/shared-ui/src/utils/urls.ts` has both dev and prod URLs
+2. Verify `packages/shared-ui/src/components/Header.tsx` has the app in tools array
+3. Run `npm run build:shared` to apply changes
+4. Clear browser cache and reload
+
+### Command Palette Not Finding App
+1. Verify app is added to `packages/shared-ui/src/components/CommandPalette.tsx`
+2. Check that keywords array includes relevant search terms
+3. Rebuild shared packages: `npm run build:shared`
+
+### "No matching export" Error for UI Components
+```bash
+# Check available components in packages/shared-ui/src/index.ts
+# Use only exported components like Button, Input, Card, etc.
+# For dropdowns, use HTML <select> with Tailwind classes instead of Select component
+```
 
 ## 🔧 Automation Ideas for Future
 

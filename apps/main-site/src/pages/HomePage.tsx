@@ -35,6 +35,13 @@ export const HomePage: React.FC = () => {
       href: toolUrls.jwt,
       icon: Key,
       features: ['Instant decoding', 'Token validation', 'Expiration check', 'Claims highlighting']
+    },
+    {
+      name: 'JWT Token Encoder',
+      description: 'Create and sign JWT tokens with custom headers and payloads. Generate tokens with HMAC algorithms.',
+      href: toolUrls.jwtEncoder,
+      icon: Key,
+      features: ['Token creation', 'Custom payloads', 'HMAC signing', 'Payload templates']
     }
   ];
 

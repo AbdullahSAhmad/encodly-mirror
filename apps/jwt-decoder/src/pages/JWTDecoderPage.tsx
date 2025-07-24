@@ -311,7 +311,7 @@ const JWTDecoderPage: React.FC = () => {
                         )}
                       </div>
                       <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         onClick={handleCopySecret}
                         disabled={!secret}
@@ -321,7 +321,7 @@ const JWTDecoderPage: React.FC = () => {
                         <Copy className="h-4 w-4" />
                       </Button>
                       <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         onClick={handlePasteSecret}
                         title="Paste secret from clipboard"

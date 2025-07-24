@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, Button, Textarea, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Toggle } from '@encodly/shared-ui';
-import { Copy, Download, RotateCcw, CheckCircle, AlertCircle, ClipboardPaste, ExternalLink, Link, Unlink, Info } from 'lucide-react';
+import { Copy, Download, Trash2, CheckCircle, AlertCircle, ClipboardPaste, ExternalLink, Link, Unlink, Info } from 'lucide-react';
 
 interface URLEditorProps {
   value: string;
@@ -21,8 +21,6 @@ interface URLEditorProps {
   autoConvert?: boolean;
   onAutoConvertChange?: (enabled: boolean) => void;
   detectedOperation?: 'encode' | 'decode' | null;
-  // Info modal trigger
-  infoModalTrigger?: React.ReactNode;
 }
 
 export const URLEditor: React.FC<URLEditorProps> = ({
@@ -43,7 +41,6 @@ export const URLEditor: React.FC<URLEditorProps> = ({
   autoConvert,
   onAutoConvertChange,
   detectedOperation,
-  infoModalTrigger,
 }) => {
   // Handle copy with toast
   const handleCopy = useCallback(async () => {
@@ -190,7 +187,7 @@ export const URLEditor: React.FC<URLEditorProps> = ({
                 <div className="flex items-center gap-2">
                   {/* Paste */}
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={handlePaste}
                     title="Paste from clipboard"
@@ -201,13 +198,13 @@ export const URLEditor: React.FC<URLEditorProps> = ({
                   {/* Clear */}
                   {onClear && (
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
                       onClick={onClear}
                       disabled={!value}
                       title="Clear content"
                     >
-                      <RotateCcw className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   )}
                 </div>
@@ -222,8 +219,6 @@ export const URLEditor: React.FC<URLEditorProps> = ({
                   />
                 )}
 
-                {/* Info modal trigger */}
-                {infoModalTrigger}
               </>
             )}
             

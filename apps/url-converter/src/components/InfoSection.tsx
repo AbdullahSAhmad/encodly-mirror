@@ -11,7 +11,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ trigger }) => {
     <Dialog>
       <DialogTrigger asChild>
         {trigger || (
-          <Button variant="ghost" size="sm" title="About URL Encoding">
+          <Button variant="outline" size="sm" title="About URL Encoding">
             <Info className="h-4 w-4" />
           </Button>
         )}

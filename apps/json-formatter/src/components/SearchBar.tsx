@@ -96,7 +96,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   if (!isVisible) {
     return (
       <Button
-        variant="ghost"
+        variant="outline"
         size="sm"
         onClick={() => setIsVisible(true)}
         title="Search JSON (Ctrl+F)"
@@ -125,7 +125,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             {currentMatch + 1} of {matches.length}
           </span>
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={() => navigateMatch('prev')}
             disabled={matches.length === 0}
@@ -134,7 +134,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <ChevronUp className="h-3 w-3" />
           </Button>
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={() => navigateMatch('next')}
             disabled={matches.length === 0}
@@ -146,7 +146,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       )}
       
       <Button
-        variant="ghost"
+        variant="outline"
         size="sm"
         onClick={clearSearch}
         className="h-6 w-6 p-0"
@@ -155,7 +155,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       </Button>
       
       <Button
-        variant="ghost"
+        variant="outline"
         size="sm"
         onClick={() => setIsVisible(false)}
         className="h-6 w-6 p-0"

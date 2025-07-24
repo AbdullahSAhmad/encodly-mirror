@@ -10,6 +10,7 @@ interface ToolLayoutProps {
   children: React.ReactNode;
   toolName: string;
   keywords?: string[];
+  headerActions?: React.ReactNode;
 }
 
 export const ToolLayout: React.FC<ToolLayoutProps> = ({
@@ -18,6 +19,7 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
   children,
   toolName,
   keywords = [],
+  headerActions,
 }) => {
   void toolName; // Suppress unused variable warning
   
@@ -33,8 +35,19 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
         <div className="flex-1 flex flex-col">
           {/* Header */}
           <div className="px-6 py-4 border-b bg-gradient-to-r from-background to-muted/20 shadow-sm">
-            <h1 id="page-title" className="text-xl font-semibold text-foreground leading-tight">{title}</h1>
-            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{description}</p>
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h1 id="page-title" className="text-xl font-semibold text-foreground leading-tight">{title}</h1>
+                  {headerActions && (
+                    <div className="flex items-center gap-2">
+                      {headerActions}
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{description}</p>
+              </div>
+            </div>
           </div>
           
           {/* Main Content Area */}

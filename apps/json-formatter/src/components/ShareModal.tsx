@@ -39,7 +39,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, current
             <h3 className="text-lg font-semibold">Share JSON Formatter</h3>
           </div>
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={onClose}
           >

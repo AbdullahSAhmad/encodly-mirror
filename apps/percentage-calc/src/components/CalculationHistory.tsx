@@ -26,7 +26,7 @@ export const CalculationHistory: React.FC<CalculationHistoryProps> = ({ history,
           <History className="h-5 w-5" />
           Calculation History
         </CardTitle>
-        <Button variant="ghost" size="sm" onClick={onClear}>
+        <Button variant="outline" size="sm" onClick={onClear}>
           <Trash2 className="h-4 w-4 mr-2" />
           Clear
         </Button>
@@ -49,7 +49,7 @@ export const CalculationHistory: React.FC<CalculationHistoryProps> = ({ history,
                   {calc.result.toFixed(2)}
                 </div>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => handleCopy(calc)}
                   aria-label="Copy calculation"

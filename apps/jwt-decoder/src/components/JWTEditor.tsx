@@ -546,7 +546,7 @@ export const JWTEditor: React.FC<JWTEditorProps> = ({
             {!readOnly && (
               <div className="relative" ref={dropdownRef}>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setIsViewDropdownOpen(!isViewDropdownOpen)}
                   className="flex items-center gap-1 text-xs"
@@ -605,7 +605,7 @@ export const JWTEditor: React.FC<JWTEditorProps> = ({
             {!readOnly && (
               <>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={handleCopy}
                   disabled={!value}
@@ -617,7 +617,7 @@ export const JWTEditor: React.FC<JWTEditorProps> = ({
                 
                 {onClear && (
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={onClear}
                     disabled={!value}

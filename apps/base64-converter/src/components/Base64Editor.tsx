@@ -3,7 +3,7 @@ import Editor from '@monaco-editor/react';
 import { Card, CardContent, CardHeader, CardTitle, Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, useToast } from '@encodly/shared-ui';
 import { useTheme } from '@encodly/shared-ui';
 import { useDropzone } from 'react-dropzone';
-import { Copy, Download, FileText, RotateCcw, CheckCircle, AlertCircle, Upload } from 'lucide-react';
+import { Copy, Download, FileText, Trash2, CheckCircle, AlertCircle, Upload } from 'lucide-react';
 
 interface Base64EditorProps {
   value: string;
@@ -116,7 +116,7 @@ export const Base64Editor: React.FC<Base64EditorProps> = ({
                       }}
                     />
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
                       title="Upload file"
                       className="cursor-pointer"
@@ -132,13 +132,13 @@ export const Base64Editor: React.FC<Base64EditorProps> = ({
                 {/* Clear content */}
                 {onClear && (
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={onClear}
                     disabled={!value}
                     title="Clear content"
                   >
-                    <RotateCcw className="h-4 w-4" />
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 )}
               </>
@@ -150,7 +150,7 @@ export const Base64Editor: React.FC<Base64EditorProps> = ({
                 {/* Copy */}
                 {onCopy && (
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={handleCopy}
                     disabled={!value}
@@ -163,7 +163,7 @@ export const Base64Editor: React.FC<Base64EditorProps> = ({
                 {/* Download */}
                 {onDownload && (
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={onDownload}
                     disabled={!value}

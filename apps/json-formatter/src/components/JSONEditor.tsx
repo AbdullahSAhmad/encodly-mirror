@@ -3,7 +3,7 @@ import Editor from '@monaco-editor/react';
 import { Card, CardContent, CardHeader, CardTitle, Button, Toggle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, useToast } from '@encodly/shared-ui';
 import { useTheme } from '@encodly/shared-ui';
 import { useDropzone } from 'react-dropzone';
-import { Copy, Download, FileJson, TreePine, Share2, Printer, RotateCcw, Wand2, Minimize2, CheckCircle, AlertCircle, Expand, Upload } from 'lucide-react';
+import { Copy, Download, FileJson, TreePine, Share2, Printer, Trash2, Wand2, Minimize2, CheckCircle, AlertCircle, Expand, Upload } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { JsonTreeView } from './JsonTreeView';
 import { defineCustomThemes } from '../utils/editorTheme';
@@ -241,7 +241,7 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                         }}
                       />
                       <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         title="Upload file"
                         className="cursor-pointer"
@@ -257,20 +257,20 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                   {/* Clear content */}
                   {onClear && (
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
                       onClick={onClear}
                       disabled={!value}
                       title="Clear content"
                     >
-                      <RotateCcw className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   )}
                   
                   {/* Auto-fix issues */}
                   {onAutoFix && (
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
                       onClick={onAutoFix}
                       disabled={!value}
@@ -332,7 +332,7 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                   {/* Output actions - Minify/Expand */}
                   {!isMinified && onMinify && (
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
                       onClick={onMinify}
                       title="Minify JSON"
@@ -343,7 +343,7 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                   
                   {isMinified && onExpand && (
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="sm"
                       onClick={onExpand}
                       title="Expand JSON"

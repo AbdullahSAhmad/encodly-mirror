@@ -3,6 +3,7 @@ import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
 import { useAnalytics } from '@encodly/shared-analytics';
 import { URLEditor } from '../components/URLEditor';
 import { InfoModal } from '../components/InfoSection';
+import { Info } from 'lucide-react';
 
 const STORAGE_KEY = 'url-converter-input';
 const AUTO_CONVERT_STORAGE_KEY = 'url-converter-auto';
@@ -295,6 +296,15 @@ const URLConverterPage: React.FC = () => {
         description="Smart URL encoding and decoding with automatic detection. Encode URLs for safe transmission or decode them back."
         toolName="url-converter"
         keywords={seoData.keywords.slice(0, 8)}
+        headerActions={
+          <InfoModal 
+            trigger={
+              <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/50 h-9 w-9">
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+              </button>
+            }
+          />
+        }
       >
         <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6">
           <URLEditor
@@ -311,7 +321,6 @@ const URLConverterPage: React.FC = () => {
             autoConvert={autoConvert}
             onAutoConvertChange={handleAutoConvertChange}
             detectedOperation={detectedOperation}
-            infoModalTrigger={<InfoModal />}
           />
           
           <URLEditor

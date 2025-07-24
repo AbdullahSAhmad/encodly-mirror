@@ -16,6 +16,8 @@ export const getToolUrls = () => {
       base64: 'http://localhost:5003',
       url: 'http://localhost:5004',
       jwt: 'http://localhost:5005',
+      jwtEncoder: 'http://localhost:5006',
+      calc: 'http://localhost:5002',
       main: 'http://localhost:5000'
     };
   }
@@ -25,6 +27,8 @@ export const getToolUrls = () => {
     base64: 'https://base64.encodly.com',
     url: 'https://url.encodly.com',
     jwt: 'https://jwt-decoder.encodly.com',
+    jwtEncoder: 'https://jwt-encoder.encodly.com',
+    calc: 'https://calc.encodly.com',
     main: 'https://encodly.com'
   };
 };

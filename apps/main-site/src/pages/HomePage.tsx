@@ -40,7 +40,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <PageLayout
-      title="Encodly - Free AI-Powered Developer Tools | أدوات المطورين المجانية"
+      title="Encodly - Free AI-Powered Developer Tools"
       description="Free online AI-powered developer tools for JSON formatting, Base64 encoding, and more. Perfect for developers in Saudi Arabia, UAE, and Middle East. No signup required, fast and secure. أدوات المطورين المجانية مع الذكاء الاصطناعي"
       keywords={[
         'developer tools', 'json formatter', 'base64 converter', 'online tools', 'free tools',

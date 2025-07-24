@@ -11,7 +11,7 @@ const STORAGE_KEY = 'json-formatter-input';
 export const JSONFormatterPage: React.FC = () => {
   // Enhanced SEO data with MENA optimization
   const seoData = {
-    title: "JSON Formatter & Validator - Free Online AI-Powered Tool | أداة تنسيق JSON",
+    title: "JSON Formatter & Validator - Free Online AI-Powered Tool",
     description: "Free online JSON formatter, validator and beautifier. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered JSON tools with real-time validation. أداة تنسيق وتحقق JSON مجانية للمطورين",
     keywords: [
       'json formatter', 'json validator', 'json beautifier', 'json minifier', 'json viewer', 

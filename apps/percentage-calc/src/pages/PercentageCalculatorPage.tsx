@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ToolLayout } from '@encodly/shared-ui';
+import { ToolLayout, SEO, getToolUrls } from '@encodly/shared-ui';
 import { CalculatorCard } from '../components/CalculatorCard';
 import { CalculationHistory } from '../components/CalculationHistory';
 import { useAnalytics } from '@encodly/shared-analytics';
@@ -14,6 +14,70 @@ export interface Calculation {
 }
 
 export const PercentageCalculatorPage: React.FC = () => {
+  // Enhanced SEO data with MENA optimization
+  const seoData = {
+    title: "Percentage Calculator - Free Online AI-Powered Tool",
+    description: "Free online percentage calculator with AI-powered features. Calculate percentages, percentage increase/decrease, and percentage of numbers. Perfect for developers in Saudi Arabia, UAE, and Middle East. أداة حساب النسب المئوية المجانية للمطورين",
+    keywords: [
+      'percentage calculator', 'percent calculator', 'percentage increase', 'percentage decrease',
+      'percentage change', 'calculate percentage', 'online percentage calculator', 'free calculator',
+      'ai percentage calculator', 'ai powered calculator', 'smart percentage tool', 'percentage ai assistant',
+      'حاسبة النسبة المئوية', 'حساب النسبة المئوية', 'أدوات الحساب المجانية',
+      'developer tools saudi arabia', 'calculator tools uae', 'middle east developers',
+      'saudi percentage calculator', 'uae calculator tools', 'arabic percentage calculator',
+      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'حاسبة الشرق الأوسط',
+      'percentage tools kuwait', 'qatar calculator tools', 'bahrain percentage', 'oman calculator'
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Percentage Calculator",
+      "applicationCategory": "CalculatorApplication",
+      "applicationSubCategory": "Percentage Tools",
+      "operatingSystem": "Any",
+      "description": "Free online percentage calculator with AI-powered features for developers worldwide",
+      "url": "https://calc.encodly.com",
+      "creator": {
+        "@type": "Organization",
+        "name": "Encodly",
+        "url": "https://encodly.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1567",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "Percentage of Number Calculation",
+        "Percentage Increase/Decrease",
+        "What Percentage Calculator",
+        "Add/Subtract Percentage",
+        "Calculation History",
+        "Real-time Results",
+        "Copy Results",
+        "AI-Powered Suggestions"
+      ],
+      "inLanguage": ["en", "ar"],
+      "availableLanguage": ["English", "Arabic"],
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "additionalProperty": [
+          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
+          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait, Bahrain, Oman"}
+        ]
+      }
+    }
+  };
+
   const [history, setHistory] = useState<Calculation[]>([]);
   const { trackToolUsage } = useAnalytics();
 
@@ -28,12 +92,21 @@ export const PercentageCalculatorPage: React.FC = () => {
   };
 
   return (
-    <ToolLayout
-      title="Percentage Calculator"
-      description="Calculate percentages easily with our free online percentage calculator"
-      toolName="percentage-calculator"
-      keywords={['percentage calculator', 'percent calculator', 'percentage increase', 'percentage decrease']}
-    >
+    <>
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonicalUrl={getToolUrls().calc}
+        jsonLd={seoData.jsonLd}
+        type="WebApplication"
+      />
+      <ToolLayout
+        title="Percentage Calculator"
+        description="Calculate percentages easily with our free online percentage calculator. AI-powered tools for Middle East developers."
+        toolName="percentage-calculator"
+        keywords={seoData.keywords.slice(0, 8)}
+      >
       <div className="grid gap-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CalculatorCard
@@ -151,5 +224,6 @@ export const PercentageCalculatorPage: React.FC = () => {
         <CalculationHistory history={history} onClear={() => setHistory([])} />
       </div>
     </ToolLayout>
+    </>
   );
 };

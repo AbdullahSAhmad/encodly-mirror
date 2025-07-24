@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
+import { useAnalytics } from '@encodly/shared-analytics';
 import { URLEditor } from '../components/URLEditor';
 import { InfoModal } from '../components/InfoSection';
 
@@ -63,9 +64,15 @@ const URLConverterPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const { toast, ToastContainer } = useToast();
+  const { trackToolUsage, trackPageView } = useAnalytics();
 
   // State to track if initial load is complete
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Track page view on mount
+  useEffect(() => {
+    trackPageView('/url-converter', 'URL Converter');
+  }, [trackPageView]);
 
   // Load saved data on mount
   useEffect(() => {
@@ -190,6 +197,7 @@ const URLConverterPage: React.FC = () => {
   const handleEncode = useCallback(() => {
     if (!input.trim()) {
       setError('Please enter a URL to encode');
+      trackToolUsage('url-converter', 'encode', { success: false, error: 'empty_input' });
       return;
     }
 
@@ -199,17 +207,20 @@ const URLConverterPage: React.FC = () => {
       setError(null);
       setIsValid(true);
       setDetectedOperation('encode');
+      trackToolUsage('url-converter', 'encode', { success: true, inputLength: input.trim().length });
     } catch (err) {
       setError('Failed to encode URL. Please check your input.');
       setIsValid(false);
       setOutput('');
+      trackToolUsage('url-converter', 'encode', { success: false, error: 'encoding_failed' });
     }
-  }, [input]);
+  }, [input, trackToolUsage]);
 
   // Handle manual decode
   const handleDecode = useCallback(() => {
     if (!input.trim()) {
       setError('Please enter an encoded URL to decode');
+      trackToolUsage('url-converter', 'decode', { success: false, error: 'empty_input' });
       return;
     }
 
@@ -219,12 +230,14 @@ const URLConverterPage: React.FC = () => {
       setError(null);
       setIsValid(true);
       setDetectedOperation('decode');
+      trackToolUsage('url-converter', 'decode', { success: true, inputLength: input.trim().length });
     } catch (err) {
       setError('Failed to decode URL. The input may not be properly encoded.');
       setIsValid(false);
       setOutput('');
+      trackToolUsage('url-converter', 'decode', { success: false, error: 'decoding_failed' });
     }
-  }, [input]);
+  }, [input, trackToolUsage]);
 
   // Handle clear input
   const handleClearInput = useCallback(() => {

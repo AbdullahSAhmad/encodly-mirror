@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ToolLayout, SEO, useToast, getToolUrls, Button } from '@encodly/shared-ui';
+import { useAnalytics } from '@encodly/shared-analytics';
 import { Shield, CheckCircle, AlertCircle, Copy, ClipboardPaste } from 'lucide-react';
 import { JWTEditor } from '../components/JWTEditor';
 import { decodeJWT, validateJWT, extractJWTToken, verifyJWTSignature, JWTDecoded, JWTValidation } from '../utils/jwtUtils';
@@ -62,6 +63,12 @@ const JWTDecoderPage: React.FC = () => {
   const [secret, setSecret] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
   const { toast, ToastContainer } = useToast();
+  const { trackToolUsage, trackPageView } = useAnalytics();
+
+  // Track page view on mount
+  useEffect(() => {
+    trackPageView('/jwt-decoder', 'JWT Decoder');
+  }, [trackPageView]);
 
   // Load saved data on mount
   useEffect(() => {
@@ -109,6 +116,7 @@ const JWTDecoderPage: React.FC = () => {
 
       if (!decodedResult.isValid) {
         setError(decodedResult.error || 'Invalid JWT token');
+        trackToolUsage('jwt-decoder', 'decode', { success: false, error: decodedResult.error || 'Invalid token' });
         return;
       }
 
@@ -121,10 +129,13 @@ const JWTDecoderPage: React.FC = () => {
         validationResult.isSignatureVerified = null;
       }
 
+      trackToolUsage('jwt-decoder', 'decode', { success: true, hasExpired: validationResult.hasExpired });
+
     } catch (err) {
       setError('Failed to process JWT token');
+      trackToolUsage('jwt-decoder', 'decode', { success: false, error: 'Processing failed' });
     }
-  }, []);
+  }, [trackToolUsage]);
 
   // Handle token input change
   const handleTokenChange = useCallback((newToken: string) => {

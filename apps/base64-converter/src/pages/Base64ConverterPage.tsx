@@ -10,7 +10,7 @@ const MODE_STORAGE_KEY = 'base64-converter-mode';
 export const Base64ConverterPage: React.FC = () => {
   // Enhanced SEO data with MENA optimization
   const seoData = {
-    title: "Base64 Encoder & Decoder - Free Online AI-Powered Tool | أداة تشفير Base64",
+    title: "Base64 Encoder & Decoder - Free Online AI-Powered Tool",
     description: "Free online Base64 encoder and decoder tool. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered encoding tools with file support. أداة تشفير وفك تشفير Base64 مجانية للمطورين",
     keywords: [
       'base64 encoder', 'base64 decoder', 'base64 converter', 'base64 tool', 'online base64',

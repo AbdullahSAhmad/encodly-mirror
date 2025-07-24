@@ -24,7 +24,7 @@ const JWTDecoderPage: React.FC = () => {
       "applicationSubCategory": "Token Tools",
       "operatingSystem": "Any",
       "description": "Free online JWT token decoder and validator for developers worldwide",
-      "url": "https://jwt.encodly.com",
+      "url": "https://jwt-decoder.encodly.com",
       "creator": {
         "@type": "Organization",
         "name": "Encodly",

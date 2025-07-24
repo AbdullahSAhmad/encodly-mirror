@@ -24,7 +24,7 @@ export const getToolUrls = () => {
     json: 'https://json.encodly.com',
     base64: 'https://base64.encodly.com',
     url: 'https://url.encodly.com',
-    jwt: 'https://jwt.encodly.com',
+    jwt: 'https://jwt-decoder.encodly.com',
     main: 'https://encodly.com'
   };
 };

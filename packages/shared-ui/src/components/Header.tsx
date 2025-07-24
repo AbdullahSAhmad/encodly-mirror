@@ -20,6 +20,7 @@ export const Header: React.FC = () => {
     { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
     { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
     { name: 'JWT Token Decoder', href: toolUrls.jwt, description: 'Decode & validate JWT tokens' },
+    { name: 'JWT Token Encoder', href: toolUrls.jwtEncoder, description: 'Create & sign JWT tokens' },
   ];
 
   // Get current tool from domain

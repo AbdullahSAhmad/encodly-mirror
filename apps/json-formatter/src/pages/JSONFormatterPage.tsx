@@ -4,7 +4,8 @@ import { JSONEditor } from '../components/JSONEditor';
 import { ShareModal } from '../components/ShareModal';
 import { formatJSON, minifyJSON, isValidJSON } from '@encodly/shared-utils';
 import { useAnalytics } from '@encodly/shared-analytics';
-import { FileText, Minimize2, CheckCircle } from 'lucide-react';
+import { FileText, Minimize2, CheckCircle, Info } from 'lucide-react';
+import { InfoModal } from '../components/InfoModal';
 
 const STORAGE_KEY = 'json-formatter-input';
 
@@ -385,6 +386,15 @@ export const JSONFormatterPage: React.FC = () => {
         description="Format, validate, and beautify your JSON data with syntax highlighting and error detection. AI-powered tools for Middle East developers."
         toolName="json-formatter"
         keywords={seoData.keywords.slice(0, 8)}
+        headerActions={
+          <InfoModal 
+            trigger={
+              <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/50 h-9 w-9">
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+              </button>
+            }
+          />
+        }
       >
       <div className="h-full flex flex-col">
         <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6">

@@ -144,6 +144,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'tools',
         keywords: ['jwt', 'token', 'decode', 'json', 'web', 'claims', 'validate']
+      },
+      {
+        id: 'jwt-encoder',
+        title: 'JWT Token Encoder',
+        description: 'Create & sign JWT tokens',
+        icon: <Key className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.jwtEncoder;
+          onOpenChange(false);
+        },
+        category: 'tools',
+        keywords: ['jwt', 'token', 'encode', 'create', 'sign', 'json', 'web', 'generate']
       }
     );
 

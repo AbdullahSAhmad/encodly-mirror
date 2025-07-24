@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ToolLayout, SEO, useToast, getToolUrls, Button } from '@encodly/shared-ui';
 import { useAnalytics } from '@encodly/shared-analytics';
-import { Shield, CheckCircle, AlertCircle, Copy, ClipboardPaste } from 'lucide-react';
+import { Shield, CheckCircle, AlertCircle, Copy, ClipboardPaste, Info } from 'lucide-react';
+import { InfoModal } from '../components/InfoModal';
 import { JWTEditor } from '../components/JWTEditor';
 import { decodeJWT, validateJWT, extractJWTToken, verifyJWTSignature, JWTDecoded, JWTValidation } from '../utils/jwtUtils';
 
@@ -268,6 +269,15 @@ const JWTDecoderPage: React.FC = () => {
         description="Decode and validate JWT tokens instantly. Check expiration, view claims, and validate token structure with syntax highlighting."
         toolName="jwt-decoder"
         keywords={seoData.keywords.slice(0, 8)}
+        headerActions={
+          <InfoModal 
+            trigger={
+              <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/50 h-9 w-9">
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+              </button>
+            }
+          />
+        }
       >
         <div className="space-y-6">
           {/* Side by side layout */}

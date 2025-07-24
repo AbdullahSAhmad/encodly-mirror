@@ -3,6 +3,8 @@ import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
 import { useAnalytics } from '@encodly/shared-analytics';
 import { Base64Editor } from '../components/Base64Editor';
 import { Base64Toolbar } from '../components/Base64Toolbar';
+import { Info } from 'lucide-react';
+import { InfoModal } from '../components/InfoModal';
 
 const STORAGE_KEY = 'base64-converter-input';
 const MODE_STORAGE_KEY = 'base64-converter-mode';
@@ -247,6 +249,15 @@ export const Base64ConverterPage: React.FC = () => {
         description="Encode and decode Base64 data online with AI-powered features. Perfect for Middle East developers with file support."
         toolName="base64-converter"
         keywords={seoData.keywords.slice(0, 8)}
+        headerActions={
+          <InfoModal 
+            trigger={
+              <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/50 h-9 w-9">
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+              </button>
+            }
+          />
+        }
       >
       
       <div className="space-y-6">

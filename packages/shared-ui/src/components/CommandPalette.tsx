@@ -171,6 +171,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       }
     );
 
+    // UUID Generator
+    commands.push(
+      {
+        id: 'uuid-generator',
+        title: 'UUID Generator',
+        description: 'Generate UUID/GUID v1, v4 & more',
+        icon: <Key className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.uuid;
+          onOpenChange(false);
+        },
+        category: 'tools',
+        keywords: ['uuid', 'guid', 'v1', 'v4', 'unique', 'identifier', 'generate', 'bulk', 'validate']
+      }
+    );
+
     // Action commands (available everywhere)
     commands.push({
       id: 'toggle-theme',

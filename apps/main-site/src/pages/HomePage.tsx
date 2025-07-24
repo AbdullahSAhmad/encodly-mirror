@@ -86,6 +86,16 @@ export const HomePage: React.FC = () => {
       gradient: 'from-rose-500 to-pink-600',
       bgGradient: 'from-rose-50 to-pink-50',
       darkBgGradient: 'from-rose-950/20 to-pink-950/20'
+    },
+    {
+      name: 'UUID Generator',
+      description: 'Generate UUID/GUID v1, v4 and other versions with bulk generation and validation tools.',
+      href: toolUrls.uuid,
+      icon: Key,
+      features: ['UUID v1 & v4', 'Bulk generation', 'UUID validation', 'Format conversion'],
+      gradient: 'from-purple-500 to-violet-600',
+      bgGradient: 'from-purple-50 to-violet-50',
+      darkBgGradient: 'from-purple-950/20 to-violet-950/20'
     }
   ];
 

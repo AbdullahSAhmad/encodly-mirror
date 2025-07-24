@@ -1,7 +1,6 @@
-import React from 'react';
 import { ThemeProvider } from '@encodly/shared-ui';
 import { AnalyticsProvider } from '@encodly/shared-analytics';
-import HashGeneratorPage from './pages/HashGeneratorPage';
+import UUIDGeneratorPage from './pages/UUIDGeneratorPage';
 
 function App() {
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || '';
@@ -9,7 +8,7 @@ function App() {
   return (
     <ThemeProvider>
       <AnalyticsProvider measurementId={measurementId}>
-        <HashGeneratorPage />
+        <UUIDGeneratorPage />
       </AnalyticsProvider>
     </ThemeProvider>
   );

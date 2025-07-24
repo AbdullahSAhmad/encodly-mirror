@@ -122,6 +122,9 @@ For reference, see how JWT Encoder was integrated:
 8. **Broken info modal** - Poor user experience
 9. **PWA config issues** - Missing vite-plugin-pwa causes dev server failures
 10. **Using unavailable UI components** - Select, Dropdown not exported from shared-ui
+11. **Wrong dependency format** - Use `"*"` not `"workspace:*"` for local packages
+12. **Incorrect Tailwind paths** - Use `../../packages/` not `../../../packages/`
+13. **Including AdSense prematurely** - AdSense not configured yet, only use Analytics
 
 ## 🔧 Troubleshooting Common Issues
 
@@ -148,6 +151,30 @@ npm run dev:app-name  # Try again
 # Check available components in packages/shared-ui/src/index.ts
 # Use only exported components like Button, Input, Card, etc.
 # For dropdowns, use HTML <select> with Tailwind classes instead of Select component
+```
+
+### Dependency and Path Issues
+```bash
+# Wrong dependency format - this will fail:
+"@encodly/shared-ui": "workspace:*"
+
+# Correct format:
+"@encodly/shared-ui": "*"
+
+# Wrong Tailwind config path - this will fail:
+require("../../../packages/shared-ui/tailwind.config.js")
+
+# Correct path:
+require("../../packages/shared-ui/tailwind.config.js")
+```
+
+### AdSense Integration Issues
+```bash
+# Don't include AdSenseProvider until it's properly configured
+# Only use AnalyticsProvider for now:
+
+import { AnalyticsProvider } from '@encodly/shared-analytics';
+// NOT: import { AdSenseProvider } from '@encodly/shared-analytics';
 ```
 
 ## 🔧 Automation Ideas for Future

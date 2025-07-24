@@ -80,7 +80,7 @@ export const HomePage: React.FC = () => {
     {
       name: 'Hash Generator',
       description: 'Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes for text and files.',
-      href: toolUrls.hashGenerator,
+      href: toolUrls.hash,
       icon: Hash,
       features: ['Multiple algorithms', 'File hashing', 'Hash comparison', 'Security recommendations'],
       gradient: 'from-rose-500 to-pink-600',

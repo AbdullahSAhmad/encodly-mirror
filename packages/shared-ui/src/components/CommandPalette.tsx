@@ -163,7 +163,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         description: 'Generate MD5, SHA-256 & more hashes',
         icon: <Hash className="h-4 w-4" />,
         action: () => {
-          window.location.href = toolUrls.hashGenerator;
+          window.location.href = toolUrls.hash;
           onOpenChange(false);
         },
         category: 'tools',

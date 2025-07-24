@@ -34,7 +34,7 @@ const HashGeneratorPage: React.FC = () => {
       "applicationSubCategory": "Cryptographic Tools",
       "operatingSystem": "Any",
       "description": "Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes online with file support and comparison tools",
-      "url": "https://hash-generator.encodly.com",
+      "url": "https://hash.encodly.com",
       "creator": {
         "@type": "Organization",
         "name": "Encodly",
@@ -188,7 +188,7 @@ const HashGeneratorPage: React.FC = () => {
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
-        canonicalUrl={getToolUrls().hashGenerator}
+        canonicalUrl={getToolUrls().hash}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
       />

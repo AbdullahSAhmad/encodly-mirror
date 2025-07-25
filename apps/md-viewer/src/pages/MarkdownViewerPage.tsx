@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ToolLayout, useToast } from '@encodly/shared-ui';
-import { FileText } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { MarkdownEditor } from '../components/MarkdownEditor';
 import { MarkdownPreview } from '../components/MarkdownPreview';
 import { InfoModal } from '../components/InfoModal';
@@ -52,7 +52,7 @@ export const MarkdownViewerPage: React.FC = () => {
           <InfoModal 
             trigger={
               <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/50 h-9 w-9">
-                <FileText className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
               </button>
             }
           />

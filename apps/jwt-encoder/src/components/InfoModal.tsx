@@ -178,6 +178,18 @@ export const InfoModal: React.FC<InfoModalProps> = ({ trigger }) => {
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <div className="mt-8 pt-4 border-t">
+          <div className="flex items-center justify-center">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>Made with ❤️ by</span>
+              <a href="https://encodly.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                Encodly
+              </a>
+            </div>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for markdown content */
+.markdown-content {
+  @apply prose prose-gray dark:prose-invert max-w-none;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  @apply font-semibold text-gray-900 dark:text-gray-100;
+}
+
+.markdown-content code:not(pre code) {
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1 py-0.5 rounded text-sm;
+}
+
+.markdown-content pre {
+  @apply bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-x-auto;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent text-gray-800 dark:text-gray-200;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-blue-400 dark:border-blue-600 bg-blue-50 dark:bg-blue-950/20 pl-4 py-2 my-4;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse border border-gray-300 dark:border-gray-600;
+}
+
+.markdown-content th,
+.markdown-content td {
+  @apply border border-gray-300 dark:border-gray-600 px-3 py-2 text-left;
+}
+
+.markdown-content th {
+  @apply bg-gray-100 dark:bg-gray-800 font-semibold;
+}
+
+.markdown-content a {
+  @apply text-blue-600 dark:text-blue-400 hover:underline;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  @apply pl-6;
+}
+
+.markdown-content li {
+  @apply mb-1;
+}

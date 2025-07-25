@@ -26,8 +26,15 @@ export const SEO: React.FC<SEOProps> = ({
   type = 'website'
 }) => {
   React.useEffect(() => {
-    // Update document title
-    document.title = title;
+    // Update document title with Encodly prefix if not already present
+    // Extract core app name from long descriptive titles
+    let coreTitle = title;
+    if (title.includes(' - ')) {
+      coreTitle = title.split(' - ')[0]; // Take the part before the first dash
+    }
+    
+    const formattedTitle = coreTitle.startsWith('Encodly') ? title : `Encodly | ${coreTitle}`;
+    document.title = formattedTitle;
     
     // Update or create meta tags
     const updateMetaTag = (name: string, content: string, property = false) => {

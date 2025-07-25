@@ -22,15 +22,37 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
+// Helper functions for cookie management
+const getCookie = (name: string): string | null => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
+};
+
+const setCookie = (name: string, value: string, days: number = 365) => {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  
+  // Use domain=.encodly.com for production, no domain for localhost
+  const isProduction = window.location.hostname.includes('encodly.com');
+  const domainPart = isProduction ? 'domain=.encodly.com;' : '';
+  
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;${domainPart}SameSite=Lax`;
+};
+
 export function ThemeProvider({
   children,
   defaultTheme = "light",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Try cookie first, then fallback to localStorage for development
+    const cookieTheme = getCookie('encodly-theme') as Theme;
+    const localTheme = localStorage.getItem(storageKey) as Theme;
+    return cookieTheme || localTheme || defaultTheme;
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -54,8 +76,10 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+      // Store in both cookie (for cross-subdomain) and localStorage (for development)
+      setCookie('encodly-theme', theme);
+      localStorage.setItem(storageKey, theme);
+      setTheme(theme);
     },
     toggleTheme: () => {
       const actualTheme = theme === "system"
@@ -65,8 +89,10 @@ export function ThemeProvider({
         : theme
       
       const newTheme = actualTheme === "dark" ? "light" : "dark"
-      localStorage.setItem(storageKey, newTheme)
-      setTheme(newTheme)
+      // Store in both cookie (for cross-subdomain) and localStorage (for development)
+      setCookie('encodly-theme', newTheme);
+      localStorage.setItem(storageKey, newTheme);
+      setTheme(newTheme);
     },
   }
 

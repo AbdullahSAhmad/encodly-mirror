@@ -191,7 +191,7 @@ export const Base64Editor: React.FC<Base64EditorProps> = ({
           <Editor
             height="400px"
             language="plaintext"
-            theme={theme === 'dark' ? 'vs-dark' : 'light'}
+            theme={theme === 'dark' ? 'vs-dark' : 'vs'}
             value={value}
             onChange={(value) => onChange(value || '')}
             onMount={handleEditorDidMount}

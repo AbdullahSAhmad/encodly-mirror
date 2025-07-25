@@ -244,7 +244,7 @@ export const JWTEditor: React.FC<JWTEditorProps> = ({
             <Editor
               height={height}
               language={language}
-              theme={theme === 'dark' ? 'vs-dark' : 'vs-light'}
+              theme={theme === 'dark' ? 'vs-dark' : 'vs'}
               value={value}
               onChange={(newValue) => onChange(newValue || '')}
               onMount={handleEditorDidMount}

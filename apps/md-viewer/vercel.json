@@ -1,31 +1,8 @@
 {
-  "build": {
-    "env": {
-      "VITE_ANALYTICS_DOMAIN": "md.encodly.com"
-    }
-  },
-  "functions": {
-    "app/api/**/*": {
-      "maxDuration": 30
-    }
-  },
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
   ]
 }

@@ -20,6 +20,8 @@ export const getToolUrls = () => {
       hash: 'http://localhost:5007',
       uuid: 'http://localhost:5008',
       calc: 'http://localhost:5002',
+      password: 'http://localhost:5009',
+      markdown: 'http://localhost:5010',
       main: 'http://localhost:5000'
     };
   }
@@ -33,6 +35,8 @@ export const getToolUrls = () => {
     hash: 'https://hash.encodly.com',
     uuid: 'https://uuid.encodly.com',
     calc: 'https://calc.encodly.com',
+    password: 'https://password.encodly.com',
+    markdown: 'https://markdown.encodly.com',
     main: 'https://encodly.com'
   };
 };

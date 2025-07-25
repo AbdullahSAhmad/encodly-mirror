@@ -17,6 +17,10 @@ export const getToolUrls = () => {
       url: 'http://localhost:5004',
       jwt: 'http://localhost:5005',
       jwtEncoder: 'http://localhost:5006',
+      hash: 'http://localhost:5007',
+      uuid: 'http://localhost:5008',
+      password: 'http://localhost:5009',
+      markdown: 'http://localhost:5010',
       calc: 'http://localhost:5002',
       main: 'http://localhost:5000'
     };
@@ -28,6 +32,10 @@ export const getToolUrls = () => {
     url: 'https://url.encodly.com',
     jwt: 'https://jwt-decoder.encodly.com',
     jwtEncoder: 'https://jwt-encoder.encodly.com',
+    hash: 'https://hash.encodly.com',
+    uuid: 'https://uuid.encodly.com',
+    password: 'https://password.encodly.com',
+    markdown: 'https://markdown.encodly.com',
     calc: 'https://calc.encodly.com',
     main: 'https://encodly.com'
   };

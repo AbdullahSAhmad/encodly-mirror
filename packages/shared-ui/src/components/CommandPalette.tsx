@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink } from 'lucide-react';
+import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink, Lock, Eye, Calculator } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { VisuallyHidden } from './ui/visually-hidden';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -14,7 +14,7 @@ export interface CommandItem {
   icon?: React.ReactNode;
   shortcut?: string;
   action: () => void;
-  category: 'navigation' | 'tools' | 'actions';
+  category: 'navigation' | 'text-tools' | 'security' | 'generators' | 'calculators' | 'actions';
   keywords?: string[];
 }
 
@@ -106,7 +106,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.json;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'text-tools',
         keywords: ['json', 'format', 'validate', 'pretty', 'minify']
       },
       {
@@ -118,7 +118,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.base64;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'text-tools',
         keywords: ['base64', 'encode', 'decode', 'convert']
       },
       {
@@ -130,7 +130,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.url;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'text-tools',
         keywords: ['url', 'encode', 'decode', 'percent', 'uri', 'convert']
       },
       {
@@ -142,7 +142,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.jwt;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'security',
         keywords: ['jwt', 'token', 'decode', 'json', 'web', 'claims', 'validate']
       },
       {
@@ -154,7 +154,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.jwtEncoder;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'security',
         keywords: ['jwt', 'token', 'encode', 'create', 'sign', 'json', 'web', 'generate']
       },
       {
@@ -166,7 +166,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.hash;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'security',
         keywords: ['hash', 'md5', 'sha256', 'sha512', 'sha1', 'checksum', 'digest', 'crypto', 'security']
       }
     );
@@ -182,8 +182,56 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.location.href = toolUrls.uuid;
           onOpenChange(false);
         },
-        category: 'tools',
+        category: 'generators',
         keywords: ['uuid', 'guid', 'v1', 'v4', 'unique', 'identifier', 'generate', 'bulk', 'validate']
+      }
+    );
+
+    // Password Generator
+    commands.push(
+      {
+        id: 'password-generator',
+        title: 'Password Generator',
+        description: 'Generate secure passwords',
+        icon: <Lock className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.password;
+          onOpenChange(false);
+        },
+        category: 'security',
+        keywords: ['password', 'generate', 'secure', 'random', 'strength', 'symbols', 'numbers', 'letters']
+      }
+    );
+
+    // Markdown Viewer
+    commands.push(
+      {
+        id: 'markdown-viewer',
+        title: 'Markdown Viewer',
+        description: 'View & edit Markdown with live preview',
+        icon: <Eye className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.markdown;
+          onOpenChange(false);
+        },
+        category: 'text-tools',
+        keywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'live', 'readme', 'documentation']
+      }
+    );
+
+    // Percentage Calculator
+    commands.push(
+      {
+        id: 'percentage-calculator',
+        title: 'Percentage Calculator',
+        description: 'Calculate percentages & ratios',
+        icon: <Calculator className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.calc;
+          onOpenChange(false);
+        },
+        category: 'calculators',
+        keywords: ['percentage', 'percent', 'calculator', 'ratio', 'calculate', 'math', 'discount', 'increase', 'decrease']
       }
     );
 
@@ -224,7 +272,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const groupedCommands = useMemo(() => {
     const groups: Record<string, CommandItem[]> = {
       navigation: [],
-      tools: [],
+      'text-tools': [],
+      security: [],
+      generators: [],
+      calculators: [],
       actions: []
     };
 
@@ -304,7 +355,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   const categoryLabels = {
     navigation: 'Navigation',
-    tools: 'Tools',
+    'text-tools': 'Text Tools',
+    security: 'Security',
+    generators: 'Generators',
+    calculators: 'Calculators',
     actions: 'Actions'
   };
 

@@ -15,18 +15,34 @@ export const Header: React.FC = () => {
 
   const toolUrls = getToolUrls();
   
-  const tools = [
-    { name: 'JSON Formatter', href: toolUrls.json, description: 'Format, validate & fix JSON' },
-    { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
-    { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
-    { name: 'JWT Token Decoder', href: toolUrls.jwt, description: 'Decode & validate JWT tokens' },
-    { name: 'JWT Token Encoder', href: toolUrls.jwtEncoder, description: 'Create & sign JWT tokens' },
-    { name: 'Hash Generator', href: toolUrls.hash, description: 'Generate MD5, SHA-256 & more hashes' },
-    { name: 'UUID Generator', href: toolUrls.uuid, description: 'Generate UUID/GUID v1, v4 & more' },
-  ];
+  const toolCategories = {
+    'Text Tools': [
+      { name: 'JSON Formatter', href: toolUrls.json, description: 'Format, validate & fix JSON' },
+      { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
+      { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
+      { name: 'Markdown Viewer', href: toolUrls.markdown, description: 'View & edit Markdown with live preview' },
+    ],
+    'Security': [
+      { name: 'JWT Token Decoder', href: toolUrls.jwt, description: 'Decode & validate JWT tokens' },
+      { name: 'JWT Token Encoder', href: toolUrls.jwtEncoder, description: 'Create & sign JWT tokens' },
+      { name: 'Hash Generator', href: toolUrls.hash, description: 'Generate MD5, SHA-256 & more hashes' },
+      { name: 'Password Generator', href: toolUrls.password, description: 'Generate secure passwords' },
+    ],
+    'Generators': [
+      { name: 'UUID Generator', href: toolUrls.uuid, description: 'Generate UUID/GUID v1, v4 & more' },
+      { name: 'Hash Generator', href: toolUrls.hash, description: 'Generate MD5, SHA-256 & more hashes' },
+      { name: 'Password Generator', href: toolUrls.password, description: 'Generate secure passwords' },
+    ],
+    'Calculators': [
+      { name: 'Percentage Calculator', href: toolUrls.calc, description: 'Calculate percentages & ratios' },
+    ]
+  };
+
+  // Flatten tools for current tool detection
+  const allTools = Object.values(toolCategories).flat();
 
   // Get current tool from domain
-  const currentTool = tools.find(tool => {
+  const currentTool = allTools.find(tool => {
     try {
       const toolDomain = tool.href.split('//')[1]?.split('.')[0];
       return toolDomain && window.location.hostname.includes(toolDomain);
@@ -83,20 +99,29 @@ export const Header: React.FC = () => {
                 </Button>
                 
                 {isDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-background border rounded-md shadow-lg overflow-hidden z-50">
-                    {tools.map((tool) => (
-                      <a
-                        key={tool.name}
-                        href={tool.href}
-                        className={`block px-4 py-3 hover:bg-muted transition ${
-                          currentTool?.name === tool.name ? 'bg-muted' : ''
-                        }`}
-                      >
-                        <div className="font-medium text-sm">{tool.name}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">
-                          {tool.description}
+                  <div className="absolute top-full left-0 mt-2 w-80 bg-background border rounded-md shadow-lg overflow-hidden z-50 max-h-96 overflow-y-auto">
+                    {Object.entries(toolCategories).map(([categoryName, categoryTools]) => (
+                      <div key={categoryName}>
+                        <div className="px-4 py-2 bg-muted/50 border-b">
+                          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                            {categoryName}
+                          </div>
                         </div>
-                      </a>
+                        {categoryTools.map((tool) => (
+                          <a
+                            key={`${categoryName}-${tool.name}`}
+                            href={tool.href}
+                            className={`block px-4 py-3 hover:bg-muted transition ${
+                              currentTool?.name === tool.name ? 'bg-muted' : ''
+                            }`}
+                          >
+                            <div className="font-medium text-sm">{tool.name}</div>
+                            <div className="text-xs text-muted-foreground mt-0.5">
+                              {tool.description}
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     ))}
                   </div>
                 )}
@@ -173,15 +198,22 @@ export const Header: React.FC = () => {
         </div>
 
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t">
-            {tools.map((tool) => (
-              <a
-                key={tool.name}
-                href={tool.href}
-                className="block py-2 text-muted-foreground hover:text-foreground transition"
-              >
-                {tool.name}
-              </a>
+          <nav className="md:hidden py-4 border-t space-y-4">
+            {Object.entries(toolCategories).map(([categoryName, categoryTools]) => (
+              <div key={categoryName} className="space-y-2">
+                <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  {categoryName}
+                </div>
+                {categoryTools.map((tool) => (
+                  <a
+                    key={`mobile-${categoryName}-${tool.name}`}
+                    href={tool.href}
+                    className="block px-4 py-2 text-muted-foreground hover:text-foreground transition"
+                  >
+                    {tool.name}
+                  </a>
+                ))}
+              </div>
             ))}
           </nav>
         )}

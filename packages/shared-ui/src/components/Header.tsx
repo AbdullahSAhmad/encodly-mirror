@@ -21,6 +21,7 @@ export const Header: React.FC = () => {
       { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
       { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
       { name: 'Markdown Viewer', href: toolUrls.markdown, description: 'View & edit Markdown with live preview' },
+      { name: 'Regex Tester', href: toolUrls.regex, description: 'Test & debug regular expressions' },
     ],
     'Security': [
       { name: 'JWT Token Decoder', href: toolUrls.jwt, description: 'Decode & validate JWT tokens' },

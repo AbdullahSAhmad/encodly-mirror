@@ -18,5 +18,6 @@ wt ^
   new-tab -p "Command Prompt" -d "%cd%\apps\jwt-decoder" --title "JWT Decoder (5005)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\jwt-encoder" --title "JWT Encoder (5006)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\hash-generator" --title "Hash Generator (5007)" cmd /k "npm run dev" ^; ^
-  new-tab -p "Command Prompt" -d "%cd%\apps\uuid-generator" --title "UUID Generator (5008)" cmd /k "npm run dev"
+  new-tab -p "Command Prompt" -d "%cd%\apps\uuid-generator" --title "UUID Generator (5008)" cmd /k "npm run dev" ^; ^
+  new-tab -p "Command Prompt" -d "%cd%\apps\regex-tester" --title "Regex Tester (5012)" cmd /k "npm run dev"
 

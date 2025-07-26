@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink, Lock, Eye, Calculator, QrCode } from 'lucide-react';
+import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink, Lock, Eye, Calculator, QrCode, Regex } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { VisuallyHidden } from './ui/visually-hidden';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -216,6 +216,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'text-tools',
         keywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'live', 'readme', 'documentation']
+      },
+      {
+        id: 'regex-tester',
+        title: 'Regex Tester',
+        description: 'Test & debug regular expressions',
+        icon: <Regex className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.regex;
+          onOpenChange(false);
+        },
+        category: 'text-tools',
+        keywords: ['regex', 'regular', 'expression', 'pattern', 'match', 'test', 'debug', 'validate']
       }
     );
 

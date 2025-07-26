@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@encodly/shared-ui';
-import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, Calculator, Search, Filter, QrCode } from 'lucide-react';
+import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, Calculator, Search, Filter, QrCode, Regex } from 'lucide-react';
 import { getToolUrls, getBaseUrl } from '../utils/urls';
 
 export const HomePage: React.FC = () => {
@@ -29,8 +29,8 @@ export const HomePage: React.FC = () => {
   }, []);
   
   const categories = [
-    { id: 'all', name: 'All Tools', count: 11 },
-    { id: 'text', name: 'Text Tools', count: 4 },
+    { id: 'all', name: 'All Tools', count: 12 },
+    { id: 'text', name: 'Text Tools', count: 5 },
     { id: 'security', name: 'Security', count: 4 },
     { id: 'generators', name: 'Generators', count: 4 },
     { id: 'calculators', name: 'Calculators', count: 1 }
@@ -144,6 +144,18 @@ export const HomePage: React.FC = () => {
       darkBgGradient: 'from-teal-950/20 to-green-950/20',
       categories: ['text'],
       searchKeywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'documentation', 'readme']
+    },
+    {
+      name: 'Regex Tester',
+      description: 'Test and debug regular expressions with real-time pattern matching and match highlighting.',
+      href: toolUrls.regex,
+      icon: Regex,
+      features: ['Real-time matching', 'Match highlighting', 'Group capture', 'Common patterns'],
+      gradient: 'from-lime-500 to-emerald-600',
+      bgGradient: 'from-lime-50 to-emerald-50',
+      darkBgGradient: 'from-lime-950/20 to-emerald-950/20',
+      categories: ['text'],
+      searchKeywords: ['regex', 'regular expression', 'pattern', 'match', 'test', 'debug', 'validate']
     },
     {
       name: 'QR Code Generator',

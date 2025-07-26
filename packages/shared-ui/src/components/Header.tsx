@@ -32,6 +32,7 @@ export const Header: React.FC = () => {
       { name: 'UUID Generator', href: toolUrls.uuid, description: 'Generate UUID/GUID v1, v4 & more' },
       { name: 'Hash Generator', href: toolUrls.hash, description: 'Generate MD5, SHA-256 & more hashes' },
       { name: 'Password Generator', href: toolUrls.password, description: 'Generate secure passwords' },
+      { name: 'QR Code Generator', href: toolUrls.qr, description: 'Generate QR codes from text or URLs' },
     ],
     'Calculators': [
       { name: 'Percentage Calculator', href: toolUrls.calc, description: 'Calculate percentages & ratios' },

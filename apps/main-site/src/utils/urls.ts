@@ -21,6 +21,7 @@ export const getToolUrls = () => {
       uuid: 'http://localhost:5008',
       password: 'http://localhost:5009',
       markdown: 'http://localhost:5010',
+      qr: 'http://localhost:5011',
       calc: 'http://localhost:5002',
       main: 'http://localhost:5000'
     };
@@ -36,6 +37,7 @@ export const getToolUrls = () => {
     uuid: 'https://uuid.encodly.com',
     password: 'https://password.encodly.com',
     markdown: 'https://markdown.encodly.com',
+    qr: 'https://qr.encodly.com',
     calc: 'https://calc.encodly.com',
     main: 'https://encodly.com'
   };

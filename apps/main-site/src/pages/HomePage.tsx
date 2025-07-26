@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@encodly/shared-ui';
-import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, Calculator, Search, Filter } from 'lucide-react';
+import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, Calculator, Search, Filter, QrCode } from 'lucide-react';
 import { getToolUrls, getBaseUrl } from '../utils/urls';
 
 export const HomePage: React.FC = () => {
@@ -29,10 +29,10 @@ export const HomePage: React.FC = () => {
   }, []);
   
   const categories = [
-    { id: 'all', name: 'All Tools', count: 10 },
+    { id: 'all', name: 'All Tools', count: 11 },
     { id: 'text', name: 'Text Tools', count: 4 },
     { id: 'security', name: 'Security', count: 4 },
-    { id: 'generators', name: 'Generators', count: 3 },
+    { id: 'generators', name: 'Generators', count: 4 },
     { id: 'calculators', name: 'Calculators', count: 1 }
   ];
 
@@ -144,6 +144,18 @@ export const HomePage: React.FC = () => {
       darkBgGradient: 'from-teal-950/20 to-green-950/20',
       categories: ['text'],
       searchKeywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'documentation', 'readme']
+    },
+    {
+      name: 'QR Code Generator',
+      description: 'Generate QR codes from text or URLs with customizable size, colors, and download options.',
+      href: toolUrls.qr,
+      icon: QrCode,
+      features: ['Text/URL to QR', 'Custom colors & size', 'PNG/SVG download', 'Real-time preview'],
+      gradient: 'from-violet-500 to-indigo-600',
+      bgGradient: 'from-violet-50 to-indigo-50',
+      darkBgGradient: 'from-violet-950/20 to-indigo-950/20',
+      categories: ['generators'],
+      searchKeywords: ['qr code', 'qr generator', 'barcode', 'url to qr', 'text to qr', 'download']
     },
     {
       name: 'Percentage Calculator',

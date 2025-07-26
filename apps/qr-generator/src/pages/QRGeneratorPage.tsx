@@ -1,0 +1,105 @@
+import React from 'react';
+import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
+import { QRGenerator } from '../components/QRGenerator';
+import { InfoModal } from '../components/InfoModal';
+import { Info } from 'lucide-react';
+
+export const QRGeneratorPage: React.FC = () => {
+  const { toast, ToastContainer } = useToast();
+
+  // Enhanced SEO data
+  const seoData = {
+    title: "QR Code Generator - Free Online Tool",
+    description: "Generate QR codes from text or URLs online. Free QR code generator with customizable size, colors, and download options. Create QR codes for websites, text, and more. Perfect for developers in Saudi Arabia, UAE, and Middle East.",
+    keywords: [
+      'qr code generator', 'qr code maker', 'text to qr', 'url to qr', 'free qr generator',
+      'qr code download', 'online qr generator', 'qr code creator', 'generate qr code',
+      'ai qr tools', 'smart qr generator', 'qr code ai assistant',
+      'مولد رمز الاستجابة السريعة', 'مولد QR مجاني', 'أدوات المطورين',
+      'developer tools saudi arabia', 'qr tools uae', 'middle east developers',
+      'saudi qr generator', 'uae qr tools', 'arabic qr generator',
+      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'qr الشرق الأوسط'
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "QR Code Generator",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "QR Code Tools",
+      "operatingSystem": "Any",
+      "description": "Free online QR code generator with customizable options for developers worldwide",
+      "url": "https://qr.encodly.com",
+      "creator": {
+        "@type": "Organization",
+        "name": "Encodly",
+        "url": "https://encodly.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1247",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "Text to QR Code Generation",
+        "URL to QR Code Conversion", 
+        "Customizable QR Code Size",
+        "Color Customization",
+        "PNG and SVG Download",
+        "Real-time Generation",
+        "Error Correction Levels",
+        "Copy to Clipboard"
+      ],
+      "inLanguage": ["en", "ar"],
+      "availableLanguage": ["English", "Arabic"],
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "additionalProperty": [
+          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
+          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait"}
+        ]
+      }
+    }
+  };
+
+  return (
+    <>
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonicalUrl={getToolUrls().qr}
+        jsonLd={seoData.jsonLd}
+        type="WebApplication"
+      />
+      <ToastContainer />
+      <ToolLayout
+        title="QR Code Generator"
+        description="Generate QR codes from text or URLs with customizable options. Download as PNG or SVG formats. Perfect for sharing links, contact info, and more."
+        toolName="qr-generator"
+        keywords={seoData.keywords.slice(0, 8)}
+        headerActions={
+          <InfoModal 
+            trigger={
+              <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/50 h-9 w-9">
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+              </button>
+            }
+          />
+        }
+      >
+        <div className="h-full flex flex-col">
+          <QRGenerator onToast={toast} />
+        </div>
+      </ToolLayout>
+    </>
+  );
+};

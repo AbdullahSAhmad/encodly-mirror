@@ -22,6 +22,7 @@ export const getToolUrls = () => {
       calc: 'http://localhost:5002',
       password: 'http://localhost:5009',
       markdown: 'http://localhost:5010',
+      qr: 'http://localhost:5011',
       main: 'http://localhost:5000'
     };
   }
@@ -37,6 +38,7 @@ export const getToolUrls = () => {
     calc: 'https://calc.encodly.com',
     password: 'https://password.encodly.com',
     markdown: 'https://markdown.encodly.com',
+    qr: 'https://qr.encodly.com',
     main: 'https://encodly.com'
   };
 };

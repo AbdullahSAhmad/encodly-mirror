@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink, Lock, Eye, Calculator } from 'lucide-react';
+import { Search, Home, Info, Shield, FileText, Hash, Binary, Link2, Key, Sun, Moon, ExternalLink, Lock, Eye, Calculator, QrCode } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { VisuallyHidden } from './ui/visually-hidden';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -216,6 +216,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'text-tools',
         keywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'live', 'readme', 'documentation']
+      }
+    );
+
+    // QR Code Generator
+    commands.push(
+      {
+        id: 'qr-generator',
+        title: 'QR Code Generator',
+        description: 'Generate QR codes from text or URLs',
+        icon: <QrCode className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.qr;
+          onOpenChange(false);
+        },
+        category: 'generators',
+        keywords: ['qr code', 'qr generator', 'barcode', 'url to qr', 'text to qr', 'generate', 'download']
       }
     );
 

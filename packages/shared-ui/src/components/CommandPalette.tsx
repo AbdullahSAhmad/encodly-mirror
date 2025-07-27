@@ -157,18 +157,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         category: 'security',
         keywords: ['jwt', 'token', 'encode', 'create', 'sign', 'json', 'web', 'generate']
       },
-      {
-        id: 'hash-generator',
-        title: 'Hash Generator',
-        description: 'Generate MD5, SHA-256 & more hashes',
-        icon: <Hash className="h-4 w-4" />,
-        action: () => {
-          window.location.href = toolUrls.hash;
-          onOpenChange(false);
-        },
-        category: 'security',
-        keywords: ['hash', 'md5', 'sha256', 'sha512', 'sha1', 'checksum', 'digest', 'crypto', 'security']
-      }
     );
 
     // UUID Generator
@@ -217,18 +205,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         category: 'text-tools',
         keywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'live', 'readme', 'documentation']
       },
-      {
-        id: 'regex-tester',
-        title: 'Regex Tester',
-        description: 'Test & debug regular expressions',
-        icon: <Regex className="h-4 w-4" />,
-        action: () => {
-          window.location.href = toolUrls.regex;
-          onOpenChange(false);
-        },
-        category: 'text-tools',
-        keywords: ['regex', 'regular', 'expression', 'pattern', 'match', 'test', 'debug', 'validate']
-      }
     );
 
     // QR Code Generator
@@ -247,21 +223,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       }
     );
 
-    // Percentage Calculator
-    commands.push(
-      {
-        id: 'percentage-calculator',
-        title: 'Percentage Calculator',
-        description: 'Calculate percentages & ratios',
-        icon: <Calculator className="h-4 w-4" />,
-        action: () => {
-          window.location.href = toolUrls.calc;
-          onOpenChange(false);
-        },
-        category: 'calculators',
-        keywords: ['percentage', 'percent', 'calculator', 'ratio', 'calculate', 'math', 'discount', 'increase', 'decrease']
-      }
-    );
 
     // Action commands (available everywhere)
     commands.push({
@@ -303,7 +264,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       'text-tools': [],
       security: [],
       generators: [],
-      calculators: [],
       actions: []
     };
 
@@ -386,7 +346,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     'text-tools': 'Text Tools',
     security: 'Security',
     generators: 'Generators',
-    calculators: 'Calculators',
     actions: 'Actions'
   };
 

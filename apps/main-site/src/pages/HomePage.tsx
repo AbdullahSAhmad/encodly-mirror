@@ -29,11 +29,10 @@ export const HomePage: React.FC = () => {
   }, []);
   
   const categories = [
-    { id: 'all', name: 'All Tools', count: 12 },
-    { id: 'text', name: 'Text Tools', count: 5 },
-    { id: 'security', name: 'Security', count: 4 },
-    { id: 'generators', name: 'Generators', count: 4 },
-    { id: 'calculators', name: 'Calculators', count: 1 }
+    { id: 'all', name: 'All Tools', count: 9 },
+    { id: 'text', name: 'Text Tools', count: 3 },
+    { id: 'security', name: 'Security', count: 3 },
+    { id: 'generators', name: 'Generators', count: 3 }
   ];
 
   const tools = [
@@ -98,18 +97,6 @@ export const HomePage: React.FC = () => {
       searchKeywords: ['jwt', 'token', 'encode', 'create', 'sign', 'auth', 'security', 'hmac']
     },
     {
-      name: 'Hash Generator',
-      description: 'Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes for text and files.',
-      href: toolUrls.hash,
-      icon: Hash,
-      features: ['Multiple algorithms', 'File hashing', 'Hash comparison', 'Security recommendations'],
-      gradient: 'from-rose-500 to-pink-600',
-      bgGradient: 'from-rose-50 to-pink-50',
-      darkBgGradient: 'from-rose-950/20 to-pink-950/20',
-      categories: ['security', 'generators'],
-      searchKeywords: ['hash', 'md5', 'sha256', 'sha512', 'checksum', 'crypto', 'security', 'generate']
-    },
-    {
       name: 'UUID Generator',
       description: 'Generate UUID/GUID v1, v4 and other versions with bulk generation and validation tools.',
       href: toolUrls.uuid,
@@ -146,18 +133,6 @@ export const HomePage: React.FC = () => {
       searchKeywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'documentation', 'readme']
     },
     {
-      name: 'Regex Tester',
-      description: 'Test and debug regular expressions with real-time pattern matching and match highlighting.',
-      href: toolUrls.regex,
-      icon: Regex,
-      features: ['Real-time matching', 'Match highlighting', 'Group capture', 'Common patterns'],
-      gradient: 'from-lime-500 to-emerald-600',
-      bgGradient: 'from-lime-50 to-emerald-50',
-      darkBgGradient: 'from-lime-950/20 to-emerald-950/20',
-      categories: ['text'],
-      searchKeywords: ['regex', 'regular expression', 'pattern', 'match', 'test', 'debug', 'validate']
-    },
-    {
       name: 'QR Code Generator',
       description: 'Generate QR codes from text or URLs with customizable size, colors, and download options.',
       href: toolUrls.qr,
@@ -169,18 +144,6 @@ export const HomePage: React.FC = () => {
       categories: ['generators'],
       searchKeywords: ['qr code', 'qr generator', 'barcode', 'url to qr', 'text to qr', 'download']
     },
-    {
-      name: 'Percentage Calculator',
-      description: 'Calculate percentages, ratios, and percentage changes with detailed results.',
-      href: toolUrls.calc,
-      icon: Calculator,
-      features: ['Multiple calculations', 'History tracking', 'Step-by-step results', 'Copy results'],
-      gradient: 'from-indigo-500 to-purple-600',
-      bgGradient: 'from-indigo-50 to-purple-50',
-      darkBgGradient: 'from-indigo-950/20 to-purple-950/20',
-      categories: ['calculators'],
-      searchKeywords: ['percentage', 'calculator', 'math', 'ratio', 'calculate', 'percent']
-    }
   ];
 
   // Filter and search logic

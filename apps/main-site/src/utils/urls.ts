@@ -1,7 +1,12 @@
 // Get the base URL for the current environment
 export const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
-    return window.location.origin;
+    // Always use the canonical domain without www
+    const origin = window.location.origin;
+    if (origin.includes('www.encodly.com')) {
+      return 'https://encodly.com';
+    }
+    return origin;
   }
   return import.meta.env.VITE_BASE_URL || 'https://encodly.com';
 };

@@ -7,19 +7,14 @@ import { InfoModal } from '../components/InfoModal';
 import { Key, CheckCircle, Info } from 'lucide-react';
 
 const UUIDGeneratorPage: React.FC = () => {
-  // Enhanced SEO data with MENA optimization
+  // Enhanced SEO data
   const seoData = {
-    title: "UUID Generator - Free Online UUID/GUID Generator v1, v4 | Encodly",
-    description: "Generate UUID/GUID v1, v4 and other versions online. Free UUID generator with bulk generation, validation, and formatting tools. Perfect for developers in Saudi Arabia, UAE, and Middle East. مولد UUID مجاني للمطورين",
+    title: "UUID Generator - Free Online Tool | Encodly",
+    description: "Generate UUID/GUID v1, v4 and other versions online. Free UUID generator with bulk generation, validation, and formatting tools for developers.",
     keywords: [
       'uuid generator', 'guid generator', 'uuid v4', 'uuid v1', 'unique identifier',
       'online uuid tool', 'bulk uuid generator', 'uuid validator', 'uuid formatter',
-      'developer tools', 'random uuid', 'timestamp uuid', 'guid tools',
-      'مولد UUID', 'أداة UUID', 'معرف فريد', 'أدوات المطورين',
-      'developer tools saudi arabia', 'uuid tools uae', 'middle east developers',
-      'saudi uuid generator', 'uae guid tools', 'arabic uuid generator',
-      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'UUID الشرق الأوسط',
-      'uuid tools kuwait', 'qatar developer tools', 'bahrain uuid', 'oman guid tools'
+      'developer tools', 'random uuid', 'timestamp uuid', 'guid tools', 'web development'
     ],
     jsonLd: {
       "@context": "https://schema.org",
@@ -59,16 +54,7 @@ const UUIDGeneratorPage: React.FC = () => {
         "Copy & Download Results",
         "Multiple Format Support"
       ],
-      "inLanguage": ["en", "ar"],
-      "availableLanguage": ["English", "Arabic"],
-      "serviceArea": {
-        "@type": "Place",
-        "name": "Worldwide",
-        "additionalProperty": [
-          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
-          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait, Bahrain, Oman"}
-        ]
-      }
+      "inLanguage": ["en"]
     }
   };
 

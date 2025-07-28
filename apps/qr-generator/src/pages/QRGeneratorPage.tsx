@@ -9,16 +9,12 @@ export const QRGeneratorPage: React.FC = () => {
 
   // Enhanced SEO data
   const seoData = {
-    title: "QR Code Generator - Free Online Tool",
-    description: "Generate QR codes from text or URLs online. Free QR code generator with customizable size, colors, and download options. Create QR codes for websites, text, and more. Perfect for developers in Saudi Arabia, UAE, and Middle East.",
+    title: "QR Code Generator - Free Online Tool | Encodly",
+    description: "Generate QR codes from text or URLs online. Free QR code generator with customizable size, colors, and download options. Create QR codes for websites, text, and more.",
     keywords: [
       'qr code generator', 'qr code maker', 'text to qr', 'url to qr', 'free qr generator',
       'qr code download', 'online qr generator', 'qr code creator', 'generate qr code',
-      'ai qr tools', 'smart qr generator', 'qr code ai assistant',
-      'مولد رمز الاستجابة السريعة', 'مولد QR مجاني', 'أدوات المطورين',
-      'developer tools saudi arabia', 'qr tools uae', 'middle east developers',
-      'saudi qr generator', 'uae qr tools', 'arabic qr generator',
-      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'qr الشرق الأوسط'
+      'qr code tools', 'developer tools', 'web development', 'qr code customization'
     ],
     jsonLd: {
       "@context": "https://schema.org",
@@ -57,16 +53,7 @@ export const QRGeneratorPage: React.FC = () => {
         "Error Correction Levels",
         "Copy to Clipboard"
       ],
-      "inLanguage": ["en", "ar"],
-      "availableLanguage": ["English", "Arabic"],
-      "serviceArea": {
-        "@type": "Place",
-        "name": "Worldwide",
-        "additionalProperty": [
-          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
-          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait"}
-        ]
-      }
+      "inLanguage": ["en"]
     }
   };
 

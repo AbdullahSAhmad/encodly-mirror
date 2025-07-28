@@ -10,18 +10,14 @@ import { InfoModal } from '../components/InfoModal';
 const STORAGE_KEY = 'json-formatter-input';
 
 export const JSONFormatterPage: React.FC = () => {
-  // Enhanced SEO data with MENA optimization
   const seoData = {
-    title: "JSON Formatter & Validator - Free Online AI-Powered Tool",
-    description: "Free online JSON formatter, validator and beautifier. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered JSON tools with real-time validation. أداة تنسيق وتحقق JSON مجانية للمطورين",
+    title: "JSON Formatter & Validator - Free Online Tool",
+    description: "Free online JSON formatter, validator and beautifier. Format, validate, and minify JSON data with real-time syntax highlighting and error detection.",
     keywords: [
       'json formatter', 'json validator', 'json beautifier', 'json minifier', 'json viewer', 
       'online json tool', 'free json formatter', 'json parser', 'json editor',
-      'ai json tools', 'ai powered json', 'smart json formatter', 'json ai assistant',
-      'أداة json', 'تنسيق json', 'json مجاني', 'أدوات المطورين',
-      'developer tools saudi arabia', 'json tools uae', 'middle east developers',
-      'saudi json formatter', 'uae json tools', 'arabic json formatter',
-      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'json الشرق الأوسط'
+      'json pretty print', 'json syntax checker', 'web development tools', 'developer utilities',
+      'programming tools', 'data formatter', 'api tools', 'json converter'
     ],
     jsonLd: {
       "@context": "https://schema.org",

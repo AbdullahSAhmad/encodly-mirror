@@ -10,19 +10,14 @@ const STORAGE_KEY = 'base64-converter-input';
 const MODE_STORAGE_KEY = 'base64-converter-mode';
 
 export const Base64ConverterPage: React.FC = () => {
-  // Enhanced SEO data with MENA optimization
   const seoData = {
-    title: "Base64 Encoder & Decoder - Free Online AI-Powered Tool",
-    description: "Free online Base64 encoder and decoder tool. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered encoding tools with file support. أداة تشفير وفك تشفير Base64 مجانية للمطورين",
+    title: "Base64 Encoder & Decoder - Free Online Tool",
+    description: "Free online Base64 encoder and decoder tool. Convert text to Base64 and decode Base64 back to text. Supports files and provides instant results.",
     keywords: [
       'base64 encoder', 'base64 decoder', 'base64 converter', 'base64 tool', 'online base64',
       'free base64 encoder', 'base64 file encoder', 'text to base64', 'base64 to text',
-      'ai base64 tools', 'ai powered encoding', 'smart base64 converter', 'base64 ai assistant',
-      'أداة base64', 'تشفير base64', 'base64 مجاني', 'أدوات التشفير',
-      'developer tools saudi arabia', 'base64 tools uae', 'middle east developers',
-      'saudi base64 converter', 'uae encoding tools', 'arabic base64 tool',
-      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'تشفير الشرق الأوسط',
-      'encoding tools kuwait', 'qatar developer tools', 'bahrain base64', 'oman encoding'
+      'encoding tool', 'decoding tool', 'data conversion', 'web development tools',
+      'developer utilities', 'programming tools', 'text converter', 'file encoder'
     ],
     jsonLd: {
       "@context": "https://schema.org",

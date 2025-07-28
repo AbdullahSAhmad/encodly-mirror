@@ -13,19 +13,14 @@ const SECRET_STORAGE_KEY = 'jwt-encoder-secret';
 const ALGORITHM_STORAGE_KEY = 'jwt-encoder-algorithm';
 
 const JWTEncoderPage: React.FC = () => {
-  // Enhanced SEO data with MENA optimization
+  // Enhanced SEO data
   const seoData = {
-    title: "JWT Token Encoder - Free Online AI-Powered Tool",
-    description: "Free online JWT token encoder and creator. Create JWT tokens with custom headers and payloads, sign with secrets, and generate tokens instantly. Perfect for developers in Saudi Arabia, UAE, and Middle East. AI-powered JWT tools. أداة إنشاء رموز JWT مجانية للمطورين",
+    title: "JWT Token Encoder - Free Online Tool | Encodly",
+    description: "Free online JWT token encoder and creator. Create JWT tokens with custom headers and payloads, sign with secrets, and generate tokens instantly. Simple developer tool.",
     keywords: [
       'jwt encoder', 'jwt token encoder', 'jwt creator', 'jwt generator', 'json web token',
       'create jwt', 'jwt builder', 'jwt signing', 'online jwt tool', 'free jwt encoder',
-      'ai jwt tools', 'ai powered jwt', 'smart jwt encoder', 'jwt ai assistant',
-      'أداة jwt', 'إنشاء jwt', 'jwt مجاني', 'أدوات المطورين',
-      'developer tools saudi arabia', 'jwt tools uae', 'middle east developers',
-      'saudi jwt encoder', 'uae jwt tools', 'arabic jwt encoder',
-      'مطور سعودي', 'مطور إماراتي', 'أدوات الشرق الأوسط', 'jwt الشرق الأوسط',
-      'jwt tools kuwait', 'qatar developer tools', 'bahrain jwt', 'oman jwt tools'
+      'jwt token creator', 'developer tools', 'web development tools', 'jwt online tool'
     ],
     jsonLd: {
       "@context": "https://schema.org",
@@ -34,7 +29,7 @@ const JWTEncoderPage: React.FC = () => {
       "applicationCategory": "DeveloperApplication",
       "applicationSubCategory": "Token Tools",
       "operatingSystem": "Any",
-      "description": "Free online JWT token encoder and creator with AI-powered features for developers worldwide",
+      "description": "Free online JWT token encoder and creator for developers worldwide",
       "url": "https://jwt-encoder.encodly.com",
       "creator": {
         "@type": "Organization",
@@ -63,18 +58,9 @@ const JWTEncoderPage: React.FC = () => {
         "Real-time Validation",
         "Copy to Clipboard",
         "Download Generated Tokens",
-        "AI-Powered Token Generation"
+        "Real-time Token Generation"
       ],
-      "inLanguage": ["en", "ar"],
-      "availableLanguage": ["English", "Arabic"],
-      "serviceArea": {
-        "@type": "Place",
-        "name": "Worldwide",
-        "additionalProperty": [
-          {"@type": "PropertyValue", "name": "specialFocus", "value": "Middle East"},
-          {"@type": "PropertyValue", "name": "primaryRegions", "value": "Saudi Arabia, UAE, Qatar, Kuwait, Bahrain, Oman"}
-        ]
-      }
+      "inLanguage": ["en"]
     }
   };
 
@@ -310,7 +296,7 @@ const JWTEncoderPage: React.FC = () => {
       <ToastContainer />
       <ToolLayout
         title="JWT Token Encoder"
-        description="Create and sign JWT tokens with custom headers and payloads. AI-powered JWT encoder for Middle East developers."
+        description="Create and sign JWT tokens with custom headers and payloads. Simple JWT encoder with real-time generation."
         toolName="jwt-encoder"
         keywords={seoData.keywords.slice(0, 8)}
         headerActions={

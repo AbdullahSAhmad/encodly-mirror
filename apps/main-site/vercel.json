@@ -6,12 +6,6 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "query", "key": "lang", "value": "ar" }],
-      "destination": "/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
       "has": [{ "type": "host", "value": "encodly.com" }],
       "destination": "https://www.encodly.com/:path*",
       "permanent": true

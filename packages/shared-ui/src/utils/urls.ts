@@ -52,6 +52,15 @@ export const getToolUrls = () => {
 
 // Get page URLs for internal navigation
 export const getPageUrl = (path: string) => {
+  // For certain pages, always use the main domain (www.encodly.com)
+  const mainPagePaths = ['/about', '/privacy', '/terms', '/contact'];
+  const shouldUseMainDomain = mainPagePaths.some(mainPath => path.startsWith(mainPath));
+  
+  if (shouldUseMainDomain) {
+    const toolUrls = getToolUrls();
+    return `https://www.encodly.com${path}`;
+  }
+  
   const baseUrl = getBaseUrl();
   return `${baseUrl}${path}`;
 };

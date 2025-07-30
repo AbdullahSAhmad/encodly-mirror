@@ -4,7 +4,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://encodly.com/</loc>
+    <loc>https://www.encodly.com/</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -12,7 +12,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://encodly.com/about</loc>
+    <loc>https://www.encodly.com/about</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -20,7 +20,7 @@
   
   <!-- Privacy Policy -->
   <url>
-    <loc>https://encodly.com/privacy</loc>
+    <loc>https://www.encodly.com/privacy</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -28,7 +28,7 @@
   
   <!-- Terms of Service -->
   <url>
-    <loc>https://encodly.com/terms</loc>
+    <loc>https://www.encodly.com/terms</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -36,7 +36,7 @@
   
   <!-- Contact Page -->
   <url>
-    <loc>https://encodly.com/contact</loc>
+    <loc>https://www.encodly.com/contact</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

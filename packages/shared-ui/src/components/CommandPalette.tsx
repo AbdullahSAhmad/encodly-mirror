@@ -134,6 +134,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         keywords: ['url', 'encode', 'decode', 'percent', 'uri', 'convert']
       },
       {
+        id: 'regex-tester',
+        title: 'Regex Tester',
+        description: 'Test & debug regular expressions',
+        icon: <Regex className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.regex;
+          onOpenChange(false);
+        },
+        category: 'text-tools',
+        keywords: ['regex', 'regular', 'expression', 'pattern', 'test', 'match', 'validate']
+      },
+      {
         id: 'jwt-decoder',
         title: 'JWT Token Decoder',
         description: 'Decode & validate JWT tokens',
@@ -156,6 +168,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'security',
         keywords: ['jwt', 'token', 'encode', 'create', 'sign', 'json', 'web', 'generate']
+      },
+      {
+        id: 'hash-generator',
+        title: 'Hash Generator',
+        description: 'Generate MD5, SHA256, SHA512 hashes',
+        icon: <Hash className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.hash;
+          onOpenChange(false);
+        },
+        category: 'security',
+        keywords: ['hash', 'md5', 'sha1', 'sha256', 'sha512', 'checksum', 'integrity', 'crypto']
       },
     );
 
@@ -220,6 +244,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         category: 'generators',
         keywords: ['qr code', 'qr generator', 'barcode', 'url to qr', 'text to qr', 'generate', 'download']
+      },
+      {
+        id: 'percentage-calculator',
+        title: 'Percentage Calculator',
+        description: 'Calculate percentages & ratios',
+        icon: <Calculator className="h-4 w-4" />,
+        action: () => {
+          window.location.href = toolUrls.calc;
+          onOpenChange(false);
+        },
+        category: 'calculators',
+        keywords: ['percentage', 'percent', 'calculator', 'ratio', 'math', 'calculate', 'increase', 'decrease']
       }
     );
 
@@ -264,6 +300,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       'text-tools': [],
       security: [],
       generators: [],
+      calculators: [],
       actions: []
     };
 
@@ -346,6 +383,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     'text-tools': 'Text Tools',
     security: 'Security',
     generators: 'Generators',
+    calculators: 'Calculators',
     actions: 'Actions'
   };
 

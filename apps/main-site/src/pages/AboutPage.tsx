@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@encodly/shared-ui';
-import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, QrCode, Users, Globe, Zap, Shield, Heart } from 'lucide-react';
+import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, QrCode, Users, Globe, Zap, Shield, Heart, Regex, Percent } from 'lucide-react';
 import { getPageUrl, getToolUrls } from '../utils/urls';
 
 export const AboutPage: React.FC = () => {
@@ -31,6 +31,14 @@ export const AboutPage: React.FC = () => {
       icon: Link2,
       features: ['Percent encoding', 'URL decoding', 'Swap content', 'Copy results'],
       gradient: 'from-purple-500 to-pink-600'
+    },
+    {
+      name: 'Hash Generator',
+      description: 'Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes for text and files. Compare hashes and verify data integrity.',
+      href: toolUrls.hash,
+      icon: Hash,
+      features: ['Multiple algorithms', 'File hash support', 'Hash comparison', 'Integrity verification'],
+      gradient: 'from-red-500 to-rose-600'
     },
     {
       name: 'JWT Token Decoder',
@@ -73,12 +81,28 @@ export const AboutPage: React.FC = () => {
       gradient: 'from-teal-500 to-green-600'
     },
     {
+      name: 'Percentage Calculator',
+      description: 'Calculate percentages easily with our free online percentage calculator. Supports percentage increase/decrease, what percentage, and more.',
+      href: toolUrls.calc,
+      icon: Percent,
+      features: ['Multiple calculation types', 'Percentage increase/decrease', 'What percentage of', 'Calculation history'],
+      gradient: 'from-yellow-500 to-orange-600'
+    },
+    {
       name: 'QR Code Generator',
       description: 'Generate QR codes from text or URLs with customizable size, colors, and download options.',
       href: toolUrls.qr,
       icon: QrCode,
       features: ['Text/URL to QR', 'Custom colors & size', 'PNG/SVG download', 'Real-time preview'],
       gradient: 'from-violet-500 to-indigo-600'
+    },
+    {
+      name: 'Regex Tester',
+      description: 'Test, debug, and validate regular expressions online with real-time pattern matching, syntax highlighting, and comprehensive match details.',
+      href: toolUrls.regex,
+      icon: Regex,
+      features: ['Real-time matching', 'Pattern highlighting', 'Match groups', 'Common patterns'],
+      gradient: 'from-indigo-500 to-purple-600'
     }
   ];
 

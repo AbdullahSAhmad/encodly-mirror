@@ -21,16 +21,18 @@ export const Header: React.FC = () => {
       { name: 'Base64 Converter', href: toolUrls.base64, description: 'Encode & decode Base64' },
       { name: 'URL Encoder/Decoder', href: toolUrls.url, description: 'Encode & decode URLs' },
       { name: 'Markdown Viewer', href: toolUrls.markdown, description: 'View & edit Markdown with live preview' },
+      { name: 'Regex Tester', href: toolUrls.regex, description: 'Test & debug regular expressions' },
     ],
     'Security': [
       { name: 'JWT Token Decoder', href: toolUrls.jwt, description: 'Decode & validate JWT tokens' },
       { name: 'JWT Token Encoder', href: toolUrls.jwtEncoder, description: 'Create & sign JWT tokens' },
       { name: 'Password Generator', href: toolUrls.password, description: 'Generate secure passwords' },
+      { name: 'Hash Generator', href: toolUrls.hash, description: 'Generate MD5, SHA256, SHA512 hashes' },
     ],
     'Generators': [
       { name: 'UUID Generator', href: toolUrls.uuid, description: 'Generate UUID/GUID v1, v4 & more' },
-      { name: 'Password Generator', href: toolUrls.password, description: 'Generate secure passwords' },
       { name: 'QR Code Generator', href: toolUrls.qr, description: 'Generate QR codes from text or URLs' },
+      { name: 'Percentage Calculator', href: toolUrls.calc, description: 'Calculate percentages & ratios' },
     ]
   };
 

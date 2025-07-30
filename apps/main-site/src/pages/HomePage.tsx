@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@encodly/shared-ui';
-import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, Calculator, Search, Filter, QrCode, Regex } from 'lucide-react';
+import { Code2, FileJson, Hash, Link2, Key, ExternalLink, ArrowRight, Sparkles, Lock, Eye, Calculator, Search, Filter, QrCode, Regex, Percent } from 'lucide-react';
 import { getToolUrls, getBaseUrl } from '../utils/urls';
 
 export const HomePage: React.FC = () => {
@@ -29,10 +29,12 @@ export const HomePage: React.FC = () => {
   }, []);
   
   const categories = [
-    { id: 'all', name: 'All Tools', count: 9 },
-    { id: 'text', name: 'Text Tools', count: 3 },
-    { id: 'security', name: 'Security', count: 3 },
-    { id: 'generators', name: 'Generators', count: 3 }
+    { id: 'all', name: 'All Tools', count: 12 },
+    { id: 'text', name: 'Text Tools', count: 4 },
+    { id: 'security', name: 'Security', count: 4 },
+    { id: 'generators', name: 'Generators', count: 4 },
+    { id: 'converters', name: 'Converters', count: 3 },
+    { id: 'utilities', name: 'Utilities', count: 3 }
   ];
 
   const tools = [
@@ -45,7 +47,7 @@ export const HomePage: React.FC = () => {
       gradient: 'from-emerald-500 to-teal-600',
       bgGradient: 'from-emerald-50 to-teal-50',
       darkBgGradient: 'from-emerald-950/20 to-teal-950/20',
-      categories: ['text'],
+      categories: ['text', 'converters'],
       searchKeywords: ['json', 'format', 'validate', 'beautify', 'syntax', 'tree', 'data']
     },
     {
@@ -57,7 +59,7 @@ export const HomePage: React.FC = () => {
       gradient: 'from-blue-500 to-indigo-600',
       bgGradient: 'from-blue-50 to-indigo-50',
       darkBgGradient: 'from-blue-950/20 to-indigo-950/20',
-      categories: ['text'],
+      categories: ['text', 'converters'],
       searchKeywords: ['base64', 'encode', 'decode', 'convert', 'file', 'text', 'binary']
     },
     {
@@ -69,8 +71,20 @@ export const HomePage: React.FC = () => {
       gradient: 'from-purple-500 to-pink-600',
       bgGradient: 'from-purple-50 to-pink-50',
       darkBgGradient: 'from-purple-950/20 to-pink-950/20',
-      categories: ['text'],
+      categories: ['text', 'converters'],
       searchKeywords: ['url', 'encode', 'decode', 'percent', 'uri', 'link', 'web']
+    },
+    {
+      name: 'Hash Generator',
+      description: 'Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes for text and files. Compare hashes and verify data integrity.',
+      href: toolUrls.hash,
+      icon: Hash,
+      features: ['Multiple algorithms', 'File hash support', 'Hash comparison', 'Integrity verification'],
+      gradient: 'from-red-500 to-rose-600',
+      bgGradient: 'from-red-50 to-rose-50',
+      darkBgGradient: 'from-red-950/20 to-rose-950/20',
+      categories: ['security', 'utilities'],
+      searchKeywords: ['hash', 'md5', 'sha256', 'sha512', 'checksum', 'integrity', 'crypto', 'file hash']
     },
     {
       name: 'JWT Token Decoder',
@@ -117,7 +131,7 @@ export const HomePage: React.FC = () => {
       gradient: 'from-cyan-500 to-blue-600',
       bgGradient: 'from-cyan-50 to-blue-50',
       darkBgGradient: 'from-cyan-950/20 to-blue-950/20',
-      categories: ['security', 'generators'],
+      categories: ['security', 'generators', 'utilities'],
       searchKeywords: ['password', 'generate', 'secure', 'random', 'strength', 'security']
     },
     {
@@ -129,8 +143,20 @@ export const HomePage: React.FC = () => {
       gradient: 'from-teal-500 to-green-600',
       bgGradient: 'from-teal-50 to-green-50',
       darkBgGradient: 'from-teal-950/20 to-green-950/20',
-      categories: ['text'],
+      categories: ['text', 'utilities'],
       searchKeywords: ['markdown', 'md', 'viewer', 'editor', 'preview', 'documentation', 'readme']
+    },
+    {
+      name: 'Percentage Calculator',
+      description: 'Calculate percentages easily with our free online percentage calculator. Supports percentage increase/decrease, what percentage, and more.',
+      href: toolUrls.calc,
+      icon: Percent,
+      features: ['Multiple calculation types', 'Percentage increase/decrease', 'What percentage of', 'Calculation history'],
+      gradient: 'from-yellow-500 to-orange-600',
+      bgGradient: 'from-yellow-50 to-orange-50',
+      darkBgGradient: 'from-yellow-950/20 to-orange-950/20',
+      categories: ['utilities', 'generators'],
+      searchKeywords: ['percentage', 'percent', 'calculator', 'increase', 'decrease', 'math', 'calculation']
     },
     {
       name: 'QR Code Generator',
@@ -143,6 +169,18 @@ export const HomePage: React.FC = () => {
       darkBgGradient: 'from-violet-950/20 to-indigo-950/20',
       categories: ['generators'],
       searchKeywords: ['qr code', 'qr generator', 'barcode', 'url to qr', 'text to qr', 'download']
+    },
+    {
+      name: 'Regex Tester',
+      description: 'Test, debug, and validate regular expressions online with real-time pattern matching, syntax highlighting, and comprehensive match details.',
+      href: toolUrls.regex,
+      icon: Regex,
+      features: ['Real-time matching', 'Pattern highlighting', 'Match groups', 'Common patterns'],
+      gradient: 'from-indigo-500 to-purple-600',
+      bgGradient: 'from-indigo-50 to-purple-50',
+      darkBgGradient: 'from-indigo-950/20 to-purple-950/20',
+      categories: ['text', 'utilities'],
+      searchKeywords: ['regex', 'regular expression', 'pattern', 'match', 'test', 'validate', 'search']
     },
   ];
 

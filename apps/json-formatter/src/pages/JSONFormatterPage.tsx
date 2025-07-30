@@ -375,11 +375,40 @@ export const JSONFormatterPage: React.FC = () => {
         canonicalUrl={getToolUrls().json}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "JSON Formatter", url: "https://json.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is JSON formatting?",
+            answer: "JSON formatting, also known as JSON beautification, is the process of adding proper indentation, line breaks, and spacing to JSON data to make it human-readable and easier to understand."
+          },
+          {
+            question: "Is this JSON formatter free to use?",
+            answer: "Yes, our JSON formatter is completely free to use. There are no limits on usage, file size, or features. You can format and validate unlimited JSON data."
+          },
+          {
+            question: "Can I upload JSON files?",
+            answer: "Yes, you can drag and drop JSON files directly into the editor or use the file upload feature. The tool supports various file formats and automatically detects JSON content."
+          },
+          {
+            question: "Does the tool validate JSON syntax?",
+            answer: "Yes, our JSON formatter includes real-time validation that checks your JSON syntax and highlights any errors. It also provides detailed error messages to help you fix issues."
+          },
+          {
+            question: "Is my data secure when using this tool?",
+            answer: "Absolutely. All JSON processing happens entirely in your browser. Your data never leaves your device and is not sent to our servers, ensuring complete privacy and security."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="JSON Formatter & Validator"
+        title="Free JSON Formatter & Validator"
         description="Format, validate, and beautify your JSON data with syntax highlighting and error detection. AI-powered tools for Middle East developers."
+        className="tool-description"
         toolName="json-formatter"
         keywords={seoData.keywords.slice(0, 8)}
         headerActions={

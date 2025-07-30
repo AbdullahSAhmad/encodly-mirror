@@ -1,4 +1,3 @@
-import React from 'react';
 import { ThemeProvider } from '@encodly/shared-ui';
 import { AnalyticsProvider, AdSenseProvider } from '@encodly/shared-analytics';
 import { PercentageCalculatorPage } from './pages/PercentageCalculatorPage';

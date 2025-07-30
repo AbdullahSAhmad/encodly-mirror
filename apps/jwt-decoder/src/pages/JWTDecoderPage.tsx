@@ -262,10 +262,38 @@ const JWTDecoderPage: React.FC = () => {
         canonicalUrl={getToolUrls().jwt}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "JWT Decoder", url: "https://jwt-decoder.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is a JWT token?",
+            answer: "JWT (JSON Web Token) is a compact, URL-safe means of representing claims between two parties. It consists of three parts: header, payload, and signature, separated by dots."
+          },
+          {
+            question: "How do I decode a JWT token?",
+            answer: "Simply paste your JWT token into the input field and our tool will automatically decode it, showing the header, payload, and signature verification status."
+          },
+          {
+            question: "Is it safe to decode JWT tokens here?",
+            answer: "Yes, all JWT decoding happens entirely in your browser. Your tokens never leave your device and are not sent to our servers, ensuring complete privacy and security."
+          },
+          {
+            question: "Can I validate JWT token expiration?",
+            answer: "Yes, our tool automatically checks the 'exp' claim in your JWT payload and shows whether the token is expired, along with the exact expiration date and time."
+          },
+          {
+            question: "What JWT algorithms are supported?",
+            answer: "Our decoder supports all standard JWT algorithms including HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, and ES512 for signature verification."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="JWT Token Decoder"
+        title="Free JWT Token Decoder"
         description="Decode and validate JWT tokens instantly. Check expiration, view claims, and validate token structure with syntax highlighting."
         toolName="jwt-decoder"
         keywords={seoData.keywords.slice(0, 8)}

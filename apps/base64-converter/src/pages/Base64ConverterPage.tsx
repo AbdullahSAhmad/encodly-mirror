@@ -237,10 +237,34 @@ export const Base64ConverterPage: React.FC = () => {
         canonicalUrl={getToolUrls().base64}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "Base64 Converter", url: "https://base64.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is Base64 encoding?",
+            answer: "Base64 encoding is a method to convert binary data into text format using 64 printable ASCII characters. It's commonly used for encoding data in emails, URLs, and web applications."
+          },
+          {
+            question: "Is Base64 encoding secure?",
+            answer: "Base64 is not encryption, it's just encoding. Anyone can easily decode Base64 data, so it should never be used for security purposes. It's designed for data transmission and storage compatibility."
+          },
+          {
+            question: "Can I encode files with this tool?",
+            answer: "Yes, you can upload and encode various file types including images, documents, and text files. The tool handles file conversion automatically and provides download options."
+          },
+          {
+            question: "What's the difference between encoding and decoding?",
+            answer: "Encoding converts your original data (text or files) into Base64 format. Decoding reverses this process, converting Base64 data back to its original format."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="Base64 Encoder & Decoder"
+        title="Free Base64 Encoder & Decoder"
         description="Encode and decode Base64 data online with AI-powered features. Perfect for Middle East developers with file support."
         toolName="base64-converter"
         keywords={seoData.keywords.slice(0, 8)}

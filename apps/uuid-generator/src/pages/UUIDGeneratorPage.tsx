@@ -75,10 +75,38 @@ const UUIDGeneratorPage: React.FC = () => {
         canonicalUrl={getToolUrls().uuid}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "UUID Generator", url: "https://uuid.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is a UUID?",
+            answer: "UUID (Universally Unique Identifier) is a 128-bit identifier used to uniquely identify objects in computer systems. It's designed to be unique across both space and time without requiring a central authority."
+          },
+          {
+            question: "What's the difference between UUID v1 and v4?",
+            answer: "UUID v1 is timestamp-based and includes MAC address information, making it predictable but sortable. UUID v4 is randomly generated, providing better privacy and unpredictability, which is preferred for most applications."
+          },
+          {
+            question: "How unique are UUIDs?",
+            answer: "UUIDs are extremely unique. The probability of generating duplicate UUID v4s is so low (1 in 2^122) that it's considered negligible for all practical purposes, even when generating billions of UUIDs."
+          },
+          {
+            question: "Can I generate multiple UUIDs at once?",
+            answer: "Yes, our tool supports bulk UUID generation. You can specify how many UUIDs you need, and they'll all be generated instantly with copy and download options."
+          },
+          {
+            question: "How do I validate a UUID?",
+            answer: "Use our built-in UUID validator to check if a UUID is properly formatted and identify its version. The tool will also extract information like timestamp for v1 UUIDs and validate the overall structure."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="UUID Generator"
+        title="Free UUID Generator"
         description="Generate UUID/GUID v1, v4 and other versions with bulk generation, validation, and formatting tools."
         toolName="uuid-generator"
         keywords={seoData.keywords.slice(0, 8)}

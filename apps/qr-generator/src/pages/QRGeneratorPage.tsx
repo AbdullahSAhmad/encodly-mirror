@@ -66,10 +66,38 @@ export const QRGeneratorPage: React.FC = () => {
         canonicalUrl={getToolUrls().qr}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "QR Code Generator", url: "https://qr.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is a QR code?",
+            answer: "QR (Quick Response) code is a two-dimensional barcode that can store various types of data like URLs, text, contact information, WiFi credentials, and more. They can be scanned by smartphones and other devices."
+          },
+          {
+            question: "What types of data can I encode in a QR code?",
+            answer: "You can encode URLs, plain text, email addresses, phone numbers, SMS messages, WiFi credentials, contact information (vCard), and even small files. The tool automatically detects the best format."
+          },
+          {
+            question: "What size should my QR code be?",
+            answer: "QR code size depends on where you'll use it. For business cards, 0.5-1 inch works well. For posters or signs, 2-4 inches ensures easy scanning. Our tool lets you customize the size for your specific needs."
+          },
+          {
+            question: "Can I customize QR code colors?",
+            answer: "Yes, you can customize both foreground and background colors. However, ensure good contrast for reliable scanning - dark foreground on light background works best."
+          },
+          {
+            question: "What formats can I download QR codes in?",
+            answer: "You can download QR codes as PNG (for web/digital use) or SVG (for print/scalable graphics). SVG format is recommended for professional printing as it scales without quality loss."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="QR Code Generator"
+        title="Free QR Code Generator"
         description="Generate QR codes from text or URLs with customizable options. Download as PNG or SVG formats. Perfect for sharing links, contact info, and more."
         toolName="qr-generator"
         keywords={seoData.keywords.slice(0, 8)}

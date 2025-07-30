@@ -9,7 +9,7 @@ const RegexTesterPage = () => {
   const { toast, ToastContainer } = useToast();
   
   const seoData = {
-    title: 'Regular Expression Tester | Test & Debug Regex Patterns Online',
+    title: 'Free Regular Expression Tester | Test & Debug Regex Patterns Online',
     description: 'Test, debug, and validate regular expressions online with real-time pattern matching, syntax highlighting, and comprehensive match details. Perfect for developers in the Middle East.',
     keywords: [
       'regex tester', 'regular expression tester', 'regex online', 'pattern matching',
@@ -55,9 +55,35 @@ const RegexTesterPage = () => {
 
   return (
     <>
-      <SEO {...seoData} />
+      <SEO 
+        {...seoData}
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "Regex Tester", url: "https://regex.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is a regular expression?",
+            answer: "A regular expression (regex) is a sequence of characters that forms a search pattern. It's used for pattern matching, text searching, and string manipulation in programming."
+          },
+          {
+            question: "How do I test my regex pattern?",
+            answer: "Enter your regex pattern in the pattern field and your test text in the input area. The tool will highlight matches in real-time and show capture groups."
+          },
+          {
+            question: "What regex flags are supported?",
+            answer: "We support all common regex flags including global (g), case-insensitive (i), multiline (m), dotall (s), unicode (u), and sticky (y) flags."
+          },
+          {
+            question: "Can I save my regex patterns?",
+            answer: "Yes, your regex patterns and test text are automatically saved in your browser's local storage so you can continue where you left off."
+          }
+        ]}
+      />
       <ToolLayout 
-        title="Regex Tester"
+        title="Free Regex Tester"
         description="Test and debug regular expressions with real-time matching"
         toolName="regex-tester"
         headerActions={

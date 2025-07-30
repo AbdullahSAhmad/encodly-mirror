@@ -191,10 +191,38 @@ const HashGeneratorPage: React.FC = () => {
         canonicalUrl={getToolUrls().hash}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "Hash Generator", url: "https://hash.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is a cryptographic hash?",
+            answer: "A cryptographic hash is a mathematical algorithm that converts input data into a fixed-size string of characters. It's a one-way function used for data integrity, password storage, and digital signatures."
+          },
+          {
+            question: "What's the difference between MD5, SHA-1, and SHA-256?",
+            answer: "MD5 produces 128-bit hashes (fast but not secure), SHA-1 produces 160-bit hashes (deprecated for security), and SHA-256 produces 256-bit hashes (currently secure and recommended for most applications)."
+          },
+          {
+            question: "Can I hash files with this tool?",
+            answer: "Yes, you can upload files and generate hashes for them. This is useful for verifying file integrity, checking downloads, and ensuring files haven't been tampered with."
+          },
+          {
+            question: "Which hash algorithm should I use?",
+            answer: "For security purposes, use SHA-256 or SHA-512. For file integrity checks, SHA-256 is recommended. Avoid MD5 and SHA-1 for security-critical applications as they have known vulnerabilities."
+          },
+          {
+            question: "Can hash values be reversed?",
+            answer: "No, cryptographic hashes are one-way functions and cannot be reversed to get the original input. However, weak hashes like MD5 can be vulnerable to rainbow table attacks for common inputs."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="Hash Generator"
+        title="Free Hash Generator"
         description="Generate MD5, SHA-1, SHA-256, SHA-512 and other cryptographic hashes for text and files. Compare hashes and verify data integrity."
         toolName="hash-generator"
         keywords={seoData.keywords.slice(0, 8)}

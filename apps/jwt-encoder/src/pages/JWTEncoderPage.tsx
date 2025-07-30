@@ -292,10 +292,38 @@ const JWTEncoderPage: React.FC = () => {
         canonicalUrl={getToolUrls().jwtEncoder}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "JWT Encoder", url: "https://jwt-encoder.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is JWT token encoding?",
+            answer: "JWT encoding is the process of creating a JSON Web Token by combining a header, payload, and signature. The token is then base64url encoded and signed with a secret key."
+          },
+          {
+            question: "How do I create a JWT token?",
+            answer: "Enter your custom header and payload in JSON format, provide a secret key, choose an algorithm (HS256, HS384, or HS512), and the tool will automatically generate your signed JWT token."
+          },
+          {
+            question: "What should I put in the JWT payload?",
+            answer: "The payload contains claims about the user and additional metadata. Common claims include 'sub' (subject), 'iat' (issued at), 'exp' (expiration), 'aud' (audience), and custom claims specific to your application."
+          },
+          {
+            question: "Is my secret key secure?",
+            answer: "Yes, all JWT generation happens entirely in your browser. Your secret keys never leave your device and are not sent to our servers, ensuring complete security."
+          },
+          {
+            question: "Which JWT algorithm should I use?",
+            answer: "HS256 is the most commonly used and recommended for most applications. HS384 and HS512 provide stronger security but are slower. Choose based on your security requirements and performance needs."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="JWT Token Encoder"
+        title="Free JWT Token Encoder"
         description="Create and sign JWT tokens with custom headers and payloads. Simple JWT encoder with real-time generation."
         toolName="jwt-encoder"
         keywords={seoData.keywords.slice(0, 8)}

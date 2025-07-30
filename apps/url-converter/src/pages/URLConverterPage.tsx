@@ -289,10 +289,38 @@ const URLConverterPage: React.FC = () => {
         canonicalUrl={getToolUrls().url}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "URL Converter", url: "https://url.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is URL encoding?",
+            answer: "URL encoding (percent encoding) converts special characters in URLs to a format that can be safely transmitted over the internet. Characters like spaces become %20, and special symbols get encoded to prevent URL parsing issues."
+          },
+          {
+            question: "When should I encode URLs?",
+            answer: "Encode URLs when they contain spaces, special characters, or non-ASCII characters. This is essential for query parameters, form data, and any user-generated content that becomes part of a URL."
+          },
+          {
+            question: "How does auto-detection work?",
+            answer: "Our tool automatically detects whether your input needs encoding or decoding by analyzing the presence of percent-encoded characters (%XX) and testing if decoding would change the string."
+          },
+          {
+            question: "Is URL encoding reversible?",
+            answer: "Yes, URL encoding is completely reversible. Encoded URLs can be decoded back to their original form without any data loss, which is why it's called encoding rather than encryption."
+          },
+          {
+            question: "What characters need URL encoding?",
+            answer: "Reserved characters like spaces, &, =, ?, #, +, and non-ASCII characters need encoding. Safe characters like letters, numbers, hyphens, periods, and underscores don't require encoding."
+          }
+        ]}
       />
       <ToastContainer />
       <ToolLayout
-        title="URL Encoder & Decoder"
+        title="Free URL Encoder & Decoder"
         description="Smart URL encoding and decoding with automatic detection. Encode URLs for safe transmission or decode them back."
         toolName="url-converter"
         keywords={seoData.keywords.slice(0, 8)}

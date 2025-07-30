@@ -102,9 +102,37 @@ export const PercentageCalculatorPage: React.FC = () => {
         canonicalUrl={getToolUrls().calc}
         jsonLd={seoData.jsonLd}
         type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "Percentage Calculator", url: "https://calc.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "How do I calculate a percentage of a number?",
+            answer: "To find a percentage of a number, multiply the number by the percentage and divide by 100. For example, 20% of 150 = (150 × 20) ÷ 100 = 30. Our calculator does this automatically."
+          },
+          {
+            question: "How do I calculate percentage increase or decrease?",
+            answer: "Percentage change = ((New Value - Old Value) ÷ Old Value) × 100. If positive, it's an increase; if negative, it's a decrease. Our tool calculates this instantly when you enter both values."
+          },
+          {
+            question: "What percentage is one number of another?",
+            answer: "To find what percentage A is of B, use the formula: (A ÷ B) × 100. For example, 25 is what percent of 100? (25 ÷ 100) × 100 = 25%. Our calculator handles this automatically."
+          },
+          {
+            question: "How do I add or subtract percentages from a number?",
+            answer: "To add a percentage: New Value = Original × (1 + Percentage ÷ 100). To subtract: New Value = Original × (1 - Percentage ÷ 100). Our tool includes dedicated calculators for both operations."
+          },
+          {
+            question: "Can I see my calculation history?",
+            answer: "Yes, our calculator automatically saves your recent calculations in the history panel. You can review previous calculations, reuse values, and track your work session."
+          }
+        ]}
       />
       <ToolLayout
-        title="Percentage Calculator"
+        title="Free Percentage Calculator"
         description="Calculate percentages easily with our free online percentage calculator. AI-powered tools for Middle East developers."
         toolName="percentage-calculator"
         keywords={seoData.keywords.slice(0, 8)}

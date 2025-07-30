@@ -11,6 +11,9 @@ interface SEOProps {
   siteName?: string;
   locale?: string;
   type?: string;
+  speakableContent?: string[];
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faqData?: Array<{ question: string; answer: string }>;
 }
 
 export const SEO: React.FC<SEOProps> = ({
@@ -23,7 +26,10 @@ export const SEO: React.FC<SEOProps> = ({
   twitterCard = 'summary_large_image',
   siteName = 'Encodly',
   locale = 'en_US',
-  type = 'website'
+  type = 'website',
+  speakableContent = [],
+  breadcrumbs = [],
+  faqData = []
 }) => {
   React.useEffect(() => {
     // Update document title with Encodly prefix if not already present
@@ -96,18 +102,65 @@ export const SEO: React.FC<SEOProps> = ({
     }
     
     // JSON-LD structured data
+    const structuredData = [];
+    
+    // Add main jsonLd data
     if (jsonLd) {
+      structuredData.push(jsonLd);
+    }
+    
+    // Add speakable schema
+    if (speakableContent.length > 0) {
+      structuredData.push({
+        "@context": "https://schema.org",
+        "@type": "SpeakableSpecification",
+        "cssSelector": speakableContent
+      });
+    }
+    
+    // Add breadcrumb schema
+    if (breadcrumbs.length > 0) {
+      structuredData.push({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs.map((breadcrumb, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": breadcrumb.name,
+          "item": breadcrumb.url
+        }))
+      });
+    }
+    
+    // Add FAQ schema
+    if (faqData.length > 0) {
+      structuredData.push({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      });
+    }
+    
+    // Update JSON-LD script with all structured data
+    if (structuredData.length > 0) {
       let jsonLdScript = document.querySelector('script[type="application/ld+json"]');
       if (jsonLdScript) {
-        jsonLdScript.textContent = JSON.stringify(jsonLd);
+        jsonLdScript.textContent = JSON.stringify(structuredData);
       } else {
         jsonLdScript = document.createElement('script');
         jsonLdScript.setAttribute('type', 'application/ld+json');
-        jsonLdScript.textContent = JSON.stringify(jsonLd);
+        jsonLdScript.textContent = JSON.stringify(structuredData);
         document.head.appendChild(jsonLdScript);
       }
     }
-  }, [title, description, keywords, canonicalUrl, ogImage, jsonLd, twitterCard, siteName, locale, type]);
+  }, [title, description, keywords, canonicalUrl, ogImage, jsonLd, twitterCard, siteName, locale, type, speakableContent, breadcrumbs, faqData]);
 
   return null;
 };

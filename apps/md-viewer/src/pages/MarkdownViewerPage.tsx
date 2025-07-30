@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ToolLayout, useToast } from '@encodly/shared-ui';
+import { ToolLayout, useToast, SEO, getToolUrls } from '@encodly/shared-ui';
 import { Info } from 'lucide-react';
 import { MarkdownEditor } from '../components/MarkdownEditor';
 import { MarkdownPreview } from '../components/MarkdownPreview';
@@ -17,34 +17,74 @@ export const MarkdownViewerPage: React.FC = () => {
   });
   const { toast, ToastContainer } = useToast();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Markdown Viewer - Encodly",
-    "description": "A powerful markdown editor and viewer with live preview, syntax highlighting, and mathematical equation support using KaTeX. Perfect for documentation, README files, and technical writing.",
-    "url": "https://md.encodly.com",
-    "applicationCategory": "ProductivityApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0"
-    },
-    "creator": {
-      "@type": "Organization",
-      "name": "Encodly",
-      "url": "https://encodly.com"
+  const seoData = {
+    title: "Free Markdown Viewer & Editor - Online Tool | Encodly",
+    description: "A powerful markdown editor and viewer with live preview, syntax highlighting, and mathematical equation support using KaTeX. Perfect for documentation, README files, and technical writing.",
+    keywords: [
+      'markdown viewer', 'markdown editor', 'md preview', 'markdown converter', 'live preview', 
+      'syntax highlighting', 'math equations', 'katex', 'markdown online', 'developer tools'
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Markdown Viewer - Encodly",
+      "description": "A powerful markdown editor and viewer with live preview, syntax highlighting, and mathematical equation support using KaTeX. Perfect for documentation, README files, and technical writing.",
+      "url": "https://md.encodly.com",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Encodly",
+        "url": "https://encodly.com"
+      }
     }
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonicalUrl={getToolUrls().md}
+        jsonLd={seoData.jsonLd}
+        type="WebApplication"
+        speakableContent={[".tool-description", ".feature-list"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://encodly.com" },
+          { name: "Tools", url: "https://encodly.com/#tools" },
+          { name: "Markdown Viewer", url: "https://md.encodly.com" }
+        ]}
+        faqData={[
+          {
+            question: "What is Markdown?",
+            answer: "Markdown is a lightweight markup language that uses plain text formatting syntax. It's commonly used for documentation, README files, forums, and note-taking because it's easy to write and read."
+          },
+          {
+            question: "What Markdown features are supported?",
+            answer: "Our viewer supports standard Markdown plus extensions: tables, task lists, code highlighting, math equations (KaTeX), footnotes, and emoji. It renders everything in real-time as you type."
+          },
+          {
+            question: "Can I write mathematical equations?",
+            answer: "Yes, we support LaTeX-style math equations using KaTeX. Use $inline math$ for inline equations and $$block math$$ for display equations. Perfect for technical documentation and academic writing."
+          },
+          {
+            question: "How do I export my Markdown?",
+            answer: "You can copy the raw Markdown text or the rendered HTML. The tool also supports printing and saving as PDF through your browser's print function."
+          },
+          {
+            question: "Is my content saved automatically?",
+            answer: "Yes, your Markdown content is automatically saved in your browser's local storage. Your work persists between sessions, but remember to backup important documents externally."
+          }
+        ]}
       />
       
       <ToolLayout
-        title="Markdown Viewer"
+        title="Free Markdown Viewer"
         description="View and edit Markdown with live preview, syntax highlighting, and math support"
         toolName="md-viewer"
         keywords={['markdown viewer', 'markdown editor', 'md preview', 'markdown converter', 'live preview', 'syntax highlighting', 'math equations', 'katex']}

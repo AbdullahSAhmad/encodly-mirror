@@ -5,7 +5,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,7 +13,7 @@
   <!-- About Page -->
   <url>
     <loc>https://www.encodly.com/about</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -21,7 +21,7 @@
   <!-- Privacy Policy -->
   <url>
     <loc>https://www.encodly.com/privacy</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -29,7 +29,7 @@
   <!-- Terms of Service -->
   <url>
     <loc>https://www.encodly.com/terms</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -37,7 +37,7 @@
   <!-- Contact Page -->
   <url>
     <loc>https://www.encodly.com/contact</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -45,84 +45,84 @@
   <!-- Tool Links -->
   <url>
     <loc>https://json.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://base64.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://url.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://jwt.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://jwt-encoder.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://hash.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://uuid.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://password.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://md.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://qr.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://regex.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://calc.encodly.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

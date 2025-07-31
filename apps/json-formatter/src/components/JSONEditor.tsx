@@ -33,6 +33,7 @@ interface JSONEditorProps {
   isValidJson?: boolean | null;
   isMinified?: boolean;
   onToast?: (message: string) => void;
+  customActions?: React.ReactNode;
 }
 
 export const JSONEditor: React.FC<JSONEditorProps> = ({
@@ -60,6 +61,7 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
   isValidJson,
   isMinified,
   onToast,
+  customActions,
 }) => {
   const { theme } = useTheme();
   const editorRef = useRef<any>(null);
@@ -288,6 +290,14 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                   
                   {/* Manual format button (only shown when auto-format is off) */}
                   {!autoFormat && actions}
+                  
+                  {/* Custom actions for input */}
+                  {customActions && !readOnly && (
+                    <>
+                      <div className="w-px h-4 bg-border mx-1" />
+                      {customActions}
+                    </>
+                  )}
                 </div>
 
                 {/* Right side - Auto-format toggle */}
@@ -378,16 +388,6 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                     <Copy className="h-4 w-4" />
                   </Button>
                   
-                  {/* Download */}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleDownload}
-                    disabled={!value}
-                    title="Download as file"
-                  >
-                    <Download className="h-4 w-4" />
-                  </Button>
                   
                   {/* Print */}
                   <Button
@@ -399,6 +399,14 @@ export const JSONEditor: React.FC<JSONEditorProps> = ({
                   >
                     <Printer className="h-4 w-4" />
                   </Button>
+                  
+                  {/* Custom actions */}
+                  {customActions && (
+                    <>
+                      <div className="w-px h-4 bg-border mx-1" />
+                      {customActions}
+                    </>
+                  )}
                 </div>
               </>
             )}

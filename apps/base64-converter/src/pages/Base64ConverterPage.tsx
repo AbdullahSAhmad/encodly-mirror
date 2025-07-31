@@ -1,13 +1,24 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { ToolLayout, SEO, useToast, getToolUrls } from '@encodly/shared-ui';
 import { useAnalytics } from '@encodly/shared-analytics';
-import { Base64Editor } from '../components/Base64Editor';
+import { EnhancedBase64Editor } from '../components/EnhancedBase64Editor';
 import { Base64Toolbar } from '../components/Base64Toolbar';
+import { Base64Processor } from '../utils/base64-enhanced';
 import { Info } from 'lucide-react';
 import { InfoModal } from '../components/InfoModal';
 
 const STORAGE_KEY = 'base64-converter-input';
 const MODE_STORAGE_KEY = 'base64-converter-mode';
+const ALPHABET_STORAGE_KEY = 'base64-converter-alphabet';
+
+const DEFAULT_ALPHABET: AlphabetConfig = {
+  id: 'standard',
+  name: 'Standard Base64',
+  alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+  description: 'RFC 4648 standard Base64 alphabet with + and /',
+  padding: '=',
+  urlSafe: false
+};
 
 export const Base64ConverterPage: React.FC = () => {
   const seoData = {
@@ -73,6 +84,9 @@ export const Base64ConverterPage: React.FC = () => {
   const [mode, setMode] = useState<'encode' | 'decode'>('encode');
   const [error, setError] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
+  const [currentResult, setCurrentResult] = useState<any>(null);
+  const [selectedAlphabet, setSelectedAlphabet] = useState<AlphabetConfig>(DEFAULT_ALPHABET);
+  const [processorInstance] = useState(() => new Base64Processor());
   const { toast, ToastContainer } = useToast();
   const { trackToolUsage, trackPageView } = useAnalytics();
 
@@ -89,12 +103,21 @@ export const Base64ConverterPage: React.FC = () => {
     try {
       const savedInput = localStorage.getItem(STORAGE_KEY);
       const savedMode = localStorage.getItem(MODE_STORAGE_KEY) as 'encode' | 'decode';
+      const savedAlphabet = localStorage.getItem(ALPHABET_STORAGE_KEY);
       
       if (savedMode && (savedMode === 'encode' || savedMode === 'decode')) {
         setMode(savedMode);
       }
       if (savedInput) {
         setInput(savedInput);
+      }
+      if (savedAlphabet) {
+        try {
+          const alphabet = JSON.parse(savedAlphabet);
+          setSelectedAlphabet(alphabet);
+        } catch {
+          // Invalid saved alphabet, use default
+        }
       }
       setIsInitialLoad(false);
     } catch (error) {
@@ -143,10 +166,20 @@ export const Base64ConverterPage: React.FC = () => {
     }
   }, [mode]);
 
-  // Handle input change with real-time conversion
-  const handleInputChange = useCallback((value: string) => {
+  // Save alphabet to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(ALPHABET_STORAGE_KEY, JSON.stringify(selectedAlphabet));
+    } catch (error) {
+      console.warn('Failed to save alphabet:', error);
+    }
+  }, [selectedAlphabet]);
+
+  // Handle input change with enhanced processing
+  const handleInputChange = useCallback(async (value: string) => {
     setInput(value);
     setError(null);
+    setCurrentResult(null);
     
     if (!value.trim()) {
       setOutput('');
@@ -156,28 +189,45 @@ export const Base64ConverterPage: React.FC = () => {
 
     try {
       if (mode === 'encode') {
-        const encoded = btoa(value);
-        setOutput(encoded);
+        const result = await processorInstance.encodeText(value, {
+          alphabet: selectedAlphabet.alphabet
+        });
+        setOutput(result.base64 || '');
+        setCurrentResult(result);
         setIsValid(true);
-        trackToolUsage('base64-converter', 'encode', { success: true, length: value.length });
+        trackToolUsage('base64-converter', 'encode', { 
+          success: true, 
+          length: value.length,
+          alphabet: selectedAlphabet.name
+        });
       } else {
-        // Validate base64 format before decoding
-        const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
-        if (!base64Regex.test(value.trim())) {
-          throw new Error('Invalid Base64 format');
+        const result = await processorInstance.decode(value.trim(), {
+          alphabet: selectedAlphabet.alphabet
+        });
+        if (result.text) {
+          setOutput(result.text);
+        } else {
+          setOutput('[Binary data - see preview]');
         }
-        const decoded = atob(value.trim());
-        setOutput(decoded);
+        setCurrentResult(result);
         setIsValid(true);
-        trackToolUsage('base64-converter', 'decode', { success: true, length: value.length });
+        trackToolUsage('base64-converter', 'decode', { 
+          success: true, 
+          length: value.length,
+          alphabet: selectedAlphabet.name
+        });
       }
     } catch (err) {
       setError(mode === 'encode' ? 'Unable to encode text' : 'Invalid Base64 string');
       setOutput('');
       setIsValid(false);
-      trackToolUsage('base64-converter', mode, { success: false, error: err instanceof Error ? err.message : 'Unknown error' });
+      trackToolUsage('base64-converter', mode, { 
+        success: false, 
+        error: err instanceof Error ? err.message : 'Unknown error',
+        alphabet: selectedAlphabet.name
+      });
     }
-  }, [mode, trackToolUsage]);
+  }, [mode, selectedAlphabet, processorInstance, trackToolUsage]);
 
   // Handle mode change
   const handleModeChange = useCallback((newMode: 'encode' | 'decode') => {
@@ -190,10 +240,40 @@ export const Base64ConverterPage: React.FC = () => {
   }, [trackToolUsage]);
 
   // Handle file upload
-  const handleFileUpload = useCallback((content: string) => {
-    handleInputChange(content);
-    trackToolUsage('base64-converter', 'file-upload', { mode, size: content.length });
-  }, [handleInputChange, mode, trackToolUsage]);
+  const handleFileUpload = useCallback(async (file: File) => {
+    try {
+      const result = await processorInstance.encodeFile(file, {
+        alphabet: selectedAlphabet.alphabet
+      });
+      setInput(''); // Clear input for file mode
+      setOutput(result.base64 || '');
+      setCurrentResult(result);
+      setIsValid(true);
+      trackToolUsage('base64-converter', 'file-upload', { 
+        mode, 
+        size: file.size,
+        mimeType: result.mimeType,
+        alphabet: selectedAlphabet.name
+      });
+    } catch (error) {
+      setError('Failed to process file');
+      setIsValid(false);
+      trackToolUsage('base64-converter', 'file-upload', { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Unknown error' 
+      });
+    }
+  }, [mode, selectedAlphabet, processorInstance, trackToolUsage]);
+
+  // Handle alphabet change
+  const handleAlphabetChange = useCallback((alphabet: AlphabetConfig) => {
+    setSelectedAlphabet(alphabet);
+    // Re-process current input with new alphabet
+    if (input.trim()) {
+      handleInputChange(input);
+    }
+    trackToolUsage('base64-converter', 'alphabet-change', { alphabet: alphabet.name });
+  }, [input, handleInputChange, trackToolUsage]);
 
   // Handle clear
   const handleClear = useCallback(() => {
@@ -265,7 +345,7 @@ export const Base64ConverterPage: React.FC = () => {
       <ToastContainer />
       <ToolLayout
         title="Free Base64 Encoder & Decoder"
-        description="Encode and decode Base64 data online with AI-powered features. Perfect for Middle East developers with file support."
+        description="Free online Base64 encoder and decoder tool. Convert text to Base64 and decode Base64 back to text. Supports files and provides instant results."
         toolName="base64-converter"
         keywords={seoData.keywords.slice(0, 8)}
         headerActions={
@@ -286,7 +366,7 @@ export const Base64ConverterPage: React.FC = () => {
         />
         
         <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6">
-          <Base64Editor
+          <EnhancedBase64Editor
             value={input}
             onChange={handleInputChange}
             placeholder={mode === 'encode' ? 'Enter text to encode...' : 'Enter Base64 to decode...'}
@@ -296,9 +376,14 @@ export const Base64ConverterPage: React.FC = () => {
             onClear={handleClear}
             isValid={isValid}
             onToast={toast}
+            mode={mode}
+            currentResult={currentResult}
+            selectedAlphabet={selectedAlphabet}
+            onAlphabetChange={handleAlphabetChange}
+            processorInstance={processorInstance}
           />
           
-          <Base64Editor
+          <EnhancedBase64Editor
             value={output}
             onChange={() => {}} // Read-only
             placeholder={mode === 'encode' ? 'Base64 encoded text will appear here...' : 'Decoded text will appear here...'}
@@ -307,6 +392,11 @@ export const Base64ConverterPage: React.FC = () => {
             onCopy={handleCopy}
             onDownload={handleDownload}
             onToast={toast}
+            mode={mode}
+            currentResult={currentResult}
+            selectedAlphabet={selectedAlphabet}
+            onAlphabetChange={handleAlphabetChange}
+            processorInstance={processorInstance}
           />
         </div>
       </div>

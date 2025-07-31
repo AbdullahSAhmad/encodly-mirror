@@ -10,10 +10,14 @@
     "deploy": "npm run build && vercel --prod"
   },
   "dependencies": {
+    "@encodly/shared-analytics": "*",
     "@encodly/shared-ui": "*",
     "@encodly/shared-utils": "*",
-    "@encodly/shared-analytics": "*",
     "@monaco-editor/react": "^4.6.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "js-yaml": "^4.1.0",
+    "jsonpath-plus": "^10.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3"

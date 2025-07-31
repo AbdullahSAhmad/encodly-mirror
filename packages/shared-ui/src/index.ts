@@ -17,6 +17,7 @@ export { Toggle } from './components/ui/toggle';
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/ui/tooltip';
 export { useToast } from './components/ui/toast';
 export { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogTrigger, DialogClose } from './components/ui/dialog';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/ui/tabs';
 export { VisuallyHidden } from './components/ui/visually-hidden';
 
 // Hooks

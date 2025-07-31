@@ -1,25 +1,131 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, Button, Input } from '@encodly/shared-ui';
-import { Copy, Download, Shuffle, Check } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, Button, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Textarea } from '@encodly/shared-ui';
+import { Copy, Download, Shuffle, Check, Settings, BarChart3, Shield, Zap } from 'lucide-react';
 import { generatePassword, DEFAULT_PASSWORD_OPTIONS, PasswordOptions } from '../utils/passwordUtils';
+import { 
+  AdvancedPasswordOptions, 
+  generateRandomPassword, 
+  generatePronounceablePassword, 
+  generateDicewarePassphrase,
+  generateBulkPasswords,
+  exportPasswords,
+  analyzePasswordStrength,
+  validatePasswordPolicy,
+  NIST_POLICIES,
+  BulkGenerationOptions,
+  MEMORABLE_PATTERNS
+} from '../utils/advancedPasswordUtils';
 import { StrengthIndicator } from './StrengthIndicator';
+import { EntropyVisualization } from './EntropyVisualization';
 
 interface PasswordGeneratorProps {
   onToast?: (message: string) => void;
 }
 
+type GenerationMode = 'single' | 'bulk' | 'policy';
+type ViewMode = 'basic' | 'advanced' | 'analysis';
+
 export const PasswordGenerator: React.FC<PasswordGeneratorProps> = ({ onToast }) => {
-  const [options, setOptions] = useState<PasswordOptions>(DEFAULT_PASSWORD_OPTIONS);
+  const [options, setOptions] = useState<AdvancedPasswordOptions>({
+    ...DEFAULT_PASSWORD_OPTIONS,
+    algorithm: 'random',
+    dicewareWords: 4,
+    excludedCharacters: '',
+    customRules: []
+  });
   const [passwords, setPasswords] = useState<string[]>([]);
+  const [generationMode, setGenerationMode] = useState<GenerationMode>('single');
+  const [viewMode, setViewMode] = useState<ViewMode>('basic');
+  const [bulkCount, setBulkCount] = useState(10);
+  const [selectedPolicy, setSelectedPolicy] = useState('nist-basic');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [passwordAnalysis, setPasswordAnalysis] = useState(analyzePasswordStrength(''));
+  const [policyErrors, setPolicyErrors] = useState<string[]>([]);
 
   useEffect(() => {
-    handleGenerateSingle();
-  }, [options]);
+    if (generationMode === 'single') {
+      handleGenerateSingle();
+    }
+  }, [options, generationMode]);
+
+  useEffect(() => {
+    if (passwords.length > 0) {
+      const password = passwords[0];
+      setCurrentPassword(password);
+      setPasswordAnalysis(analyzePasswordStrength(password));
+      
+      if (generationMode === 'policy') {
+        const policy = NIST_POLICIES[selectedPolicy];
+        const errors = validatePasswordPolicy(password, policy);
+        setPolicyErrors(errors);
+      }
+    }
+  }, [passwords, selectedPolicy, generationMode]);
 
   const handleGenerateSingle = useCallback(() => {
-    const password = generatePassword(options);
+    let password: string;
+    
+    switch (options.algorithm) {
+      case 'pronounceable':
+        password = generatePronounceablePassword(options);
+        break;
+      case 'diceware':
+        password = generateDicewarePassphrase(options);
+        break;
+      default:
+        password = generateRandomPassword(options);
+    }
+    
     setPasswords([password]);
   }, [options]);
+
+  const handleGenerateBulk = useCallback(async () => {
+    setIsGenerating(true);
+    try {
+      const bulkOptions: BulkGenerationOptions = {
+        ...options,
+        count: bulkCount,
+        exportFormat: 'txt',
+        includeHashes: false,
+        hashAlgorithm: 'sha256'
+      };
+      
+      const bulkPasswords = await generateBulkPasswords(bulkOptions);
+      setPasswords(bulkPasswords);
+    } catch (error) {
+      onToast?.('Error generating bulk passwords');
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [options, bulkCount, onToast]);
+
+  const handlePolicyGeneration = useCallback(() => {
+    const policy = NIST_POLICIES[selectedPolicy];
+    const enhancedOptions: AdvancedPasswordOptions = {
+      ...options,
+      length: Math.max(options.length, policy.minLength),
+      includeUppercase: policy.requireUppercase || options.includeUppercase,
+      includeLowercase: policy.requireLowercase || options.includeLowercase,
+      includeNumbers: policy.requireNumbers || options.includeNumbers,
+      includeSymbols: policy.requireSymbols || options.includeSymbols,
+      customRules: policy.customRules
+    };
+    
+    let password: string;
+    switch (enhancedOptions.algorithm) {
+      case 'pronounceable':
+        password = generatePronounceablePassword(enhancedOptions);
+        break;
+      case 'diceware':
+        password = generateDicewarePassphrase(enhancedOptions);
+        break;
+      default:
+        password = generateRandomPassword(enhancedOptions);
+    }
+    
+    setPasswords([password]);
+  }, [options, selectedPolicy]);
 
 
   const handleCopyAll = useCallback(async () => {
@@ -34,27 +140,52 @@ export const PasswordGenerator: React.FC<PasswordGeneratorProps> = ({ onToast })
     }
   }, [passwords, onToast]);
 
-  const handleDownload = useCallback(() => {
+  const handleDownload = useCallback(async (format: 'txt' | 'csv' = 'txt', includeHashes = false) => {
     if (passwords.length === 0) return;
     
-    const content = passwords.join('\n');
-    const filename = `passwords-${passwords.length}-${Date.now()}.txt`;
-    
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    onToast?.('Downloaded successfully!');
-  }, [passwords, onToast]);
+    try {
+      const bulkOptions: BulkGenerationOptions = {
+        ...options,
+        count: passwords.length,
+        exportFormat: format,
+        includeHashes,
+        hashAlgorithm: 'sha256'
+      };
+      
+      const content = await exportPasswords(passwords, bulkOptions);
+      const filename = `passwords-${passwords.length}-${Date.now()}.${format}`;
+      
+      const blob = new Blob([content], { type: format === 'csv' ? 'text/csv' : 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      onToast?.('Downloaded successfully!');
+    } catch (error) {
+      onToast?.('Error downloading file');
+    }
+  }, [passwords, options, onToast]);
 
-  const updateOption = (key: keyof PasswordOptions, value: boolean | number) => {
+  const updateOption = (key: keyof AdvancedPasswordOptions, value: boolean | number | string) => {
     setOptions(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleGenerate = () => {
+    switch (generationMode) {
+      case 'bulk':
+        handleGenerateBulk();
+        break;
+      case 'policy':
+        handlePolicyGeneration();
+        break;
+      default:
+        handleGenerateSingle();
+    }
   };
 
   // Custom checkbox component
@@ -206,8 +337,4 @@ export const PasswordGenerator: React.FC<PasswordGeneratorProps> = ({ onToast })
               </div>
             </div>
           </div>
-        )}
-      </CardContent>
-    </Card>
-  );
-};
+      {/* Analysis View */}\n      {viewMode === 'analysis' && currentPassword && (\n        <Card>\n          <CardHeader>\n            <CardTitle className=\"text-lg font-medium\">Security Analysis</CardTitle>\n          </CardHeader>\n          <CardContent>\n            <EntropyVisualization password={currentPassword} analysis={passwordAnalysis} />\n          </CardContent>\n        </Card>\n      )}\n    </div>\n  );\n};\n\nPasswordGenerator.displayName = 'PasswordGenerator';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { SEO } from './SEO';
@@ -21,7 +21,33 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
   keywords = [],
   headerActions,
 }) => {
-  void toolName; // Suppress unused variable warning
+  // Define all available tools with their names and URLs
+  const allTools = useMemo(() => {
+    const urls = getToolUrls();
+    return [
+      { name: 'JSON Formatter & Validator', url: urls.json, key: 'json' },
+      { name: 'Base64 Converter', url: urls.base64, key: 'base64' },
+      { name: 'URL Encoder/Decoder', url: urls.url, key: 'url' },
+      { name: 'JWT Decoder', url: urls.jwt, key: 'jwt' },
+      { name: 'JWT Encoder', url: urls.jwtEncoder, key: 'jwt-encoder' },
+      { name: 'Hash Generator', url: urls.hash, key: 'hash' },
+      { name: 'UUID Generator', url: urls.uuid, key: 'uuid' },
+      { name: 'Percentage Calculator', url: urls.calc, key: 'percentage-calc' },
+      { name: 'Password Generator', url: urls.password, key: 'password' },
+      { name: 'Markdown Viewer', url: urls.markdown, key: 'markdown' },
+      { name: 'QR Code Generator', url: urls.qr, key: 'qr' },
+      { name: 'Regex Tester', url: urls.regex, key: 'regex' },
+    ];
+  }, []);
+
+  // Get 3 random tools excluding the current one
+  const randomTools = useMemo(() => {
+    const availableTools = allTools.filter(tool => tool.key !== toolName);
+
+    // Shuffle and take 3
+    const shuffled = [...availableTools].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 3);
+  }, [allTools, toolName]);
   
   return (
     <>
@@ -62,8 +88,15 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
             <div className="text-center">
               <h3 className="text-sm font-semibold mb-2">More Developer Tools</h3>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <a href={getToolUrls().json} className="text-primary hover:underline">JSON Formatter & Validator</a>
-                <a href={getToolUrls().base64} className="text-primary hover:underline">Base64 Converter</a>
+                {randomTools.map((tool) => (
+                  <a 
+                    key={tool.key} 
+                    href={tool.url} 
+                    className="text-primary hover:underline transition-colors"
+                  >
+                    {tool.name}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

@@ -1,10 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { ToolLayout, Button, useToast, SEO, getToolUrls } from '@encodly/shared-ui';
+import { ToolLayout, Button, useToast, SEO, getToolUrls, Card, CardContent } from '@encodly/shared-ui';
 import { JSONEditor } from '../components/JSONEditor';
 import { ShareModal } from '../components/ShareModal';
+import { SchemaValidatorModal } from '../components/SchemaValidatorModal';
+import { SyntaxErrorDetector } from '../components/SyntaxErrorDetector';
+import { ExportModal } from '../components/ExportModal';
+import { JSONPathQuery } from '../components/JSONPathQuery';
+import { URLLoaderModal } from '../components/URLLoaderModal';
+import { LargeFileHandler } from '../components/LargeFileHandler';
 import { formatJSON, minifyJSON, isValidJSON } from '@encodly/shared-utils';
 import { useAnalytics } from '@encodly/shared-analytics';
-import { FileText, Minimize2, CheckCircle, Info } from 'lucide-react';
+import { FileText, Minimize2, CheckCircle, Info, Settings, Globe, Search, Download, Shield, Upload, X } from 'lucide-react';
 import { InfoModal } from '../components/InfoModal';
 
 const STORAGE_KEY = 'json-formatter-input';
@@ -77,6 +83,16 @@ export const JSONFormatterPage: React.FC = () => {
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [isMinified, setIsMinified] = useState(false);
   const [isValidJson, setIsValidJson] = useState<boolean | null>(null);
+  const [syntaxErrors, setSyntaxErrors] = useState<any[]>([]);
+  const [validationErrors, setValidationErrors] = useState<any[]>([]);
+  
+  // Feature panels state
+  const [showSchemaValidator, setShowSchemaValidator] = useState(false);
+  const [showJsonPathQuery, setShowJsonPathQuery] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showUrlLoaderModal, setShowUrlLoaderModal] = useState(false);
+  const [showLargeFileHandler, setShowLargeFileHandler] = useState(false);
+  
   const { trackToolUsage } = useAnalytics();
   const { toast, ToastContainer } = useToast();
 
@@ -200,6 +216,22 @@ export const JSONFormatterPage: React.FC = () => {
     setInput(content);
     trackToolUsage('json-formatter', 'file-upload');
   }, [trackToolUsage]);
+
+  const handleURLLoad = useCallback((content: string, filename?: string) => {
+    setInput(content);
+    if (filename) {
+      toast(`Loaded data from: ${filename}`);
+    }
+    trackToolUsage('json-formatter', 'url-load');
+  }, [trackToolUsage, toast]);
+
+  const handleSyntaxErrorsChange = useCallback((errors: any[]) => {
+    setSyntaxErrors(errors);
+  }, []);
+
+  const handleValidationChange = useCallback((isValid: boolean, errors: any[]) => {
+    setValidationErrors(errors);
+  }, []);
 
   const handleInputChange = useCallback((value: string) => {
     setInput(value);
@@ -366,6 +398,36 @@ export const JSONFormatterPage: React.FC = () => {
     </Button>
   );
 
+  const inputCustomActions = (
+    <>
+      {/* Advanced features */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setShowUrlLoaderModal(true)}
+        title="Load from URL"
+      >
+        <Globe className="h-4 w-4" />
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setShowJsonPathQuery(!showJsonPathQuery)}
+        title="JSONPath Query"
+      >
+        <Search className="h-4 w-4" />
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setShowSchemaValidator(!showSchemaValidator)}
+        title="Schema Validation"
+      >
+        <Shield className="h-4 w-4" />
+      </Button>
+    </>
+  );
+
   return (
     <>
       <SEO 
@@ -421,39 +483,102 @@ export const JSONFormatterPage: React.FC = () => {
           />
         }
       >
-      <div className="h-full flex flex-col">
+      <div className="h-full flex flex-col gap-4">
+        {/* Syntax Error Detection - Always visible when JSON is invalid */}
+        {input.trim() && isValidJson === false && (
+          <SyntaxErrorDetector 
+            content={input}
+            onErrorsChange={handleSyntaxErrorsChange}
+            onValidityChange={setIsValidJson}
+          />
+        )}
+        
+        {/* Main editor area */}
         <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6">
-          <JSONEditor
-            value={input}
-            onChange={handleInputChange}
-            placeholder="Paste your JSON here or drag and drop a file..."
-            error={error}
-            label="Input"
-            onFileUpload={handleFileUpload}
-            actions={inputActions}
-            onClear={handleClear}
-            onAutoFix={handleAutoFix}
-            autoFormat={autoFormat}
-            onAutoFormatChange={handleAutoFormatChange}
-            isValidJson={isValidJson}
-            onToast={toast}
-          />
+          {/* Input column */}
+          <div className="flex flex-col gap-4">
+            <JSONEditor
+              value={input}
+              onChange={handleInputChange}
+              placeholder="Paste your JSON here or drag and drop a file..."
+              error={error}
+              label="Input"
+              onFileUpload={handleFileUpload}
+              actions={inputActions}
+              customActions={inputCustomActions}
+              onClear={handleClear}
+              onAutoFix={handleAutoFix}
+              autoFormat={autoFormat}
+              onAutoFormatChange={handleAutoFormatChange}
+              isValidJson={isValidJson}
+              onToast={toast}
+            />
+            
+            
+            {/* Large File Handler Panel */}
+            {showLargeFileHandler && (
+              <Card className="relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowLargeFileHandler(false)}
+                  className="absolute top-2 right-2 z-10"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+                <CardContent className="pt-6">
+                  <LargeFileHandler onDataLoaded={handleURLLoad} maxFileSize={50} />
+                </CardContent>
+              </Card>
+            )}
+            
+            {/* JSONPath Query Panel */}
+            {showJsonPathQuery && (
+              <Card className="relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowJsonPathQuery(false)}
+                  className="absolute top-2 right-2 z-10"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+                <CardContent className="pt-6">
+                  <JSONPathQuery jsonData={input} />
+                </CardContent>
+              </Card>
+            )}
+            
+          </div>
           
-          <JSONEditor
-            value={output}
-            onChange={() => {}} // Read-only
-            placeholder="Formatted JSON will appear here..."
-            readOnly
-            label="Output"
-            viewMode={viewMode}
-            onViewModeChange={setViewMode}
-            onShare={handleShare}
-            onPrint={handlePrint}
-            onMinify={handleMinify}
-            onExpand={handleExpand}
-            isMinified={isMinified}
-            onToast={toast}
-          />
+          {/* Output column */}
+          <div className="flex flex-col gap-4">
+            <JSONEditor
+              value={output}
+              onChange={() => {}} // Read-only
+              placeholder="Formatted JSON will appear here..."
+              readOnly
+              label="Output"
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
+              onPrint={handlePrint}
+              onMinify={handleMinify}
+              onExpand={handleExpand}
+              isMinified={isMinified}
+              onToast={toast}
+              customActions={
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowExportModal(true)}
+                  title="Export to multiple formats"
+                >
+                  <Download className="h-4 w-4" />
+                </Button>
+              }
+            />
+            
+          </div>
         </div>
       </div>
 
@@ -461,6 +586,26 @@ export const JSONFormatterPage: React.FC = () => {
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
         currentUrl={currentUrl}
+      />
+      
+      <URLLoaderModal
+        isOpen={showUrlLoaderModal}
+        onClose={() => setShowUrlLoaderModal(false)}
+        onDataLoaded={handleURLLoad}
+      />
+      
+      <ExportModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        jsonData={output || input}
+        filename="json_data"
+      />
+      
+      <SchemaValidatorModal
+        isOpen={showSchemaValidator}
+        onClose={() => setShowSchemaValidator(false)}
+        jsonData={input}
+        onValidationChange={handleValidationChange}
       />
     </ToolLayout>
     </>

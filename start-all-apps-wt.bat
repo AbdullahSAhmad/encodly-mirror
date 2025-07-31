@@ -8,7 +8,7 @@ if not exist "apps" (
     exit /b 1
 )
 
-REM Start Windows Terminal with multiple tabs
+REM Start Windows Terminal with multiple tabs for all 12 apps
 wt ^
   -p "Command Prompt" -d "%cd%\apps\main-site" --title "Main Site (5000)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\json-formatter" --title "JSON Formatter (5001)" cmd /k "npm run dev" ^; ^
@@ -19,5 +19,8 @@ wt ^
   new-tab -p "Command Prompt" -d "%cd%\apps\jwt-encoder" --title "JWT Encoder (5006)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\hash-generator" --title "Hash Generator (5007)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\uuid-generator" --title "UUID Generator (5008)" cmd /k "npm run dev" ^; ^
+  new-tab -p "Command Prompt" -d "%cd%\apps\password-generator" --title "Password Generator (5009)" cmd /k "npm run dev" ^; ^
+  new-tab -p "Command Prompt" -d "%cd%\apps\md-viewer" --title "Markdown Viewer (5010)" cmd /k "npm run dev" ^; ^
+  new-tab -p "Command Prompt" -d "%cd%\apps\qr-generator" --title "QR Generator (5011)" cmd /k "npm run dev" ^; ^
   new-tab -p "Command Prompt" -d "%cd%\apps\regex-tester" --title "Regex Tester (5012)" cmd /k "npm run dev"
 

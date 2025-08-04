@@ -10,11 +10,14 @@
     "deploy": "npm run build && vercel --prod"
   },
   "dependencies": {
+    "@encodly/shared-analytics": "*",
     "@encodly/shared-ui": "*",
     "@encodly/shared-utils": "*",
-    "@encodly/shared-analytics": "*",
+    "lucide-react": "^0.312.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
+    "react-markdown": "^9.1.0",
     "react-router-dom": "^6.21.1"
   },
   "devDependencies": {

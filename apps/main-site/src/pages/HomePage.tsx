@@ -419,6 +419,74 @@ export const HomePage: React.FC = () => {
           <Code2 className="h-48 w-48" />
         </div>
       </div>
+
+      {/* Blog Section */}
+      <div className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-50" />
+        
+        <div className="relative">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Latest from Our Blog</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Learn best practices, explore tutorials, and stay updated with the latest in web development
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card className="hover:shadow-lg transition-shadow duration-200">
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  <a href="/blog/mastering-json-formatting-best-practices-2025" className="hover:text-primary transition-colors">
+                    Mastering JSON Formatting: Best Practices for Developers
+                  </a>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Learn essential JSON formatting techniques, validation strategies, and performance optimization tips.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow duration-200">
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  <a href="/blog/comprehensive-guide-base64-encoding-web-development" className="hover:text-primary transition-colors">
+                    The Complete Guide to Base64 Encoding
+                  </a>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Discover everything about Base64 encoding: how it works, when to use it, and security considerations.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow duration-200">
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  <a href="/blog/jwt-security-best-practices-modern-web-apps" className="hover:text-primary transition-colors">
+                    JWT Security Best Practices
+                  </a>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Master JWT implementation with this comprehensive security guide for modern web applications.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <a href="/blog" className="inline-flex items-center text-primary hover:underline font-medium">
+              View All Articles
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </div>
     </PageLayout>
   );
 };

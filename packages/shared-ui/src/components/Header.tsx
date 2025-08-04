@@ -15,6 +15,11 @@ export const Header: React.FC = () => {
 
   const toolUrls = getToolUrls();
   
+  // Check if we're on the main site
+  const isMainSite = window.location.hostname === 'localhost' 
+    ? window.location.port === '5000' 
+    : window.location.hostname === 'encodly.com' || window.location.hostname === 'www.encodly.com';
+  
   const toolCategories = {
     'Text Tools': [
       { name: 'JSON Formatter', href: toolUrls.json, description: 'Format, validate & fix JSON' },
@@ -124,6 +129,15 @@ export const Header: React.FC = () => {
                   </div>
                 )}
               </div>
+              
+              {isMainSite && (
+                <a
+                  href="/blog"
+                  className="ml-4 px-3 py-2 text-sm font-medium hover:text-primary transition"
+                >
+                  Blog
+                </a>
+              )}
             </nav>
           </div>
 
@@ -213,6 +227,17 @@ export const Header: React.FC = () => {
                 ))}
               </div>
             ))}
+            
+            {isMainSite && (
+              <div className="mt-4 pt-4 border-t">
+                <a
+                  href="/blog"
+                  className="block px-4 py-2 text-muted-foreground hover:text-foreground transition"
+                >
+                  Blog
+                </a>
+              </div>
+            )}
           </nav>
         )}
       </div>

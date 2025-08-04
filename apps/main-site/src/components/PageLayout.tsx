@@ -2,8 +2,8 @@ import React from 'react';
 import { Header, Footer, SEO } from '@encodly/shared-ui';
 
 interface PageLayoutProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   keywords?: string[];
   canonicalUrl?: string;
   children: React.ReactNode;
@@ -32,19 +32,19 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
 
   return (
     <>
-      <SEO 
-        title={title} 
-        description={description} 
-        keywords={keywords}
-        canonicalUrl={canonicalUrl}
-      />
+      {title && (
+        <SEO 
+          title={title} 
+          description={description || ''} 
+          keywords={keywords}
+          canonicalUrl={canonicalUrl}
+        />
+      )}
       <div className="min-h-screen flex flex-col">
         <Header />
         
         <main className={`flex-1 container mx-auto px-4 py-8 ${getMaxWidthClass()} ${className}`}>
-          <div className="prose prose-gray dark:prose-invert max-w-none">
-            {children}
-          </div>
+          {children}
         </main>
         
         <Footer />

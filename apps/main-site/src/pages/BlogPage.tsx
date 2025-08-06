@@ -1,19 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { PageLayout } from '../components/PageLayout';
 import { BlogCard } from '../components/BlogCard';
-import { blogPosts } from '../data/blogPosts';
+import { getAllBlogPosts } from '../utils/blog-loader';
+import { BlogPost } from '../types/blog';
 
 export function BlogPage() {
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    try {
+      const posts = getAllBlogPosts();
+      setBlogPosts(posts);
+    } catch (error) {
+      console.error('Failed to load blog posts:', error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const sortedPosts = [...blogPosts].sort((a, b) => 
-    new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-  );
-
-  const blogMeta = sortedPosts.map(post => ({
+  const blogMeta = blogPosts.map(post => ({
     title: post.title,
     description: post.description,
     author: post.author,
@@ -53,7 +62,7 @@ export function BlogPage() {
               "name": "Encodly",
               "url": "https://encodly.com"
             },
-            "blogPost": sortedPosts.map(post => ({
+            "blogPost": blogPosts.map(post => ({
               "@type": "BlogPosting",
               "headline": post.title,
               "description": post.description,
@@ -80,11 +89,17 @@ export function BlogPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {blogMeta.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center">
+              <p className="text-muted-foreground">Loading blog posts...</p>
+            </div>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {blogMeta.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+          )}
         </div>
       </PageLayout>
     </>

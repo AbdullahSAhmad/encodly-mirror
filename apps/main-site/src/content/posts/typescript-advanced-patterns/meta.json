@@ -1,0 +1,12 @@
+{
+  "id": "5",
+  "slug": "typescript-advanced-patterns-type-safety-2025",
+  "title": "TypeScript Advanced Patterns: Mastering Type Safety and Design Patterns in 2025",
+  "description": "Unlock the full potential of TypeScript with advanced type patterns, generics, and design patterns. Learn how to write type-safe, maintainable code that scales.",
+  "author": "Encodly Team",
+  "publishDate": "2025-08-06",
+  "lastModified": "2025-08-06",
+  "readTime": 14,
+  "tags": ["TypeScript", "JavaScript", "Type Safety", "Design Patterns", "Advanced Programming"],
+  "keywords": ["TypeScript advanced patterns", "TypeScript generics", "type safety", "TypeScript design patterns", "advanced TypeScript", "TypeScript best practices", "TypeScript 2025", "type inference", "conditional types", "mapped types"]
+}

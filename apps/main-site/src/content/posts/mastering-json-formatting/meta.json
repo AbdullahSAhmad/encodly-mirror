@@ -1,0 +1,12 @@
+{
+  "id": "1",
+  "slug": "mastering-json-formatting-best-practices-2025",
+  "title": "Mastering JSON Formatting: Best Practices for Developers in 2025",
+  "description": "Learn essential JSON formatting techniques, validation strategies, and performance optimization tips to improve your development workflow and data interchange.",
+  "author": "Encodly Team",
+  "publishDate": "2025-07-15",
+  "lastModified": "2025-07-15",
+  "readTime": 8,
+  "tags": ["JSON", "Web Development", "Best Practices", "Data Formats", "API Development"],
+  "keywords": ["JSON formatting", "JSON validator", "JSON best practices", "data interchange format", "JSON performance", "JSON schema validation", "JSON tools", "pretty print JSON"]
+}

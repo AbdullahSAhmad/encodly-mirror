@@ -1,20 +1,53 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { PageLayout } from '../components/PageLayout';
-import { blogPosts } from '../data/blogPosts';
+import { getBlogPost } from '../utils/blog-loader';
+import { BlogPost } from '../types/blog';
 import { ChevronLeft, Calendar, Clock, Tag } from 'lucide-react';
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const post = blogPosts.find(p => p.slug === slug);
+  const [post, setPost] = useState<(BlogPost & { content: string }) | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    if (!slug) {
+      setNotFound(true);
+      setLoading(false);
+      return;
+    }
+    
+    try {
+      const blogPost = getBlogPost(slug);
+      if (blogPost) {
+        setPost(blogPost);
+      } else {
+        setNotFound(true);
+      }
+    } catch (error) {
+      console.error('Failed to load blog post:', error);
+      setNotFound(true);
+    } finally {
+      setLoading(false);
+    }
   }, [slug]);
 
-  if (!post) {
+  if (loading) {
+    return (
+      <PageLayout maxWidth="full">
+        <div className="container mx-auto py-12 text-center max-w-6xl">
+          <p className="text-xl text-muted-foreground">Loading blog post...</p>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (notFound || !post) {
     return (
       <PageLayout maxWidth="full">
         <div className="container mx-auto py-12 text-center max-w-6xl">

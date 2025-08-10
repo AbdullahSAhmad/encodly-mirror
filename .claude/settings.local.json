@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm run build:main:*)",
       "Bash(grep:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

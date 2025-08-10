@@ -9,6 +9,8 @@ interface PageLayoutProps {
   children: React.ReactNode;
   maxWidth?: 'narrow' | 'normal' | 'wide' | 'full';
   className?: string;
+  jsonLd?: any;
+  type?: string;
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
@@ -19,6 +21,8 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   children,
   maxWidth = 'normal',
   className = '',
+  jsonLd,
+  type = 'website',
 }) => {
   const getMaxWidthClass = () => {
     switch (maxWidth) {
@@ -38,6 +42,8 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
           description={description || ''} 
           keywords={keywords}
           canonicalUrl={canonicalUrl}
+          jsonLd={jsonLd}
+          type={type}
         />
       )}
       <div className="min-h-screen flex flex-col">

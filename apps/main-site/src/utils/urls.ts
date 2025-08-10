@@ -1,14 +1,14 @@
 // Get the base URL for the current environment
 export const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
-    // Always use the canonical domain without www
+    // Always use the canonical domain with www
     const origin = window.location.origin;
-    if (origin.includes('www.encodly.com')) {
-      return 'https://encodly.com';
+    if (origin.includes('encodly.com') && !origin.includes('www.')) {
+      return 'https://www.encodly.com';
     }
     return origin;
   }
-  return import.meta.env.VITE_BASE_URL || 'https://encodly.com';
+  return import.meta.env.VITE_BASE_URL || 'https://www.encodly.com';
 };
 
 // Get tool URLs based on environment
@@ -46,7 +46,7 @@ export const getToolUrls = () => {
     qr: 'https://qr.encodly.com',
     regex: 'https://regex.encodly.com',
     calc: 'https://calc.encodly.com',
-    main: 'https://encodly.com'
+    main: 'https://www.encodly.com'
   };
 };
 

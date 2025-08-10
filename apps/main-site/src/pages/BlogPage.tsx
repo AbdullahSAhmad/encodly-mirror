@@ -42,13 +42,13 @@ export function BlogPage() {
         <meta property="og:title" content="Developer Blog - Encodly" />
         <meta property="og:description" content="Read our latest articles on web development, JSON, Base64, JWT security, and developer tools." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://encodly.com/blog" />
+        <meta property="og:url" content="https://www.encodly.com/blog" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Developer Blog - Encodly" />
         <meta name="twitter:description" content="Read our latest articles on web development and developer tools." />
         
-        <link rel="canonical" href="https://encodly.com/blog" />
+        <link rel="canonical" href="https://www.encodly.com/blog" />
         
         <script type="application/ld+json">
           {JSON.stringify({
@@ -56,11 +56,11 @@ export function BlogPage() {
             "@type": "Blog",
             "name": "Encodly Developer Blog",
             "description": "Technical articles about web development, developer tools, and best practices",
-            "url": "https://encodly.com/blog",
+            "url": "https://www.encodly.com/blog",
             "publisher": {
               "@type": "Organization",
               "name": "Encodly",
-              "url": "https://encodly.com"
+              "url": "https://www.encodly.com"
             },
             "blogPost": blogPosts.map(post => ({
               "@type": "BlogPosting",
@@ -72,7 +72,7 @@ export function BlogPage() {
               },
               "datePublished": post.publishDate,
               "dateModified": post.lastModified,
-              "url": `https://encodly.com/blog/${post.slug}`,
+              "url": `https://www.encodly.com/blog/${post.slug}`,
               "keywords": post.keywords.join(", ")
             }))
           })}

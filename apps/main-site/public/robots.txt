@@ -7,14 +7,22 @@ Sitemap: https://www.encodly.com/sitemap.xml
 # Crawl delay for better server performance
 Crawl-delay: 1
 
-# Block admin and private areas (none currently)
-# Disallow: /admin/
-
-# Allow important pages
+# Allow all main pages
 Allow: /about
 Allow: /privacy
 Allow: /terms
 Allow: /contact
+Allow: /blog
+Allow: /blog/*
+
+# Allow static assets
+Allow: /*.js
+Allow: /*.css
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
 
 # SEO-friendly crawling
 User-agent: Googlebot

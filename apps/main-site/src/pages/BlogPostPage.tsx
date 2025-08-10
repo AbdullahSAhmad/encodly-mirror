@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { PageLayout } from '../components/PageLayout';
 import { getBlogPost } from '../utils/blog-loader';
@@ -63,57 +62,43 @@ export function BlogPostPage() {
     );
   }
 
-  return (
-    <>
-      <Helmet>
-        <title>{post.title} - Encodly Blog</title>
-        <meta name="description" content={post.description} />
-        <meta name="keywords" content={post.keywords.join(', ')} />
-        <meta name="author" content={post.author} />
-        
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://encodly.com/blog/${post.slug}`} />
-        <meta property="article:published_time" content={post.publishDate} />
-        <meta property="article:modified_time" content={post.lastModified} />
-        <meta property="article:author" content={post.author} />
-        {post.tags.map(tag => (
-          <meta key={tag} property="article:tag" content={tag} />
-        ))}
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.description} />
-        
-        <link rel="canonical" href={`https://encodly.com/blog/${post.slug}`} />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.description,
-            "author": {
-              "@type": "Organization",
-              "name": post.author
-            },
-            "datePublished": post.publishDate,
-            "dateModified": post.lastModified,
-            "url": `https://encodly.com/blog/${post.slug}`,
-            "keywords": post.keywords.join(", "),
-            "articleBody": post.content,
-            "wordCount": post.content.split(' ').length,
-            "publisher": {
-              "@type": "Organization",
-              "name": "Encodly",
-              "url": "https://encodly.com"
-            }
-          })}
-        </script>
-      </Helmet>
+  // Prepare JSON-LD structured data for blog post
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.description,
+    "author": {
+      "@type": "Organization",
+      "name": post.author
+    },
+    "datePublished": post.publishDate,
+    "dateModified": post.lastModified,
+    "url": `https://www.encodly.com/blog/${post.slug}`,
+    "keywords": post.keywords.join(", "),
+    "articleBody": post.content,
+    "wordCount": post.content.split(' ').length,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Encodly",
+      "url": "https://www.encodly.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.encodly.com/blog/${post.slug}`
+    }
+  };
 
-      <PageLayout maxWidth="full">
+  return (
+    <PageLayout 
+      title={`${post.title} - Encodly Blog`}
+      description={post.description}
+      keywords={post.keywords}
+      canonicalUrl={`https://www.encodly.com/blog/${post.slug}`}
+      maxWidth="full"
+      jsonLd={jsonLd}
+      type="article"
+    >
         <article className="container mx-auto py-12 max-w-6xl">
           <Link 
             to="/blog" 
@@ -207,6 +192,5 @@ export function BlogPostPage() {
           </footer>
         </article>
       </PageLayout>
-    </>
   );
 }

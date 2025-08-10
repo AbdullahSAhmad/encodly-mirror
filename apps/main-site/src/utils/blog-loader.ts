@@ -7,6 +7,8 @@ import debuggingTechniquesMeta from '../content/posts/web-debugging-techniques/m
 import apiDesignMeta from '../content/posts/api-design-best-practices/meta.json';
 import typescriptPatternsMeta from '../content/posts/typescript-advanced-patterns/meta.json';
 import modernCssMeta from '../content/posts/modern-css-techniques/meta.json';
+import aiCodingAssistantsMeta from '../content/posts/ai-coding-assistants-developer-workflow/meta.json';
+import aiWebDevelopmentMeta from '../content/posts/ai-web-development-future/meta.json';
 
 // Import all content files
 import jsonFormattingContent from '../content/posts/mastering-json-formatting/content.md?raw';
@@ -15,6 +17,8 @@ import debuggingTechniquesContent from '../content/posts/web-debugging-technique
 import apiDesignContent from '../content/posts/api-design-best-practices/content.md?raw';
 import typescriptPatternsContent from '../content/posts/typescript-advanced-patterns/content.md?raw';
 import modernCssContent from '../content/posts/modern-css-techniques/content.md?raw';
+import aiCodingAssistantsContent from '../content/posts/ai-coding-assistants-developer-workflow/content.md?raw';
+import aiWebDevelopmentContent from '../content/posts/ai-web-development-future/content.md?raw';
 
 // Create a map of all posts with their metadata and content
 // Using the actual slugs from the metadata files
@@ -42,6 +46,14 @@ const BLOG_POSTS_MAP = {
   'modern-css-techniques-responsive-design-2025': {
     metadata: modernCssMeta as BlogPost,
     content: modernCssContent
+  },
+  'ai-coding-assistants-transform-developer-workflow-2025': {
+    metadata: aiCodingAssistantsMeta as BlogPost,
+    content: aiCodingAssistantsContent
+  },
+  'ai-powered-web-development-future-2025': {
+    metadata: aiWebDevelopmentMeta as BlogPost,
+    content: aiWebDevelopmentContent
   }
 };
 

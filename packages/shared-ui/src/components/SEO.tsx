@@ -88,15 +88,18 @@ export const SEO: React.FC<SEOProps> = ({
     updateMetaTag('twitter:description', description);
     updateMetaTag('twitter:image', ogImage);
     
-    // Canonical URL
+    // Canonical URL - ensure it's clean without query parameters
     if (canonicalUrl) {
+      // Remove any query parameters from canonical URL
+      const cleanCanonicalUrl = canonicalUrl.split('?')[0];
+      
       let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
       if (canonicalLink) {
-        canonicalLink.href = canonicalUrl;
+        canonicalLink.href = cleanCanonicalUrl;
       } else {
         canonicalLink = document.createElement('link');
         canonicalLink.rel = 'canonical';
-        canonicalLink.href = canonicalUrl;
+        canonicalLink.href = cleanCanonicalUrl;
         document.head.appendChild(canonicalLink);
       }
     }

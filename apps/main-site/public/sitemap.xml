@@ -72,6 +72,13 @@
     <priority>0.8</priority>
   </url>
   
+  <url>
+    <loc>https://www.encodly.com/blog/anthropic-claude-ai-development-revolution-2025</loc>
+    <lastmod>2025-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- Tool Links -->
   <url>
     <loc>https://json.encodly.com/</loc>

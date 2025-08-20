@@ -2,6 +2,8 @@
 
 In today's interconnected digital ecosystem, APIs are the backbone of modern applications. A well-designed REST API can make the difference between a product that scales gracefully and one that becomes a maintenance nightmare. This comprehensive guide explores the best practices, patterns, and principles that will help you build APIs that are intuitive, performant, and maintainable.
 
+When building APIs, having the right tools is essential. Use our [JSON Formatter](https://json.encodly.com) to validate API responses, [JWT Decoder](https://jwt-decoder.encodly.com) for authentication tokens, and [Base64 Converter](https://base64.encodly.com) for handling encoded payloads.
+
 ## Understanding REST Principles
 
 REST (Representational State Transfer) is an architectural style that has become the standard for web APIs. Before diving into best practices, let's revisit the core principles that make REST APIs powerful:

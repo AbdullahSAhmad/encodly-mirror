@@ -4,7 +4,8 @@
       "Bash(npm run build:main:*)",
       "Bash(grep:*)",
       "Bash(mkdir:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "WebFetch(domain:www.encodly.com)"
     ],
     "deny": []
   }

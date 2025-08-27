@@ -29,7 +29,8 @@ export const getToolUrls = () => {
       markdown: 'http://localhost:5010',
       qr: 'http://localhost:5011',
       regex: 'http://localhost:5012',
-      main: 'http://localhost:5000'
+      main: 'http://localhost:5000',
+      blog: 'http://localhost:5000/blog'
     };
   }
   
@@ -46,7 +47,8 @@ export const getToolUrls = () => {
     markdown: 'https://markdown.encodly.com',
     qr: 'https://qr.encodly.com',
     regex: 'https://regex.encodly.com',
-    main: 'https://encodly.com'
+    main: 'https://encodly.com',
+    blog: 'https://encodly.com/blog'
   };
 };
 

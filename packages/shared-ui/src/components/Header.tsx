@@ -130,14 +130,12 @@ export const Header: React.FC = () => {
                 )}
               </div>
               
-              {isMainSite && (
-                <a
-                  href="/blog"
-                  className="ml-4 px-3 py-2 text-sm font-medium hover:text-primary transition"
-                >
-                  Blog
-                </a>
-              )}
+              <a
+                href={toolUrls.blog}
+                className="ml-4 px-3 py-2 text-sm font-medium hover:text-primary transition"
+              >
+                Blog
+              </a>
             </nav>
           </div>
 
@@ -228,16 +226,14 @@ export const Header: React.FC = () => {
               </div>
             ))}
             
-            {isMainSite && (
-              <div className="mt-4 pt-4 border-t">
+            <div className="mt-4 pt-4 border-t">
                 <a
-                  href="/blog"
+                  href={toolUrls.blog}
                   className="block px-4 py-2 text-muted-foreground hover:text-foreground transition"
                 >
                   Blog
                 </a>
               </div>
-            )}
           </nav>
         )}
       </div>

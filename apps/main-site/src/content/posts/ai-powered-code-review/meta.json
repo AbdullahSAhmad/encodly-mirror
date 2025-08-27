@@ -1,0 +1,25 @@
+{
+  "slug": "ai-powered-code-review-revolution",
+  "title": "The Rise of AI-Powered Code Review: A Developer's New Best Friend",
+  "description": "Explore how AI is transforming code reviews, from automated feedback to intelligent bug detection. Learn how to integrate AI code reviewers into your workflow for better, faster, and more secure code.",
+  "author": "Encodly Team",
+  "publishDate": "2025-08-28",
+  "lastModified": "2025-08-28",
+  "readTime": 9,
+  "tags": ["AI", "Code Review", "DevOps", "Developer Tools", "Software Quality", "Automation"],
+  "keywords": [
+    "AI code review",
+    "automated code review tools",
+    "AI in software development",
+    "GitHub Copilot",
+    "CodeRabbit",
+    "static analysis",
+    "AI bug detection",
+    "developer productivity",
+    "secure coding practices",
+    "AI-assisted development",
+    "future of coding",
+    "DevEx"
+  ],
+  "featured": true
+}

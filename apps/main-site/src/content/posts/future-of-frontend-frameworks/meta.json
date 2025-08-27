@@ -1,0 +1,24 @@
+{
+  "slug": "future-of-frontend-frameworks-2025",
+  "title": "The Future of Frontend Frameworks: A 2025 Outlook",
+  "description": "From server-side rendering to the rise of meta-frameworks, the frontend landscape is constantly evolving. This post explores the latest trends and predicts the future of frontend development in 2025.",
+  "author": "Encodly Team",
+  "publishDate": "2025-08-29",
+  "lastModified": "2025-08-29",
+  "readTime": 11,
+  "tags": ["Frontend", "Web Development", "React", "Vue", "Svelte", "Next.js", "Future Tech"],
+  "keywords": [
+    "frontend frameworks 2025",
+    "React vs Vue vs Svelte",
+    "Next.js 15",
+    "SvelteKit",
+    "meta-frameworks",
+    "server-side rendering",
+    "Jamstack",
+    "WebAssembly",
+    "frontend trends",
+    "future of web development",
+    "JavaScript frameworks"
+  ],
+  "featured": false
+}

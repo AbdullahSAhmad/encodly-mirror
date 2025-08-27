@@ -10,6 +10,8 @@ import modernCssMeta from '../content/posts/modern-css-techniques/meta.json';
 import aiCodingAssistantsMeta from '../content/posts/ai-coding-assistants-developer-workflow/meta.json';
 import aiWebDevelopmentMeta from '../content/posts/ai-web-development-future/meta.json';
 import anthropicClaudeMeta from '../content/posts/anthropic-claude-ai-development/meta.json';
+import aiPoweredCodeReviewMeta from '../content/posts/ai-powered-code-review/meta.json';
+import futureOfFrontendFrameworksMeta from '../content/posts/future-of-frontend-frameworks/meta.json';
 
 // Import all content files
 import jsonFormattingContent from '../content/posts/mastering-json-formatting/content.md?raw';
@@ -21,6 +23,8 @@ import modernCssContent from '../content/posts/modern-css-techniques/content.md?
 import aiCodingAssistantsContent from '../content/posts/ai-coding-assistants-developer-workflow/content.md?raw';
 import aiWebDevelopmentContent from '../content/posts/ai-web-development-future/content.md?raw';
 import anthropicClaudeContent from '../content/posts/anthropic-claude-ai-development/content.md?raw';
+import aiPoweredCodeReviewContent from '../content/posts/ai-powered-code-review/content.md?raw';
+import futureOfFrontendFrameworksContent from '../content/posts/future-of-frontend-frameworks/content.md?raw';
 
 // Create a map of all posts with their metadata and content
 // Using the actual slugs from the metadata files
@@ -60,6 +64,14 @@ const BLOG_POSTS_MAP = {
   'anthropic-claude-ai-development-revolution-2025': {
     metadata: anthropicClaudeMeta as BlogPost,
     content: anthropicClaudeContent
+  },
+  'ai-powered-code-review-revolution': {
+    metadata: aiPoweredCodeReviewMeta as BlogPost,
+    content: aiPoweredCodeReviewContent
+  },
+  'future-of-frontend-frameworks-2025': {
+    metadata: futureOfFrontendFrameworksMeta as BlogPost,
+    content: futureOfFrontendFrameworksContent
   }
 };
 
